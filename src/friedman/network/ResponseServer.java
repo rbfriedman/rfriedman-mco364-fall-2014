@@ -11,27 +11,40 @@ import java.net.Socket;
 public class ResponseServer {
 	public static void main(String args[]) throws IOException {
 		ServerSocket serverSocket = new ServerSocket(8080);
-		Socket socket = serverSocket.accept();
+		
 
-		InputStream in = socket.getInputStream();
-
-		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-
-		String line = "";
 		int counter = 0;
 		while (true) {
-			while (!"".equals((line = reader.readLine()) != null)) {
-				System.out.println(line);
+			Socket socket = serverSocket.accept();
+
+			InputStream in = socket.getInputStream();
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+			
+			String line = "";
+			if(null != (line = reader.readLine()) && !line.contains(".ico")){
+				counter++;
+				do {
+					System.out.println(line);
+				}while(	 !"".equals((line = reader.readLine())));
+				System.out.println(counter);
 			}
 
 			OutputStream out = socket.getOutputStream();
-			String response = "<h5>This is the " + ++counter + "st request</h2>";
+			
+			String response = "<h5>This is the "+counter+"st request</h2>";
 			out.write(response.getBytes());
 			out.write("HTTP/1.1 200 OK\n".getBytes());
 			out.write("Content-Type: text/html); charset=utf-8\n".getBytes());
 			out.write(("Content-Length: " + response.length() + " ").getBytes());
 			out.flush();
 			out.close();
+			
+			
+			
+			
 		}
+		
 	}
+	
 }
