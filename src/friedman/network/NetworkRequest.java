@@ -7,8 +7,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 public class NetworkRequest {
 
