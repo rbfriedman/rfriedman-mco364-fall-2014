@@ -8,12 +8,18 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ResponseServer {
-	public static void main(String args[]) throws IOException {
-		ServerSocket serverSocket = new ServerSocket(8080);
-		
+public class ResponseServer{
+	private int visitorCount;
+	private ServerSocket serverSocket;
 
-		int counter = 0;
+	public ResponseServer() throws IOException {
+		visitorCount =0;
+		serverSocket = new ServerSocket(8080);
+		startServer();
+		
+	}
+	
+	public void startServer() throws IOException{
 		while (true) {
 			Socket socket = serverSocket.accept();
 
@@ -23,28 +29,31 @@ public class ResponseServer {
 			
 			String line = "";
 			if(null != (line = reader.readLine()) && !line.contains(".ico")){
-				counter++;
+				visitorCount++;
 				do {
 					System.out.println(line);
 				}while(	 !"".equals((line = reader.readLine())));
-				System.out.println(counter);
+				System.out.println(visitorCount);
 			}
 
 			OutputStream out = socket.getOutputStream();
+			new ResponseThread(visitorCount,out).start();;
+		
+
 			
-			String response = "<h5>This is the "+counter+"st request</h2>";
-			out.write(response.getBytes());
-			out.write("HTTP/1.1 200 OK\n".getBytes());
-			out.write("Content-Type: text/html); charset=utf-8\n".getBytes());
-			out.write(("Content-Length: " + response.length() + " ").getBytes());
-			out.flush();
-			out.close();
-			
-			
-			
-			
+		}	
+
+		
+	}
+	public static void main(String args[]) {
+		try{
+		ResponseServer myResponseServer = new ResponseServer();
+		}catch(IOException io){
+			io.printStackTrace();
 		}
 		
 	}
+
+
 	
 }
