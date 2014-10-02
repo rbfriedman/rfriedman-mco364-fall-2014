@@ -2,67 +2,101 @@ package rfriedman.chat;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
-public class ChatFrame extends JFrame {
-	private ChatServer server;
-	private GUIPanel guiPanel;
+public class ChatFrame extends JFrame implements ActionListener {
 	private JTextPane jPane;
-	private JPanel containerPanel;
 	private JScrollPane areaScrollPane;
+	private JTextField jtfNewMessage;
+	private JButton jbtSend;
 	private StringBuilder myMessage;
+	private Socket socket;
+	private String title;
+	
+	private int HEIGHT;
+	private int WIDTH;
 
-	public ChatFrame(GUIPanel guiPanel) {
-		this.guiPanel = guiPanel;
-		
+	public ChatFrame(String title) {
+		this.title = title;
 		this.jPane = new JTextPane();
 		this.myMessage = new StringBuilder();
-		
-		
-		this.containerPanel = new JPanel();
-		layoutFrame();
-		this.setTitle("My Chat");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		jtfNewMessage = new JTextField();
+		jbtSend = new JButton("SEND");
 		
-		
-		server = new ChatServer(this);
-		new Thread(server);
+		jbtSend.addActionListener(this);
+
+		layoutFrame();
+		this.setTitle(title);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(400, 250);
+		this.setVisible(true);
+
 		pack();
-		setVisible(true);
 	}
+
 
 	private void layoutFrame() {
 		jPane.setText(myMessage.toString());
 		areaScrollPane = new JScrollPane(jPane);
-		areaScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		areaScrollPane
+				.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		areaScrollPane.setPreferredSize(new Dimension(400, 250));
 		
+		jtfNewMessage.setPreferredSize(new Dimension(400 * 2 / 3,
+				HEIGHT * 1 / 6));
+		jbtSend.setPreferredSize(new Dimension(400 * 1 / 3, 400 * 1 / 6));
 
-		
-		add(areaScrollPane,BorderLayout.CENTER);
-		add(guiPanel,BorderLayout.SOUTH);
-		
-		
-	}
+		JPanel lowerPanel = new JPanel();
+		lowerPanel.setLayout(new BorderLayout());
+		lowerPanel.add(jtfNewMessage,BorderLayout.CENTER);
+		lowerPanel.add(jbtSend,BorderLayout.EAST);
+		add(areaScrollPane, BorderLayout.CENTER);
+		add(lowerPanel, BorderLayout.SOUTH);
 
-	public static void main(String[] args) {
-		int w =400;
-		int h=400;
-		ChatFrame c = new ChatFrame(new GUIPanel(w,h));
-		c.setSize(w, h);
-		c.setVisible(true);
 	}
 	
-	public void appendMessage(String message){
-		myMessage.append(message).append("\n");
-		jPane.repaint();
-		repaint();
+	public void setSocket(Socket socket) {
+		this.socket = socket;
+	}
+
+	public void appendMessage(String message) {
+		jPane.setText(jPane.getText()+message+"\n");
 		
+
+	}
+
+	public void send(String s) throws IOException {
+		PrintWriter out = new PrintWriter(socket.getOutputStream());
+		out.println(s);
+		out.flush();
+	}
+
+	private void sendAndAppendMessage() {
+		String s = jtfNewMessage.getText();
+		appendMessage(title +" : " +s);
+		try {
+			send(title +" : " +s);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		jtfNewMessage.setText("");
+	}
+
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		sendAndAppendMessage();
 	}
 
 }

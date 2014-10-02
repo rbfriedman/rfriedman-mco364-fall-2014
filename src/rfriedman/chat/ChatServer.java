@@ -3,37 +3,35 @@ package rfriedman.chat;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 
 
-public class ChatServer implements Runnable{
-	private ChatFrame frame;
+public class ChatServer extends ChatFrame{
+	private ServerSocket server;
 
-	//public static void main(String[] args) {
-	//	new ChatServer();
-	//}
-
-	public ChatServer(ChatFrame frame) {
-		this.frame = frame;
-
-	}
-
-	public void run() {
-		try {
-			ServerSocket serverSocket = new ServerSocket(8080);
-			while (true) {
-				Socket socket = serverSocket.accept();
-
-				ServerThreads task = new ServerThreads(socket, frame);
-
-				new Thread(task).start();
-			}
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public ChatServer() throws UnknownHostException, IOException {
+		super("Chat Server");
 		
+		server = new ServerSocket(9097);
+
+		new Thread() {
+			public void run() {
+				try {
+					Socket socket = server.accept();
+					setSocket(socket);
+					new ReadThread(ChatServer.this, socket).start();
+				}
+				catch(IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}.start();
+	}
+	
+	public static void main( String args[] ) throws UnknownHostException, IOException {
+		ChatServer server = new ChatServer();
+		server.setVisible(true);
 	}
 
 }
