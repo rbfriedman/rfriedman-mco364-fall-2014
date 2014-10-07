@@ -13,8 +13,8 @@ public class DownloadGoogleAvatarThread extends Thread {
 
 	private ChatFrame frame;
 	public final String X_JavaScript_User_Agent = "Google APIs Explorer";
-	public final String Authorization = "Bearer ya29.lwChubnuBP0TgsNyNr1UplZxyAhWu-5ohbFyfxmNn_sZW0rnn6uTkLoULPRGu8vaPQy7OWlZVioGAg";
-	public final String AVATAR_URL = "https://www.googleapis.com/plus/v1/people/me?fields=image%2Cname&key={AIzaSyBwTpxiZ_2_C30i0i6yAZvOmRvU6F9dDtk}";
+	public final String Authorization = "Oauth AUthorization Key";
+	public final String AVATAR_URL = "https://www.googleapis.com/plus/v1/people/me?fields=image%2Cname&key={MY_KEY}";
 	private AvatarFeed avatarFeed;
 
 	public DownloadGoogleAvatarThread(final ChatFrame frame) {
