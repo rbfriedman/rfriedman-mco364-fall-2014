@@ -7,10 +7,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
 import java.net.Socket;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,7 +29,9 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
-public class ChatFrame extends JFrame implements ActionListener {
+import com.google.gson.Gson;
+
+public class ChatFrame extends JFrame implements ActionListener,AvatarListener {
 	/**
 	 * 
 	 */
@@ -41,8 +50,9 @@ public class ChatFrame extends JFrame implements ActionListener {
 	private int WIDTH;
 
 	private static int colorFormation = 2;
+	private AvatarFeed avatarFeed;
 
-	public ChatFrame(String title) {
+	public ChatFrame(String title) throws IOException {
 		this.title = title;
 		jPane = new JTextPane();
 		myMessage = new StringBuilder();
@@ -52,6 +62,23 @@ public class ChatFrame extends JFrame implements ActionListener {
 		WIDTH = getToolkit().getScreenSize().getSize().width / 4;
 
 		jbtSend.addActionListener(this);
+		
+		this.sendGet();
+		addKeyListener();
+		layoutFrame();
+		generateColors();
+		this.setTitle(title);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(WIDTH, HEIGHT);
+		// TODO set minumum size
+		this.setVisible(true);
+		pack();
+		
+		
+	}
+
+	private void addKeyListener() {
+		// TODO Auto-generated method stub
 		jtfNewMessage.addKeyListener(new KeyListener() {
 
 			public void keyPressed(KeyEvent e) {
@@ -71,14 +98,6 @@ public class ChatFrame extends JFrame implements ActionListener {
 			}
 
 		});
-		layoutFrame();
-		generateColors();
-		this.setTitle(title);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(WIDTH, HEIGHT);
-		// TODO set minumum size
-		this.setVisible(true);
-		pack();
 	}
 
 	private void generateColors() {
@@ -191,6 +210,25 @@ public class ChatFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		sendAndAppendMessage();
 		
+	}
+
+	public void sendGet() throws IOException {
+		// TODO Auto-generated method stub
+		DownloadGoogleAvatarThread t = new DownloadGoogleAvatarThread(this);
+		t.start();
+		
+	}
+
+	public void setIconImage(AvatarFeed avatarFeed) {
+		// TODO Auto-generated method stub
+		this.avatarFeed = avatarFeed;
+		DownloadImageIcon iconThread = new DownloadImageIcon(this);
+		iconThread.start();
+	}
+
+	public String getAvatarFeedUrl() {
+		// TODO Auto-generated method stub
+		return avatarFeed.getAvatarUrl();
 	}
 
 }
