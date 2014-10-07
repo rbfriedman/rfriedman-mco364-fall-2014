@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -21,6 +23,10 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
 public class ChatFrame extends JFrame implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1364366119227491116L;
 	private JTextPane jPane;
 	private JScrollPane areaScrollPane;
 	private JTextField jtfNewMessage;
@@ -46,7 +52,25 @@ public class ChatFrame extends JFrame implements ActionListener {
 		WIDTH = getToolkit().getScreenSize().getSize().width / 4;
 
 		jbtSend.addActionListener(this);
+		jtfNewMessage.addKeyListener(new KeyListener() {
 
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					sendAndAppendMessage();
+				}
+			}
+
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			public void keyTyped(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+		});
 		layoutFrame();
 		generateColors();
 		this.setTitle(title);
@@ -83,8 +107,8 @@ public class ChatFrame extends JFrame implements ActionListener {
 			break;
 		}
 		colorId = new Color(value1, value2, value3);
-		colorFormation +=1; 
-		colorFormation%= 3; 
+		colorFormation += 1;
+		colorFormation %= 3;
 	}
 
 	private void layoutFrame() {
@@ -112,7 +136,7 @@ public class ChatFrame extends JFrame implements ActionListener {
 	}
 
 	public void appendMessage(String message) {
-		appendToPane(jPane,message + "\n", Color.BLACK);
+		appendToPane(jPane, message + "\n", Color.BLACK);
 
 	}
 
@@ -140,25 +164,33 @@ public class ChatFrame extends JFrame implements ActionListener {
 
 	private void appendNameofSender() {
 
-		appendToPane(jPane,title + " : ",colorId);
+		appendToPane(jPane, title + " : ", colorId);
 	}
 
 	private void sendAndAppendMessage() {
 		// TODO pictures and better system for title
-		String s = jtfNewMessage.getText();
-		appendNameofSender();
-		appendMessage(s);
 		try {
+			String s = jtfNewMessage.getText();
+			if (s.equals("")) {
+				throw new EmptyTextFieldException();
+
+			}
+			appendNameofSender();
+			appendMessage(s);
 			send(title + " : " + s);
+			jtfNewMessage.setText("");
+
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (EmptyTextFieldException e) {
+			// Do Nothing
 		}
-		jtfNewMessage.setText("");
+
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		sendAndAppendMessage();
+		
 	}
 
 }

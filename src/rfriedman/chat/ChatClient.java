@@ -5,6 +5,10 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class ChatClient extends ChatFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5934716361334721391L;
 	private Socket socket;
 
 	public ChatClient() throws UnknownHostException, IOException {
