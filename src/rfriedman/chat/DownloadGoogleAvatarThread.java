@@ -13,8 +13,8 @@ public class DownloadGoogleAvatarThread extends Thread {
 
 	private ChatFrame frame;
 	public final String X_JavaScript_User_Agent = "Google APIs Explorer";
-	public final String Authorization = "Bearer ya29.mAAS5dng8exF1in7h90dlyIGETfbSj1FEAqUSiYDTwN-Hpv_-EUe5IYaFr5nZHjBLni-pnOOd7hzWA";
-	public final String AVATAR_URL = "https://www.googleapis.com/plus/v1/people/me?fields=image%2Cname&key={AIzaSyBwTpxiZ_2_C30i0i6yAZvOmRvU6F9dDtk}";
+	public final String Authorization = "Auth key";
+	public final String AVATAR_URL = "https://www.googleapis.com/plus/v1/people/me?fields=image%2Cname&key={KEY}";
 	private AvatarFeed avatarFeed;
 
 	public DownloadGoogleAvatarThread(final ChatFrame frame) {
@@ -23,7 +23,7 @@ public class DownloadGoogleAvatarThread extends Thread {
 	}
 
 	public void run() {
-		String url = "https://www.googleapis.com/plus/v1/people/me?fields=image%2Cname&key={AIzaSyBwTpxiZ_2_C30i0i6yAZvOmRvU6F9dDtk}";
+		String url = "https://www.googleapis.com/plus/v1/people/me?fields=image%2Cname&key={KEY}";
 		try {
 			URL obj = new URL(url);
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
