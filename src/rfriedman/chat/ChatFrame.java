@@ -63,7 +63,7 @@ public class ChatFrame extends JFrame implements ActionListener,AvatarListener {
 
 		jbtSend.addActionListener(this);
 		
-		//this.sendGet();
+		this.sendGet();
 		addKeyListener();
 		layoutFrame();
 		generateColors();

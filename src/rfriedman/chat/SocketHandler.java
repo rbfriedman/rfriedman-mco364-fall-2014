@@ -12,11 +12,13 @@ public class SocketHandler extends Thread{
 	
 	private Socket s;
 	private Queue<String> messages;
+	private ChatServer chatServer;
 
-	public SocketHandler(Socket s,Queue messages) {
+	public SocketHandler(Socket s,Queue messages, ChatServer chatServer) {
 		super();
 		this.s = s;
 		this.messages = messages;
+		this.chatServer = chatServer;
 	}
 	
 	public void run(){
@@ -28,6 +30,7 @@ public class SocketHandler extends Thread{
 			String line;
 			while((line = reader.readLine())!=null){
 				messages.add(line);
+				chatServer.appendMessage(line);
 			}
 		}catch(IOException e){
 			e.printStackTrace();

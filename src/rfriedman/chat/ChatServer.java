@@ -14,7 +14,7 @@ public class ChatServer extends ChatFrame{
 		super("Chat Server");
 		
 		server = new ServerSocket(9097);
-
+		
 		new Thread() {
 			public void run() {
 				try {
@@ -27,6 +27,13 @@ public class ChatServer extends ChatFrame{
 				}
 			}
 		}.start();
+	}
+	
+	public ChatServer(String title) throws UnknownHostException, IOException {
+		
+		super(title);
+		
+		//thread functionality decided by subclass
 	}
 	
 	public static void main( String args[] ) throws UnknownHostException, IOException {
