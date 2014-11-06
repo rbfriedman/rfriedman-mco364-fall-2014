@@ -4,62 +4,71 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
-import java.awt.geom.Path2D;
-import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
 
-public class Canvas extends JComponent implements MouseMotionListener {
+public class Canvas extends JComponent {
 	private static final long serialVersionUID = 1L;
-	private Path2D.Double path;
-	private Point2D.Double originalPoint;
-	private Point2D.Double nextPoint;
+	private static final int STROKE_WIDTH = 4;
+	private int x1;
+	private int y1;
+	private int x2;
+	private int y2;
+	private Graphics2D g;
+
+	private BufferedImage image;
 	private boolean canvasClicked;
 
 	public Canvas() {
 		super();
-		addMouseMotionListener(this);
-		path = new Path2D.Double();
+		image = new BufferedImage(800, 600, BufferedImage.TYPE_INT_ARGB);
+		g = (Graphics2D) image.getGraphics();
+		g.setColor(Color.BLACK);
+		((Graphics2D) g).setStroke(new BasicStroke(STROKE_WIDTH));
+	}
+
+	public void setPointOrigin(int x1, int y1) {
+		this.x1 = x1;
+		this.y1 = y1;
+	}
+
+	public void setPointNext(int x2, int y2) {
+		this.x2 = x2;
+		this.y2 = y2;
 	}
 
 	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D) g;
-		g2.setStroke(new BasicStroke(10));
-		g2.setColor(Color.BLACK);
-		g2.draw(path);
-		
+		g = (Graphics2D) g;
+
+		((Graphics2D) g).setStroke(new BasicStroke(30));
+		g.drawImage(image, 0, 0, null);
 
 	}
 
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		if (!canvasClicked) {
-			originalPoint = new Point2D.Double(e.getX(), e.getY());
-			nextPoint = new Point2D.Double(e.getX(), e.getY());
-			
-			canvasClicked = true;
-		} else {
-			originalPoint = nextPoint;
-			nextPoint = new Point2D.Double(e.getX(), e.getY());
-		}
-		path.moveTo(originalPoint.getX(), originalPoint.getY());
-		path.lineTo(nextPoint.getX(), nextPoint.getY());
-		repaint();
+	public void setClicked(boolean b) {
+		canvasClicked = b;
 
-		
-		
 	}
 
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		canvasClicked = false;
+	public boolean isClicked() {
+		// TODO Auto-generated method stub
+		return canvasClicked;
 	}
 
-	void saySomething(String eventDescription, MouseEvent e) {
-		System.out.println(eventDescription);
+	public void drawLine() {
+		g.drawLine(x1, y1, x2, y2);
+
 	}
+	
+	public int[] getNextPoint(){
+		return new int[]{x2,y2};
+	}
+	
+	public void setColor(Color c){
+		g.setColor(c);
+	}
+	
+	
 
 }

@@ -20,6 +20,7 @@ public class Paint extends JFrame {
 		container.setLayout(layout);
 		
 		Canvas canvas = new Canvas();
+		canvas.addMouseMotionListener(new PaintListener(canvas));
 		add(canvas,BorderLayout.CENTER);
 		setSize(800,600);
 		setTitle("Paint");
