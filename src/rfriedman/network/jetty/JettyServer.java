@@ -8,6 +8,7 @@ public class JettyServer {
 		// TODO Auto-generated method stub
 		Server server = new Server(1891);
 		server.start();
+		//http://www.eclipse.org/jetty/documentation/current/jndi-embedded.html
 	}
 
 }
