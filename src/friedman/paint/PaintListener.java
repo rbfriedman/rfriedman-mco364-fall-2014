@@ -3,6 +3,8 @@ package friedman.paint;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.util.Random;
 
 public class PaintListener implements MouseMotionListener {
@@ -46,6 +48,7 @@ public class PaintListener implements MouseMotionListener {
 		int c = 100 +randomGen.nextInt(150);
 		return new Color(a,b,c);
 	}
+
 	
 	
 
