@@ -74,6 +74,7 @@ public class Canvas extends JComponent {
 
 	public void setColor(Color c) {
 		g.setColor(c);
+		repaint();
 	}
 
 	public void increaseStrokeWidth() {
