@@ -79,7 +79,6 @@ public class PaintBanner extends JPanel {
 		BufferedImage image = new BufferedImage(100, 50, BufferedImage.TYPE_INT_ARGB);
 
 		Graphics2D g2 = image.createGraphics();
-		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 		g2.setColor(c);
 		drawImageIcon(g2);
 	}
@@ -99,6 +98,9 @@ public class PaintBanner extends JPanel {
 		Graphics2D g2 = image.createGraphics();
 		PaintedButton jlb;
 		ArrayList<Shape> shapes = new ArrayList<Shape>();
+		shapes.add(new Rectangle(10,10,10,20));
+		shapes.add(new Rectangle(10,10,10,20));
+		shapes.add(new Rectangle(10,10,10,20));
 		shapes.add(new Rectangle(10,10,10,20));
 		shapes.add(new Rectangle(10,10,10,20));
 		shapes.add(new Rectangle(10,10,10,20));

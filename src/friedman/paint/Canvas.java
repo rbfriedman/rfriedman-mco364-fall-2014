@@ -24,6 +24,8 @@ public class Canvas extends JComponent {
 	
 	private int canvasHeight;
 	private int canvasWidth;
+	
+	private DrawListener listener;
 
 	public Canvas(int width, int height) {
 		super();
@@ -51,6 +53,7 @@ public class Canvas extends JComponent {
 		g = (Graphics2D) g;
 
 		g.drawImage(image, 0, 0, null);
+		listener.drawPreview((Graphics2D) g);
 
 	}
 
