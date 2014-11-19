@@ -33,7 +33,7 @@ public class Paint extends JFrame implements MouseMotionListener {
 		
 		canvas = new Canvas(getWidth(), getHeight());
 		canvas.addMouseWheelListener(new BrushStrokeListener(canvas));
-		
+		canvas.addMouseMotionListener(this);
 		PaintBanner paintBanner = new PaintBanner(canvas);
 		//add(picker, BorderLayout.NORTH);
 		add(canvas,BorderLayout.CENTER);

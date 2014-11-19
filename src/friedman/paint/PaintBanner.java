@@ -1,13 +1,19 @@
 package friedman.paint;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
@@ -24,6 +30,7 @@ public class PaintBanner extends JPanel {
 
 	private String editColorIcon = "icons/rainbow.jpg";
 	private String jlbStrokeSizeIcon = "icons/Bucket.png";
+	private JPanel shapeGrid;
 
 	private Canvas canvas;
 
@@ -40,13 +47,15 @@ public class PaintBanner extends JPanel {
 		icon = createImageIcon(jlbStrokeSizeIcon, "Stroke width");
 
 		jlbStrokeSize = new JLabel(icon);
+		
+		shapeGrid = createGridOfShapes();
 
 		JPanel innerPanel = new JPanel();
-		innerPanel.setLayout(new GridLayout(1, 3, 4, 4));
+		innerPanel.setLayout(new GridLayout(1, 4, 4, 4));
 		innerPanel.add(jlbStrokeSize);
 		innerPanel.add(jlbBrushStrokeColor);
 		innerPanel.add(jbtEditColors);
-
+		innerPanel.add(shapeGrid);
 		add(innerPanel);
 
 	}
@@ -67,10 +76,10 @@ public class PaintBanner extends JPanel {
 
 	public void setStrokeColor(Color c) {
 		canvas.setColor(c);
-		BufferedImage image = new BufferedImage(100, 50,
-				BufferedImage.TYPE_INT_ARGB);
+		BufferedImage image = new BufferedImage(100, 50, BufferedImage.TYPE_INT_ARGB);
 
 		Graphics2D g2 = image.createGraphics();
+		g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 		g2.setColor(c);
 		drawImageIcon(g2);
 	}
@@ -80,6 +89,28 @@ public class PaintBanner extends JPanel {
 		g2.drawOval(10, 10, 5, 5);
 		jlbBrushStrokeColor.paint(g2);
 		repaint();
+	}
+	
+	private JPanel createGridOfShapes(){
+		shapeGrid = new JPanel();
+		shapeGrid.setLayout(new GridLayout(3,3));
+		shapeGrid.setBorder(BorderFactory.createLineBorder(Color.black));
+		BufferedImage image = new BufferedImage(30, 30, BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = image.createGraphics();
+		PaintedButton jlb;
+		ArrayList<Shape> shapes = new ArrayList<Shape>();
+		shapes.add(new Rectangle(10,10,10,20));
+		shapes.add(new Rectangle(10,10,10,20));
+		shapes.add(new Rectangle(10,10,10,20));
+		shapes.add(new Rectangle(10,10,10,20));
+		shapes.add(new Rectangle(10,10,10,20));
+		for(Shape s:shapes){
+			jlb = new PaintedButton(s);
+			jlb.setText("hh");
+			shapeGrid.add(jlb);
+		}
+		
+		return shapeGrid;
 	}
 
 	private class ColorDialogListener implements ActionListener, ChangeListener {
@@ -92,17 +123,16 @@ public class PaintBanner extends JPanel {
 			colorChooser = new JColorChooser();
 			jd.add(colorChooser);
 			colorChooser.getSelectionModel().addChangeListener(this);
-			jd.setSize(200,200);
+			jd.setSize(400, 300);
 			jd.setVisible(true);
 		}
 
 		@Override
 		public void stateChanged(ChangeEvent arg0) {
-			if((colorChooser.getColor())!=null){
+			if ((colorChooser.getColor()) != null) {
 				setStrokeColor(colorChooser.getColor());
 				System.out.println("Color :" + colorChooser.getColor().getRGB());
 			}
-			
 
 		}
 
