@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import com.bric.swing.ColorPalette;
 import com.bric.swing.ColorPicker;
 
-
 public class Paint extends JFrame implements MouseMotionListener {
 	private Canvas canvas;
 
@@ -19,33 +18,35 @@ public class Paint extends JFrame implements MouseMotionListener {
 		paint.setVisible(true);
 
 	}
-	
-	public Paint(){
-		/*https://javagraphics.java.net/*/
-		//final ColorPalette picker = new ColorPalette();
-		//picker.setSize(getWidth(), getHeight()/7);
+
+	public Paint() {
+		/* https://javagraphics.java.net/ */
+		// final ColorPalette picker = new ColorPalette();
+		// picker.setSize(getWidth(), getHeight()/7);
 
 		BorderLayout layout = new BorderLayout();
 		Container container = getContentPane();
 		container.setLayout(layout);
-		
-		
-		
 		canvas = new Canvas(700, 500);
 		PaintBanner paintBanner = new PaintBanner(canvas);
 		canvas.addMouseMotionListener(this);
-		canvas.addMouseWheelListener(new BrushStrokeListener(canvas,paintBanner));
-		
-		
-		//add(picker, BorderLayout.NORTH);
-		add(canvas,BorderLayout.CENTER);
+		canvas.addMouseWheelListener(new BrushStrokeListener(canvas,
+				paintBanner));
+
+		// add(picker, BorderLayout.NORTH);
+		add(canvas, BorderLayout.CENTER);
 		add(paintBanner, BorderLayout.SOUTH);
-		setSize(800,600);
+		setSize(800, 600);
 		setTitle("Paint");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		
+
 	}
+
+	public void addNewMouseMotionListener(MouseMotionListener m) {
+		canvas.addMouseMotionListener(m);
+	}
+
 	public void mouseDragged(MouseEvent e) {
 		System.out.println("Dragged");
 		if (!canvas.isClicked()) {

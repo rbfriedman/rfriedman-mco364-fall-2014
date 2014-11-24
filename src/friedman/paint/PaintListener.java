@@ -23,8 +23,7 @@ public class PaintListener implements MouseMotionListener {
 			canvas.setPointNext(e.getX(), e.getY());
 			canvas.setClicked(true);
 		} else {
-			canvas.setPointOrigin(canvas.getNextPoint()[0],
-					canvas.getNextPoint()[1]);
+			canvas.setPointOrigin(canvas.getNextPoint()[0], canvas.getNextPoint()[1]);
 			canvas.setPointNext(e.getX(), e.getY());
 		}
 		canvas.drawLine();
@@ -41,15 +40,12 @@ public class PaintListener implements MouseMotionListener {
 	private void saySomething(String eventDescription, MouseEvent e) {
 		System.out.println(eventDescription);
 	}
-	
-	private Color getRandomColor(){
-		int a = 50 +randomGen.nextInt(150);
-		int b = 100 +randomGen.nextInt(150);
-		int c = 100 +randomGen.nextInt(150);
-		return new Color(a,b,c);
-	}
 
-	
-	
+	private Color getRandomColor() {
+		int a = 50 + randomGen.nextInt(150);
+		int b = 100 + randomGen.nextInt(150);
+		int c = 100 + randomGen.nextInt(150);
+		return new Color(a, b, c);
+	}
 
 }

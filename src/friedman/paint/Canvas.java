@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
@@ -25,6 +26,8 @@ public class Canvas extends JComponent {
 	
 	private int canvasHeight;
 	private int canvasWidth;
+	
+	private DrawListener listener;
 
 	public Canvas(int width, int height) {
 		super();
@@ -52,6 +55,7 @@ public class Canvas extends JComponent {
 		g = (Graphics2D) g;
 
 		g.drawImage(image, 0, 0, null);
+		listener.drawPreview((Graphics2D) g);
 
 	}
 
@@ -83,7 +87,7 @@ public class Canvas extends JComponent {
 		if (STROKE_WIDTH < 50) {
 			STROKE_WIDTH += 1;
 			repaint();
-			((Graphics2D) g).setStroke(new BasicStroke(STROKE_WIDTH));
+			((Graphics2D) g).setStroke(new BasicStroke(STROKE_WIDTH,BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 		}
 	}
 
@@ -92,7 +96,7 @@ public class Canvas extends JComponent {
 			STROKE_WIDTH -= 1;
 			System.out.print("Stroke : " + STROKE_WIDTH);
 			repaint();
-			((Graphics2D) g).setStroke(new BasicStroke(STROKE_WIDTH));
+			((Graphics2D) g).setStroke(new BasicStroke(STROKE_WIDTH,BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 		}
 	}
 	
