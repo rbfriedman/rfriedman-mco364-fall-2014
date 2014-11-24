@@ -25,6 +25,7 @@ import javax.swing.event.ChangeListener;
 
 public class PaintBanner extends JPanel {
 	private JButton jbtEditColors;
+	private JButton jbtClearScreen;
 	private JLabel jlbBrushStrokeColor;
 	private JLabel jlbStrokeSize;
 
@@ -32,16 +33,19 @@ public class PaintBanner extends JPanel {
 	private String jlbStrokeSizeIcon = "icons/Bucket.png";
 	private JPanel shapeGrid;
 
-	private Canvas canvas;
+	private PaintListener paintListener;
 
-	public PaintBanner(Canvas canvas) {
+	public PaintBanner(PaintListener paintListener) {
 
-		this.canvas = canvas;
+		this.paintListener = paintListener;
 		setLayout(new FlowLayout(FlowLayout.RIGHT));
 
 		ImageIcon icon = createImageIcon(editColorIcon, "Color Palette");
 		jbtEditColors = new JButton("Edit Colors", icon);
 		jbtEditColors.addActionListener(new ColorDialogListener(this));
+		
+		jbtClearScreen = new JButton("Clear Screen");
+		jbtClearScreen.addActionListener(new ClearScreenListener(this.paintListener));
 
 		jlbBrushStrokeColor = new JLabel("Stroke Color");
 		jlbBrushStrokeColor.setOpaque(true);
@@ -51,10 +55,11 @@ public class PaintBanner extends JPanel {
 	shapeGrid = createGridOfShapes();
 
 		JPanel innerPanel = new JPanel();
-		innerPanel.setLayout(new GridLayout(1, 4, 4, 4));
+		innerPanel.setLayout(new GridLayout(1, 5, 4, 4));
 		innerPanel.add(jlbStrokeSize);
 		innerPanel.add(jlbBrushStrokeColor);
 		innerPanel.add(jbtEditColors);
+		innerPanel.add(jbtClearScreen);
 		
 		Border raisedetched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
 		this.setBorder(raisedetched);
@@ -85,7 +90,7 @@ public class PaintBanner extends JPanel {
 	}
 
 	public void setStrokeColor(Color c) {
-		canvas.setColor(c);
+		paintListener.setColor(c);
 		jlbBrushStrokeColor.setBackground(c);
 		jlbBrushStrokeColor.repaint();
 
@@ -117,6 +122,17 @@ public class PaintBanner extends JPanel {
 		return shapeGrid;
 	}
 
+	public void decreaseStrokeWidth() {
+		paintListener.decreaseStrokeWidth();
+	}
+
+	public void increaseStrokeWidth() {
+		paintListener.increaseStrokeWidth();
+	}
+
+	public int getStrokeWidth() {
+		return paintListener.getStrokeWidth();
+	}
 
 
 	

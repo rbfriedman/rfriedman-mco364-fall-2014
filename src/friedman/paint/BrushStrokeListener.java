@@ -7,12 +7,10 @@ import java.awt.event.MouseWheelListener;
 import javax.swing.JLabel;
 
 public class BrushStrokeListener implements MouseWheelListener, LogInterface {
-	private Canvas canvas;
 	private PaintBanner pb;
 
-	public BrushStrokeListener(Canvas canvas, PaintBanner pb) {
+	public BrushStrokeListener(PaintBanner pb) {
 		super();
-		this.canvas = canvas;
 		this.pb = pb;
 		System.out.println("Initialize");
 	}
@@ -22,12 +20,12 @@ public class BrushStrokeListener implements MouseWheelListener, LogInterface {
 		// TODO Auto-generated method stub
 		saySomething(arg0.getWheelRotation() + " ", arg0);
 		if(arg0.getWheelRotation() >= 1){
-			canvas.increaseStrokeWidth();
+			pb.increaseStrokeWidth();
 			
 		}else{
-			canvas.decreaseStrokeWidth();
+			pb.decreaseStrokeWidth();
 		}
-		pb.setStrokeWidth(canvas.getStrokeWidth());
+		pb.setStrokeWidth(pb.getStrokeWidth());
 		pb.repaint();
 	}
 

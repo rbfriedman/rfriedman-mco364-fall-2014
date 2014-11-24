@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import com.bric.swing.ColorPalette;
 import com.bric.swing.ColorPicker;
 
-public class Paint extends JFrame implements MouseMotionListener {
+public class Paint extends JFrame{
 	private Canvas canvas;
 
 	public static void main(String[] args) {
@@ -27,11 +27,12 @@ public class Paint extends JFrame implements MouseMotionListener {
 		BorderLayout layout = new BorderLayout();
 		Container container = getContentPane();
 		container.setLayout(layout);
-		canvas = new Canvas(700, 500);
-		PaintBanner paintBanner = new PaintBanner(canvas);
-		canvas.addMouseMotionListener(this);
-		canvas.addMouseWheelListener(new BrushStrokeListener(canvas,
-				paintBanner));
+		canvas = new Canvas(800, 600);
+		
+		PaintListener paintListener = new PaintListener(canvas);
+		PaintBanner paintBanner = new PaintBanner(paintListener);
+		canvas.addMouseMotionListener(paintListener);
+		canvas.addMouseWheelListener(new BrushStrokeListener(paintBanner));
 
 		// add(picker, BorderLayout.NORTH);
 		add(canvas, BorderLayout.CENTER);
@@ -43,33 +44,7 @@ public class Paint extends JFrame implements MouseMotionListener {
 
 	}
 
-	public void addNewMouseMotionListener(MouseMotionListener m) {
-		canvas.addMouseMotionListener(m);
-	}
 
-	public void mouseDragged(MouseEvent e) {
-		System.out.println("Dragged");
-		if (!canvas.isClicked()) {
-			canvas.setPointOrigin(e.getX(), e.getY());
-			canvas.setPointNext(e.getX(), e.getY());
-			canvas.setClicked(true);
-		} else {
-			canvas.setPointOrigin(canvas.getNextPoint()[0],
-					canvas.getNextPoint()[1]);
-			canvas.setPointNext(e.getX(), e.getY());
-		}
-		canvas.drawLine();
-		canvas.repaint();
 
-	}
-
-	public void mouseMoved(MouseEvent e) {
-		canvas.setClicked(false);
-
-	}
-
-	private void saySomething(String eventDescription, MouseEvent e) {
-		System.out.println(eventDescription);
-	}
 
 }
