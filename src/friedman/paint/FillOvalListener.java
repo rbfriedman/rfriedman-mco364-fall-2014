@@ -3,7 +3,12 @@ package friedman.paint;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
-public class FillOvalListener implements DrawListener {
+public class FillOvalListener extends PaintListener implements DrawListener {
+
+	public FillOvalListener(Canvas canvas) {
+		super(canvas);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {

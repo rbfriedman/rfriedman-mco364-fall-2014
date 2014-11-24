@@ -104,18 +104,11 @@ public class PaintBanner extends JPanel {
 		BufferedImage image = new BufferedImage(30, 30, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = image.createGraphics();
 		PaintedButton jlb;
-		ArrayList<Shape> shapes = new ArrayList<Shape>();
-		shapes.add(new Rectangle(10,10,10,20));
-		shapes.add(new Rectangle(10,10,10,20));
-		shapes.add(new Rectangle(10,10,10,20));
-		shapes.add(new Rectangle(10,10,10,20));
-		shapes.add(new Rectangle(10,10,10,20));
-		shapes.add(new Rectangle(10,10,10,20));
-		shapes.add(new Rectangle(10,10,10,20));
-		shapes.add(new Rectangle(10,10,10,20));
-		for(Shape s:shapes){
+	
+		for(ShapeType s:ShapeType.values()){
 			jlb = new PaintedButton(s);
 			jlb.setText("hh");
+			jlb.addActionListener(new ShapeTypeListener(s));
 			shapeGrid.add(jlb);
 		}
 		

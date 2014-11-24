@@ -6,7 +6,12 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
-public class DrawRectangleListener implements MouseMotionListener, DrawListener {
+public class DrawRectangleListener extends PaintListener implements MouseMotionListener, DrawListener {
+	public DrawRectangleListener(Canvas canvas) {
+		super(canvas);
+		// TODO Auto-generated constructor stub
+	}
+
 	private Rectangle r = new Rectangle();
 	private int x,y,w,h;
 	private Graphics2D g2;

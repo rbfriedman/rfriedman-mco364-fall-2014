@@ -1,9 +1,15 @@
 package friedman.paint;
 
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.event.MouseEvent;
 
-public class DrawOvalListener implements DrawListener {
+public class DrawOvalListener extends PaintListener implements DrawListener {
+
+	public DrawOvalListener(Canvas canvas) {
+		super(canvas);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
@@ -51,6 +57,12 @@ public class DrawOvalListener implements DrawListener {
 	public void drawPreview(Graphics2D g2) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Shape returnShape() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
