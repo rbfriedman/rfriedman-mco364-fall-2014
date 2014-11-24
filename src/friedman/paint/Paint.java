@@ -31,10 +31,12 @@ public class Paint extends JFrame implements MouseMotionListener {
 		
 		
 		
-		canvas = new Canvas(getWidth(), getHeight());
-		canvas.addMouseWheelListener(new BrushStrokeListener(canvas));
-		
+		canvas = new Canvas(700, 500);
 		PaintBanner paintBanner = new PaintBanner(canvas);
+		canvas.addMouseMotionListener(this);
+		canvas.addMouseWheelListener(new BrushStrokeListener(canvas,paintBanner));
+		
+		
 		//add(picker, BorderLayout.NORTH);
 		add(canvas,BorderLayout.CENTER);
 		add(paintBanner, BorderLayout.SOUTH);
@@ -45,6 +47,7 @@ public class Paint extends JFrame implements MouseMotionListener {
 		
 	}
 	public void mouseDragged(MouseEvent e) {
+		System.out.println("Dragged");
 		if (!canvas.isClicked()) {
 			canvas.setPointOrigin(e.getX(), e.getY());
 			canvas.setPointNext(e.getX(), e.getY());

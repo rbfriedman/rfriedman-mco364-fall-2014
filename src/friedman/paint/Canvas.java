@@ -11,6 +11,8 @@ import javax.swing.JComponent;
 public class Canvas extends JComponent {
 	private static final long serialVersionUID = 1L;
 	private int STROKE_WIDTH = 4;
+
+
 	private int x1;
 	private int y1;
 	private int x2;
@@ -92,6 +94,10 @@ public class Canvas extends JComponent {
 			repaint();
 			((Graphics2D) g).setStroke(new BasicStroke(STROKE_WIDTH));
 		}
+	}
+	
+	public int getStrokeWidth() {
+		return STROKE_WIDTH;
 	}
 
 }

@@ -4,18 +4,16 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JColorChooser;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 
 public class PaintBanner extends JPanel {
 	private JButton jbtEditColors;
@@ -34,21 +32,29 @@ public class PaintBanner extends JPanel {
 
 		ImageIcon icon = createImageIcon(editColorIcon, "Color Palette");
 		jbtEditColors = new JButton("Edit Colors", icon);
-		jbtEditColors.addActionListener(new ColorDialogListener());
+		jbtEditColors.addActionListener(new ColorDialogListener(this));
 
 		jlbBrushStrokeColor = new JLabel("Stroke Color");
+		jlbBrushStrokeColor.setOpaque(true);
+		setStrokeColor(Color.black);
 		icon = createImageIcon(jlbStrokeSizeIcon, "Stroke width");
 
-		jlbStrokeSize = new JLabel(icon);
+		jlbStrokeSize = new JLabel("10",icon,10);
 
 		JPanel innerPanel = new JPanel();
 		innerPanel.setLayout(new GridLayout(1, 3, 4, 4));
 		innerPanel.add(jlbStrokeSize);
 		innerPanel.add(jlbBrushStrokeColor);
 		innerPanel.add(jbtEditColors);
-
+		
+		Border raisedetched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
+		this.setBorder(raisedetched);
 		add(innerPanel);
 
+	}
+
+	public JLabel getJlbStrokeSize() {
+		return jlbStrokeSize;
 	}
 
 	protected ImageIcon createImageIcon(String path, String description) {
@@ -63,49 +69,18 @@ public class PaintBanner extends JPanel {
 
 	public void setStrokeWidth(int width) {
 		jlbStrokeSize.setText(Integer.toString(width));
+		jlbStrokeSize.repaint();
+		
 	}
 
 	public void setStrokeColor(Color c) {
 		canvas.setColor(c);
-		BufferedImage image = new BufferedImage(100, 50,
-				BufferedImage.TYPE_INT_ARGB);
-
-		Graphics2D g2 = image.createGraphics();
-		g2.setColor(c);
-		drawImageIcon(g2);
-	}
-
-	private void drawImageIcon(Graphics2D g2) {
-		// TODO Auto-generated method stub
-		g2.drawOval(10, 10, 5, 5);
-		jlbBrushStrokeColor.paint(g2);
-		repaint();
-	}
-
-	private class ColorDialogListener implements ActionListener, ChangeListener {
-		private JColorChooser colorChooser;
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
-			JDialog jd = new JDialog();
-			colorChooser = new JColorChooser();
-			jd.add(colorChooser);
-			colorChooser.getSelectionModel().addChangeListener(this);
-			jd.setSize(200,200);
-			jd.setVisible(true);
-		}
-
-		@Override
-		public void stateChanged(ChangeEvent arg0) {
-			if((colorChooser.getColor())!=null){
-				setStrokeColor(colorChooser.getColor());
-				System.out.println("Color :" + colorChooser.getColor().getRGB());
-			}
-			
-
-		}
+		jlbBrushStrokeColor.setBackground(c);
+		jlbBrushStrokeColor.repaint();
 
 	}
+
+
+	
 
 }
