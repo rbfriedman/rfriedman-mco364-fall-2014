@@ -29,12 +29,11 @@ public class Paint extends JFrame{
 		container.setLayout(layout);
 		canvas = new Canvas(800, 600);
 		
-		PaintListener paintListener = new PaintListener(canvas);
+		PaintLineListener paintListener = new PaintLineListener(canvas);
 		PaintBanner paintBanner = new PaintBanner(paintListener);
 		canvas.addMouseMotionListener(paintListener);
 		canvas.addMouseWheelListener(new BrushStrokeListener(paintBanner));
 
-		// add(picker, BorderLayout.NORTH);
 		add(canvas, BorderLayout.CENTER);
 		add(paintBanner, BorderLayout.SOUTH);
 		setSize(800, 600);

@@ -8,7 +8,7 @@ public class DrawOvalListener implements DrawListener {
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
