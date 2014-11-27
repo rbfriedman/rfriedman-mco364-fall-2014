@@ -22,9 +22,7 @@ public class PaintLineListener extends PaintListener implements MouseMotionListe
 	public PaintLineListener(Canvas canvas) {
 		super(canvas);
 		g = (Graphics2D) canvas.getImage().getGraphics();
-		stroke = new BasicStroke(STROKE_WIDTH);
-		g.setStroke(stroke);
-		g.setColor(Color.BLACK);
+		
 	}
 	public void mouseDragged(MouseEvent e) {
 		if (!isClicked()) {
@@ -46,9 +44,7 @@ public class PaintLineListener extends PaintListener implements MouseMotionListe
 
 	}
 
-	private void saySomething(String eventDescription, MouseEvent e) {
-		System.out.println(eventDescription);
-	}
+	
 
 	public void setPointOrigin(int x1, int y1) {
 		this.x1 = x1;

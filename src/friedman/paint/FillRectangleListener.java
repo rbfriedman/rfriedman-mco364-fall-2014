@@ -1,6 +1,7 @@
 package friedman.paint;
 
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.event.MouseEvent;
 
 public class FillRectangleListener extends PaintListener implements DrawListener {
@@ -56,6 +57,12 @@ public class FillRectangleListener extends PaintListener implements DrawListener
 	public void drawPreview(Graphics2D g2) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Shape returnShape() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

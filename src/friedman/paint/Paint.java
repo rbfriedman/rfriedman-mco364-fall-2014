@@ -29,7 +29,7 @@ public class Paint extends JFrame{
 		container.setLayout(layout);
 		canvas = new Canvas(800, 600);
 		
-		PaintLineListener paintListener = new PaintLineListener(canvas);
+		PaintListener paintListener = new DrawRectangleListener(canvas);
 		PaintBanner paintBanner = new PaintBanner(paintListener);
 		canvas.addMouseMotionListener(paintListener);
 		canvas.addMouseWheelListener(new BrushStrokeListener(paintBanner));

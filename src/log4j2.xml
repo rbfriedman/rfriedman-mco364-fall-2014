@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </appenders>
+    <loggers>
+        <!--We only make the logger output trace information, the other is error level-->
+        <!--
+        Additivity opens it, because the logger is also meet root, so will be printed two times. 
+        But root logger level is error, why the Bar inside the trace information is printed two times
+        -->
+        <logger name="cn.lsw.base.log4j2.Hello" level="trace" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+        <root level="info">
+            <appender-ref ref="Console"/>
+        </root>
+    </loggers>
+</configuration>

@@ -5,7 +5,7 @@ public enum ShapeType {
 	FilledOvale(FillOvalListener.class),Oval(DrawOvalListener.class);
 	
 	private Class c;
-	ShapeType(Class c, ){
+	ShapeType(Class c ){
 		this.setC(c);
 	}
 	public Class getC() {

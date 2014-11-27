@@ -13,10 +13,10 @@ public class PaintedButton extends JButton {
 	 * 
 	 */
 	
-	private Shape s;
+	private ShapeType s;
 	private static final long serialVersionUID = -4261049661640525300L;
-	public PaintedButton(Shape s){
-		this.s = s;
+	public PaintedButton(ShapeType s2){
+		this.s = s2;
 	}
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -28,7 +28,7 @@ public class PaintedButton extends JButton {
         setBorderPainted(false);
         setOpaque(false);
 		super.paintComponent(g2);
-		g2.draw(s);
+		//g2.draw(s);
 	}
 	
 }

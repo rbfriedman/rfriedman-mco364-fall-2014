@@ -11,5 +11,7 @@
 	<classpathentry kind="lib" path="libs/jetty-all-9.2.4.v20141103.jar"/>
 	<classpathentry kind="lib" path="libs/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="lib" path="libs/opencsv-2.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/log4j-core-2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/log4j-api-2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

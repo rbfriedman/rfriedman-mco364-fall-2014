@@ -6,13 +6,14 @@ import java.awt.event.ActionListener;
 
 public class ShapeTypeListener implements ActionListener {
 	private ShapeType shape;
+	private PaintBanner pb;
 	
-	public ShapeTypeListener(ShapeType shape){
+	public ShapeTypeListener(ShapeType shape,PaintBanner pb){
 		this.shape = shape;
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+		//pb.setDrawListener(new DrawRectangleListener());
 		
 	}
 

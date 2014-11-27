@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
@@ -29,6 +30,7 @@ public class Canvas extends JComponent {
 		Graphics g = image.getGraphics();
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, canvasWidth, canvasHeight);
+		listener = new DrawRectangleListener(this);
 
 	}
 
@@ -42,6 +44,11 @@ public class Canvas extends JComponent {
 
 	public BufferedImage getImage() {
 		return image;
+	}
+
+	public void setDrawListener(DrawListener mml) {
+		listener = mml;
+		
 	}
 
 }

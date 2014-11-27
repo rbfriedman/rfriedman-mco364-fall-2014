@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>log4j</name>
+			<type>2</type>
+			<location>C:/Users/rena/Documents/GitHub/rfriedman-mco364-fall-2014/resources</location>
+		</link>
+	</linkedResources>
 </projectDescription>

@@ -8,6 +8,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -108,7 +109,7 @@ public class PaintBanner extends JPanel {
 		for(ShapeType s:ShapeType.values()){
 			jlb = new PaintedButton(s);
 			jlb.setText("hh");
-			jlb.addActionListener(new ShapeTypeListener(s));
+			jlb.addActionListener(new ShapeTypeListener(s,this));
 			shapeGrid.add(jlb);
 		}
 		
@@ -125,6 +126,10 @@ public class PaintBanner extends JPanel {
 
 	public int getStrokeWidth() {
 		return paintListener.getStrokeWidth();
+	}
+	
+	public void setPaintListener(PaintListener mml){
+		//paintListener.setDrawListener(mml);
 	}
 
 
