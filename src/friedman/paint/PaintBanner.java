@@ -100,16 +100,12 @@ public class PaintBanner extends JPanel {
 	
 	private JPanel createGridOfShapes(){
 		shapeGrid = new JPanel();
-		shapeGrid.setLayout(new GridLayout(3,3));
+		shapeGrid.setLayout(new GridLayout(2,2));
 		shapeGrid.setBorder(BorderFactory.createLineBorder(Color.black));
-		BufferedImage image = new BufferedImage(30, 30, BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g2 = image.createGraphics();
 		PaintedButton jlb;
 	
 		for(ShapeType s:ShapeType.values()){
-			jlb = new PaintedButton(s);
-			jlb.setText("hh");
-			jlb.addActionListener(new ShapeTypeListener(s,this));
+			jlb = new PaintedButton(s, paintListener);
 			shapeGrid.add(jlb);
 		}
 		

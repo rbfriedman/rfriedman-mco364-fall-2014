@@ -20,9 +20,7 @@ public class DrawRectangleListener extends PaintListener implements MouseMotionL
 		super(canvas);
 		r = new Rectangle();
 		g2 = (Graphics2D) canvas.getImage().getGraphics();
-		stroke = new BasicStroke(STROKE_WIDTH);
-		g2.setStroke(stroke);
-		g2.setColor(Color.BLACK);
+		
 		
 	}
 
@@ -38,7 +36,7 @@ public class DrawRectangleListener extends PaintListener implements MouseMotionL
 		w = me.getY() + y;
 		drawPreview(g2);
 		super.saySomething("Dragged : [x:"+ x +" y:"+  y +" w:" +w + " h: " + h +"]");
-		LOGGER.info("Dragged");
+		LOGGER.info(" DR Dragged");
 	}
 
 	@Override
@@ -46,7 +44,6 @@ public class DrawRectangleListener extends PaintListener implements MouseMotionL
 		// TODO Auto-generated method stub
 		this.x = me.getX();
 		this.y = me.getY();
-		LOGGER.info("Moved");
 		//super.saySomething("Clicked: " + x + " " +y);
 	}
 

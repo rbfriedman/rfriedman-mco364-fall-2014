@@ -4,8 +4,6 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
@@ -21,22 +19,26 @@ public class Canvas extends JComponent {
 
 	private DrawListener listener;
 
+	private Color color;
+
 	public Canvas(int width, int height) {
 		super();
 		this.canvasHeight = height;
 		this.canvasWidth = width;
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		
+		this.color= Color.BLACK;
 		Graphics g = image.getGraphics();
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, canvasWidth, canvasHeight);
-		listener = new DrawRectangleListener(this);
+		setColor(color);
+		setDrawListener(new PaintListener(this));
+		
 
 	}
 
 	protected void paintComponent(Graphics g) {
 		g = (Graphics2D) g;
-
+		g.setColor(color);
 		g.drawImage(image, 0, 0, null);
 		listener.drawPreview((Graphics2D) g);
 
@@ -47,7 +49,16 @@ public class Canvas extends JComponent {
 	}
 
 	public void setDrawListener(DrawListener mml) {
+		removeMouseMotionListener(listener);
 		listener = mml;
+		
+		addMouseMotionListener(listener);
+		
+	}
+
+	public void setColor(Color c) {
+		// TODO Auto-generated method stub
+		color = c;
 		
 	}
 

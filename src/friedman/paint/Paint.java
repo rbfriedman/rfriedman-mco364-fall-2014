@@ -20,18 +20,15 @@ public class Paint extends JFrame{
 	}
 
 	public Paint() {
-		/* https://javagraphics.java.net/ */
-		// final ColorPalette picker = new ColorPalette();
-		// picker.setSize(getWidth(), getHeight()/7);
 
 		BorderLayout layout = new BorderLayout();
 		Container container = getContentPane();
 		container.setLayout(layout);
 		canvas = new Canvas(800, 600);
 		
-		PaintListener paintListener = new DrawRectangleListener(canvas);
+		PaintListener paintListener = new PaintLineListener(canvas);
 		PaintBanner paintBanner = new PaintBanner(paintListener);
-		canvas.addMouseMotionListener(paintListener);
+		canvas.setDrawListener(paintListener);
 		canvas.addMouseWheelListener(new BrushStrokeListener(paintBanner));
 
 		add(canvas, BorderLayout.CENTER);

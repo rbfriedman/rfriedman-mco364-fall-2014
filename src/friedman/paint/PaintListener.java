@@ -3,6 +3,7 @@ package friedman.paint;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
@@ -12,7 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 
 
-public class PaintListener implements MouseMotionListener {
+public class PaintListener implements DrawListener {
 	protected static int STROKE_WIDTH = 4;
 	protected static final Logger LOGGER = LogManager.getLogger(PaintListener.class);
 	protected Canvas canvas;
@@ -26,12 +27,13 @@ public class PaintListener implements MouseMotionListener {
 		g= (Graphics2D) canvas.getImage().getGraphics();
 		stroke = new BasicStroke(STROKE_WIDTH);
 		g.setStroke(stroke);
-		g.setColor(Color.BLACK);
+		setColor(Color.BLACK);
 	}
 
 	public void setColor(Color c) {
-		g.setColor(c);
+		canvas.setColor(c);
 		canvas.repaint();
+		LOGGER.info("Color set to " + c);
 	}
 
 	public void increaseStrokeWidth() {
@@ -82,6 +84,52 @@ public class PaintListener implements MouseMotionListener {
 	
 	protected void saySomething(String eventDescription) {
 		System.out.println(eventDescription);
+	}
+	
+	protected Canvas getCanvas(){
+		return canvas;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void drawPreview(Graphics2D g2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Shape returnShape() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

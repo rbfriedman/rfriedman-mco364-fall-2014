@@ -14,7 +14,7 @@ public class DrawOvalListener extends PaintListener implements DrawListener {
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		LOGGER.info("Dragged");
 	}
 
 	@Override
