@@ -5,9 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -71,13 +69,13 @@ public class PaintListener implements DrawListener {
 	}
 
 	@Override
-	public void mouseDragged(java.awt.event.MouseEvent arg0) {
+	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseMoved(java.awt.event.MouseEvent arg0) {
+	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
