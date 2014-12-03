@@ -44,7 +44,6 @@ public class DrawRectangleListener extends PaintListener implements
 	@Override
 	public void mouseClicked(MouseEvent me) {
 		r.setBounds(x, y, w, h);
-		g2.draw(new Rectangle(x,y,w,h));
 		canvas.repaint();
 		g2 = (Graphics2D) canvas.getImage().getGraphics();
 		
