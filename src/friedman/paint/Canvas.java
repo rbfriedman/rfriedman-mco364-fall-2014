@@ -37,6 +37,7 @@ public class Canvas extends JComponent {
 	}
 
 	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		g = (Graphics2D) g;
 		g.setColor(color);
 		g.drawImage(image, 0, 0, null);
