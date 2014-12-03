@@ -41,7 +41,7 @@ public class Canvas extends JComponent {
 		g.setColor(color);
 		g.drawImage(image, 0, 0, null);
 		listener.drawPreview((Graphics2D) g);
-		
+
 	}
 
 	public BufferedImage getImage() {
