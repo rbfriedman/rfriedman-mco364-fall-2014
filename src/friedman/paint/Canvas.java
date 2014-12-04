@@ -63,5 +63,9 @@ public class Canvas extends JComponent {
 		color = c;
 		
 	}
+	
+	public Color getColor(){
+		return color;
+	}
 
 }

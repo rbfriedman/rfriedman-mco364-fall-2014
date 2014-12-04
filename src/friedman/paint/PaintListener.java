@@ -124,10 +124,5 @@ public class PaintListener implements DrawListener {
 		
 	}
 
-	@Override
-	public Shape returnShape() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
