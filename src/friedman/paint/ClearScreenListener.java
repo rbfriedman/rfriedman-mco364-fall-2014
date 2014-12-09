@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ClearScreenListener implements ActionListener {
-	
+
 	private PaintListener pl;
 
 	public ClearScreenListener(PaintListener pl) {

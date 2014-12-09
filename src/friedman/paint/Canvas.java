@@ -26,13 +26,12 @@ public class Canvas extends JComponent {
 		this.canvasHeight = height;
 		this.canvasWidth = width;
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-		this.color= Color.BLACK;
+		this.color = Color.BLACK;
 		Graphics g = image.getGraphics();
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, canvasWidth, canvasHeight);
 		setColor(color);
 		setDrawListener(new PaintListener(this));
-		
 
 	}
 
@@ -55,16 +54,16 @@ public class Canvas extends JComponent {
 		listener = mml;
 		addMouseListener(listener);
 		addMouseMotionListener(listener);
-		
+
 	}
 
 	public void setColor(Color c) {
 		// TODO Auto-generated method stub
 		color = c;
-		
+
 	}
-	
-	public Color getColor(){
+
+	public Color getColor() {
 		return color;
 	}
 

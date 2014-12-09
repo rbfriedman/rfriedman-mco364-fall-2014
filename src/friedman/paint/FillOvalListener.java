@@ -5,7 +5,7 @@ import java.awt.Shape;
 import java.awt.event.MouseEvent;
 
 public class FillOvalListener extends DrawShapeListener {
-	
+
 	public FillOvalListener(Canvas canvas) {
 		super(canvas);
 		// TODO Auto-generated constructor stub
@@ -67,6 +67,5 @@ public class FillOvalListener extends DrawShapeListener {
 		super.drawPreview(g2);
 		g2.fillOval(x, y, w, h);
 	}
-
 
 }

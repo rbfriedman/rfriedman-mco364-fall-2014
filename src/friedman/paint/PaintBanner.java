@@ -125,7 +125,7 @@ public class PaintBanner extends JPanel {
 	}
 	
 	public void setPaintListener(PaintListener mml){
-		//paintListener.setDrawListener(mml);
+		paintListener.setDrawListener(mml);
 	}
 
 

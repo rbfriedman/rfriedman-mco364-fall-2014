@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import com.bric.swing.ColorPalette;
 import com.bric.swing.ColorPicker;
 
-public class Paint extends JFrame{
+public class Paint extends JFrame {
 	private Canvas canvas;
 
 	public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class Paint extends JFrame{
 		Container container = getContentPane();
 		container.setLayout(layout);
 		canvas = new Canvas(800, 600);
-		
+
 		PaintListener paintListener = new PaintLineListener(canvas);
 		PaintBanner paintBanner = new PaintBanner(paintListener);
 		canvas.setDrawListener(paintListener);
@@ -39,8 +39,5 @@ public class Paint extends JFrame{
 		setLocationRelativeTo(null);
 
 	}
-
-
-
 
 }

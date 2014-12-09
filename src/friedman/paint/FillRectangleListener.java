@@ -66,5 +66,4 @@ public class FillRectangleListener extends DrawShapeListener {
 		g2.fillRect(x, y, w, h);
 	}
 
-
 }

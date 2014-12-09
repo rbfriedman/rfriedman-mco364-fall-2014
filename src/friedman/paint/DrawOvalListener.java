@@ -23,7 +23,6 @@ public class DrawOvalListener extends DrawShapeListener {
 		super.mouseMoved(me);
 		canvas.repaint();
 		LOGGER.info("DO Moved");
-		
 
 	}
 

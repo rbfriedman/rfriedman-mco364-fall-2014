@@ -19,10 +19,10 @@ public class BrushStrokeListener implements MouseWheelListener, LogInterface {
 	public void mouseWheelMoved(MouseWheelEvent arg0) {
 		// TODO Auto-generated method stub
 		saySomething(arg0.getWheelRotation() + " ", arg0);
-		if(arg0.getWheelRotation() >= 1){
+		if (arg0.getWheelRotation() >= 1) {
 			pb.increaseStrokeWidth();
-			
-		}else{
+
+		} else {
 			pb.decreaseStrokeWidth();
 		}
 		pb.setStrokeWidth(pb.getStrokeWidth());
@@ -31,7 +31,7 @@ public class BrushStrokeListener implements MouseWheelListener, LogInterface {
 
 	public void saySomething(String eventDescription, MouseEvent e) {
 		System.out.println(eventDescription);
-		
+
 	}
 
 }

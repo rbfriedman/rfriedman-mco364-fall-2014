@@ -9,20 +9,18 @@ import java.awt.event.MouseEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
-
 public class PaintListener implements DrawListener {
 	protected static int STROKE_WIDTH = 4;
-	protected static final Logger LOGGER = LogManager.getLogger(PaintListener.class);
+	protected static final Logger LOGGER = LogManager
+			.getLogger(PaintListener.class);
 	protected Canvas canvas;
 	protected Graphics2D g;
 	protected BasicStroke stroke;
-	 
-	
+
 	public PaintListener(Canvas canvas) {
 		super();
 		this.canvas = canvas;
-		g= (Graphics2D) canvas.getImage().getGraphics();
+		g = (Graphics2D) canvas.getImage().getGraphics();
 		stroke = new BasicStroke(STROKE_WIDTH);
 		g.setStroke(stroke);
 		setColor(Color.BLACK);
@@ -38,7 +36,8 @@ public class PaintListener implements DrawListener {
 		if (STROKE_WIDTH < 50) {
 			STROKE_WIDTH += 1;
 			canvas.repaint();
-			((Graphics2D) g).setStroke(new BasicStroke(STROKE_WIDTH,BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+			((Graphics2D) g).setStroke(new BasicStroke(STROKE_WIDTH,
+					BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 		}
 	}
 
@@ -47,82 +46,82 @@ public class PaintListener implements DrawListener {
 			STROKE_WIDTH -= 1;
 			System.out.print("Stroke : " + STROKE_WIDTH);
 			canvas.repaint();
-			((Graphics2D) g).setStroke(new BasicStroke(STROKE_WIDTH,BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+			((Graphics2D) g).setStroke(new BasicStroke(STROKE_WIDTH,
+					BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 		}
 	}
-	
+
 	public int getStrokeWidth() {
 		return STROKE_WIDTH;
 	}
-	
-	public void clearScreen(){
-		Color previousColor = g.getColor();
-		g.setColor(Color.WHITE);
-		g.fillRect(0,0,canvas.getWidth(), canvas.getHeight());
+
+	public void clearScreen() {
+		Graphics2D graphics = canvas.getImage().createGraphics();
+		graphics.setPaint(Color.WHITE);
+		graphics.fillRect(0, 0, canvas.getImage().getWidth(), canvas.getImage()
+				.getHeight());
 		canvas.repaint();
-		g.setColor(previousColor);
-		
+
 	}
-	
-	public void setDrawListener(DrawListener mml){
+
+	public void setDrawListener(DrawListener mml) {
 		canvas.setDrawListener(mml);
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	protected void saySomething(String eventDescription) {
 		System.out.println(eventDescription);
 	}
-	
-	protected Canvas getCanvas(){
+
+	protected Canvas getCanvas() {
 		return canvas;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void drawPreview(Graphics2D g2) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 }

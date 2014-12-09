@@ -22,6 +22,7 @@ public class PaintedButton extends JButton implements ActionListener {
 		this.shapeType = shapeType;
 		this.pl = paintListener;
 		setDrawListener();
+		setToolTipText(getText());
 		addActionListener(this);
 
 	}
@@ -43,11 +44,11 @@ public class PaintedButton extends JButton implements ActionListener {
 
 		switch (shapeType) {
 		case FilledOval:
-			setIcon(createImageIcon("icons/OvalS.png", "Oval"));
+			setIcon(createImageIcon("icons/OvalS.png", "Filled Oval"));
 			dl = new FillOvalListener(pl.getCanvas());
 			break;
 		case FilledRectangle:
-			setIcon(createImageIcon("icons/RectangleS.png", "Rectangle"));
+			setIcon(createImageIcon("icons/RectangleS.png", "Filled Rectangle"));
 			dl = new FillRectangleListener(pl.getCanvas());
 			break;
 		case Oval:
@@ -76,8 +77,9 @@ public class PaintedButton extends JButton implements ActionListener {
 		java.net.URL imgURL = getClass().getResource(path);
 		if (imgURL != null) {
 			System.out.println(imgURL.getFile());
-			//Bitmap b  = new BitMap();
+			setToolTipText(description);
 			return new ImageIcon(imgURL, description);
+
 		} else {
 			System.err.println("Couldn't find file: " + path);
 			return null;

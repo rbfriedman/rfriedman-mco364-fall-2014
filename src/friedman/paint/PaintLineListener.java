@@ -6,8 +6,9 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
-public class PaintLineListener extends PaintListener implements MouseMotionListener{
-	
+public class PaintLineListener extends PaintListener implements
+		MouseMotionListener {
+
 	private int x1;
 	private int y1;
 	private int y2;
@@ -22,14 +23,14 @@ public class PaintLineListener extends PaintListener implements MouseMotionListe
 		g = (Graphics2D) canvas.getImage().getGraphics();
 		g.setStroke(stroke);
 	}
+
 	public void mouseDragged(MouseEvent e) {
 		if (!isClicked()) {
 			setPointOrigin(e.getX(), e.getY());
 			setPointNext(e.getX(), e.getY());
 			setClicked(true);
 		} else {
-			setPointOrigin(getNextPoint()[0],
-					getNextPoint()[1]);
+			setPointOrigin(getNextPoint()[0], getNextPoint()[1]);
 			setPointNext(e.getX(), e.getY());
 		}
 		drawLine();
@@ -42,8 +43,6 @@ public class PaintLineListener extends PaintListener implements MouseMotionListe
 
 	}
 
-	
-
 	public void setPointOrigin(int x1, int y1) {
 		this.x1 = x1;
 		this.y1 = y1;
@@ -53,8 +52,6 @@ public class PaintLineListener extends PaintListener implements MouseMotionListe
 		this.x2 = x2;
 		this.y2 = y2;
 	}
-
-
 
 	public void setClicked(boolean b) {
 		canvasClicked = b;
@@ -75,7 +72,5 @@ public class PaintLineListener extends PaintListener implements MouseMotionListe
 	public int[] getNextPoint() {
 		return new int[] { x2, y2 };
 	}
-
-	
 
 }
