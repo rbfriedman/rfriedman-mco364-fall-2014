@@ -27,6 +27,7 @@ public class PaintListener implements DrawListener {
 	}
 
 	public void setColor(Color c) {
+		g.setColor(c);
 		canvas.setColor(c);
 		canvas.repaint();
 		LOGGER.info("Color set to " + c);
