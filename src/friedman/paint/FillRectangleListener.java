@@ -63,7 +63,9 @@ public class FillRectangleListener extends DrawShapeListener {
 	@Override
 	public void drawPreview(Graphics2D g2) {
 		super.drawPreview(g2);
-		g2.fillRect(x, y, w, h);
+		if (preview) {
+			g2.fillRect(x, y, w, h);
+		}
 	}
 
 }

@@ -56,10 +56,11 @@ public class PaintListener implements DrawListener {
 	}
 
 	public void clearScreen() {
-		Graphics2D graphics = canvas.getImage().createGraphics();
-		graphics.setPaint(Color.WHITE);
-		graphics.fillRect(0, 0, canvas.getImage().getWidth(), canvas.getImage()
+		//Graphics2D graphics = canvas.getImage().createGraphics();
+		g.setPaint(Color.WHITE);
+		g.fillRect(0, 0, canvas.getImage().getWidth(), canvas.getImage()
 				.getHeight());
+		
 		canvas.repaint();
 
 	}

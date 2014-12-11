@@ -65,7 +65,9 @@ public class FillOvalListener extends DrawShapeListener {
 	public void drawPreview(Graphics2D g2) {
 		// TODO Auto-generated method stub
 		super.drawPreview(g2);
-		g2.fillOval(x, y, w, h);
+		if (preview) {
+			g2.fillOval(x, y, w, h);
+		}
 	}
 
 }

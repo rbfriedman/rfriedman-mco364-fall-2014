@@ -5,20 +5,20 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 public class DrawShapeListener extends PaintListener implements DrawListener {
-	
+
 	protected Point originPoint;
 	protected Point currentPoint;
 	protected int x;
 	protected int y;
 	protected int w;
 	protected int h;
+	protected boolean preview;
 
 	public DrawShapeListener(Canvas canvas) {
 		super(canvas);
 		// TODO Auto-generated constructor stub
 	}
 
-	
 	@Override
 	public void mouseDragged(MouseEvent me) {
 		// TODO Auto-generated method stub
@@ -28,13 +28,15 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 		w = (int) Math.abs(originPoint.getX() - currentPoint.getX());
 		h = (int) Math.abs(originPoint.getY() - currentPoint.getY());
 	}
-	
+
 	@Override
 	public void mousePressed(MouseEvent me) {
+		resetBounds();//erases last vestiges of oldimage
 		originPoint = me.getPoint();
-
+		preview = true;
 
 	}
+
 	@Override
 	public void mouseMoved(MouseEvent me) {
 		// TODO Auto-generated method stub
@@ -59,18 +61,25 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 
 	}
 
-
 	@Override
 	public void mouseReleased(MouseEvent me) {
 		// TODO Auto-generated method stub
-
+		preview = false;
 	}
 
 	@Override
 	public void drawPreview(Graphics2D g2) {
-		// TODO Auto-generated method stub
-		g2.setColor(canvas.getColor());
+
+		//g2.setColor(canvas.getColor());
+
 	}
 
+	private void resetBounds() {
+		// TODO Auto-generated method stub
+		x = 0;
+		y = 0;
+		h = 0;
+		w = 0;
+	}
 
 }

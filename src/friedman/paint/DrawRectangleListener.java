@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 
 public class DrawRectangleListener extends DrawShapeListener {
 
-
 	public DrawRectangleListener(Canvas canvas) {
 		super(canvas);
 
@@ -67,15 +66,9 @@ public class DrawRectangleListener extends DrawShapeListener {
 	public void drawPreview(Graphics2D g2) {
 		// TODO Auto-generated method stub
 		super.drawPreview(g2);
-		g2.drawRect(x, y, w, h);
-	}
-
-	private void resetBounds() {
-		// TODO Auto-generated method stub
-		x = 0;
-		y = 0;
-		h = 0;
-		w = 0;
+		if (preview) {
+			g2.drawRect(x, y, w, h);
+		}
 	}
 
 }

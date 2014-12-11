@@ -49,7 +49,7 @@ public class Canvas extends JComponent {
 	}
 
 	public void setDrawListener(DrawListener mml) {
-		addMouseListener(listener);
+		removeMouseListener(listener);
 		removeMouseMotionListener(listener);
 		listener = mml;
 		addMouseListener(listener);
