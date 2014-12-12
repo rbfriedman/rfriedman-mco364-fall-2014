@@ -1,8 +1,5 @@
 package friedman.paint;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
@@ -14,14 +11,9 @@ public class PaintLineListener extends PaintListener implements
 	private int y2;
 	private int x2;
 	private boolean canvasClicked;
-	private BasicStroke stroke;
 
 	public PaintLineListener(Canvas canvas) {
 		super(canvas);
-		canvas.setColor(Color.BLACK);
-		stroke = new BasicStroke(STROKE_WIDTH);
-		g = (Graphics2D) canvas.getImage().getGraphics();
-		g.setStroke(stroke);
 	}
 
 	public void mouseDragged(MouseEvent e) {
@@ -34,7 +26,9 @@ public class PaintLineListener extends PaintListener implements
 			setPointNext(e.getX(), e.getY());
 		}
 		drawLine();
+		g.setColor(canvas.getColor());
 		canvas.repaint();
+	
 
 	}
 

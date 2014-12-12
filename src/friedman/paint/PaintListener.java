@@ -2,6 +2,7 @@ package friedman.paint;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.event.MouseEvent;
@@ -23,7 +24,7 @@ public class PaintListener implements DrawListener {
 		g = (Graphics2D) canvas.getImage().getGraphics();
 		stroke = new BasicStroke(STROKE_WIDTH);
 		g.setStroke(stroke);
-		setColor(Color.BLACK);
+		canvas.setCursor (Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 	}
 
 	public void setColor(Color c) {

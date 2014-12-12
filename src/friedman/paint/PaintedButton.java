@@ -59,9 +59,11 @@ public class PaintedButton extends JButton implements ActionListener {
 			setIcon(createImageIcon("icons/RectangleS.png", "Rectangle"));
 			dl = new DrawRectangleListener(pl.getCanvas());
 			break;
+		case Line:
+			setIcon(createImageIcon("icons/PaintLineS.png", "Line"));
+			dl = new PaintLineListener(pl.getCanvas());
 		default:
 			break;
-
 		}
 
 	}

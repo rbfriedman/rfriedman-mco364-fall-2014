@@ -1,7 +1,6 @@
 package friedman.paint;
 
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import java.awt.event.MouseEvent;
 
 public class FillOvalListener extends DrawShapeListener {

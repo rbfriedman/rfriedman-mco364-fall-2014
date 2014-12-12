@@ -1,6 +1,7 @@
 package friedman.paint;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
@@ -44,16 +45,17 @@ public class PaintBanner extends JPanel {
 		ImageIcon icon = createImageIcon(editColorIcon, "Color Palette");
 		jbtEditColors = new JButton("Edit Colors", icon);
 		jbtEditColors.addActionListener(new ColorDialogListener(this));
-		
+
 		jbtClearScreen = new JButton("Clear Screen");
-		jbtClearScreen.addActionListener(new ClearScreenListener(this.paintListener));
+		jbtClearScreen.addActionListener(new ClearScreenListener(
+				this.paintListener));
 
 		jlbBrushStrokeColor = new JLabel("Stroke Color");
 		jlbBrushStrokeColor.setOpaque(true);
 		setStrokeColor(Color.black);
 		icon = createImageIcon(jlbStrokeSizeIcon, "Stroke width");
-		jlbStrokeSize = new JLabel("10",icon,10);
-	shapeGrid = createGridOfShapes();
+		jlbStrokeSize = new JLabel("10", icon, 10);
+		shapeGrid = createGridOfShapes();
 
 		JPanel innerPanel = new JPanel();
 		innerPanel.setLayout(new GridLayout(1, 5, 4, 4));
@@ -61,8 +63,9 @@ public class PaintBanner extends JPanel {
 		innerPanel.add(jlbBrushStrokeColor);
 		innerPanel.add(jbtEditColors);
 		innerPanel.add(jbtClearScreen);
-		
-		Border raisedetched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
+
+		Border raisedetched = BorderFactory
+				.createEtchedBorder(EtchedBorder.RAISED);
 		this.setBorder(raisedetched);
 
 		innerPanel.add(shapeGrid);
@@ -87,7 +90,7 @@ public class PaintBanner extends JPanel {
 	public void setStrokeWidth(int width) {
 		jlbStrokeSize.setText(Integer.toString(width));
 		jlbStrokeSize.repaint();
-		
+
 	}
 
 	public void setStrokeColor(Color c) {
@@ -95,20 +98,20 @@ public class PaintBanner extends JPanel {
 		jlbBrushStrokeColor.setBackground(c);
 		jlbBrushStrokeColor.repaint();
 
-
 	}
-	
-	private JPanel createGridOfShapes(){
+
+	private JPanel createGridOfShapes() {
 		shapeGrid = new JPanel();
-		shapeGrid.setLayout(new GridLayout(2,2));
+		shapeGrid.setLayout(new GridLayout(3, 3));
 		shapeGrid.setBorder(BorderFactory.createLineBorder(Color.black));
+		shapeGrid.setPreferredSize(new Dimension(200,100));
 		PaintedButton jlb;
-	
-		for(ShapeType s:ShapeType.values()){
+
+		for (ShapeType s : ShapeType.values()) {
 			jlb = new PaintedButton(s, paintListener);
 			shapeGrid.add(jlb);
 		}
-		
+
 		return shapeGrid;
 	}
 
@@ -123,12 +126,9 @@ public class PaintBanner extends JPanel {
 	public int getStrokeWidth() {
 		return paintListener.getStrokeWidth();
 	}
-	
-	public void setPaintListener(PaintListener mml){
+
+	public void setPaintListener(PaintListener mml) {
 		paintListener.setDrawListener(mml);
 	}
-
-
-	
 
 }

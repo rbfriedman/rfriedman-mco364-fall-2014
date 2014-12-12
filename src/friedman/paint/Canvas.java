@@ -28,7 +28,7 @@ public class Canvas extends JComponent {
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		this.color = Color.BLACK;
 		Graphics g = image.getGraphics();
-		g.setColor(Color.WHITE);
+		setColor(Color.WHITE);
 		g.fillRect(0, 0, canvasWidth, canvasHeight);
 		setColor(color);
 		setDrawListener(new PaintListener(this));
