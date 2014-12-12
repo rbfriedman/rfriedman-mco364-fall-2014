@@ -10,6 +10,8 @@ import java.awt.event.MouseEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import friedman.paint.drawing.DrawListener;
+
 public class PaintListener implements DrawListener {
 	protected static int STROKE_WIDTH = 4;
 	protected static final Logger LOGGER = LogManager

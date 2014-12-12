@@ -10,15 +10,22 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import friedman.paint.drawing.DrawListener;
+import friedman.paint.drawing.DrawOvalListener;
+import friedman.paint.drawing.DrawRectangleListener;
+import friedman.paint.drawing.FillOvalListener;
+import friedman.paint.drawing.FillRectangleListener;
+import friedman.paint.drawing.PaintLineListener;
+
 public class PaintedButton extends JButton implements ActionListener {
 
 	private PaintListener pl;
 
-	private ShapeType shapeType;
+	private Shape shapeType;
 	private DrawListener dl;
 	private static final long serialVersionUID = -4261049661640525300L;
 
-	public PaintedButton(ShapeType shapeType, PaintListener paintListener) {
+	public PaintedButton(Shape shapeType, PaintListener paintListener) {
 		this.shapeType = shapeType;
 		this.pl = paintListener;
 		setDrawListener();

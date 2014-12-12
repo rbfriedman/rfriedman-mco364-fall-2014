@@ -107,7 +107,7 @@ public class PaintBanner extends JPanel {
 		shapeGrid.setPreferredSize(new Dimension(200,100));
 		PaintedButton jlb;
 
-		for (ShapeType s : ShapeType.values()) {
+		for (Shape s : Shape.values()) {
 			jlb = new PaintedButton(s, paintListener);
 			shapeGrid.add(jlb);
 		}

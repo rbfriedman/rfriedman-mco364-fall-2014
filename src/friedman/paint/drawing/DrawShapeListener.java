@@ -1,8 +1,11 @@
-package friedman.paint;
+package friedman.paint.drawing;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+
+import friedman.paint.Canvas;
+import friedman.paint.PaintListener;
 
 public class DrawShapeListener extends PaintListener implements DrawListener {
 

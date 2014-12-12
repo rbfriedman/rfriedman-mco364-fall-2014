@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
 
+import friedman.paint.drawing.DrawListener;
+
 public class Canvas extends JComponent {
 	private static final long serialVersionUID = 1L;
 

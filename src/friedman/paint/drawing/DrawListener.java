@@ -1,4 +1,4 @@
-package friedman.paint;
+package friedman.paint.drawing;
 
 import java.awt.Graphics2D;
 import java.awt.Shape;

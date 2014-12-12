@@ -1,55 +1,57 @@
-package friedman.paint;
+package friedman.paint.drawing;
 
 import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.MouseEvent;
 
-public class DrawOvalListener extends DrawShapeListener {
+import friedman.paint.Canvas;
 
-	public DrawOvalListener(Canvas canvas) {
+public class DrawRectangleListener extends DrawShapeListener {
+
+	public DrawRectangleListener(Canvas canvas) {
 		super(canvas);
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent me) {
 		super.mouseDragged(me);
 		canvas.repaint();
-		LOGGER.info("DO Dragged");
+		super.saySomething("Dragged : [x:" + x + " y:" + y + " w:" + w + " h: "
+				+ h + "]");
+		LOGGER.info(" DR Dragged");
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent me) {
 		super.mouseMoved(me);
-		canvas.repaint();
-		LOGGER.info("DO Moved");
-
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent me) {
-		// TODO Auto-generated method stub
 
+		LOGGER.info("Clicked");
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent me) {
 		// TODO Auto-generated method stub
-
+		LOGGER.info("Entered");
 	}
 
 	@Override
 	public void mouseExited(MouseEvent me) {
 		// TODO Auto-generated method stub
-
+		LOGGER.info("Exited");
 	}
 
 	@Override
 	public void mousePressed(MouseEvent me) {
 		super.mousePressed(me);
 		canvas.repaint();
-		LOGGER.info("DO Pressed");
-
+		LOGGER.info("DR Pressed");
 	}
 
 	@Override
@@ -57,19 +59,18 @@ public class DrawOvalListener extends DrawShapeListener {
 		super.mouseReleased(me);
 		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
 		g2.setColor(canvas.getColor());
-		g2.drawOval(x, y, w, h);
+		g2.drawRect(x, y, w, h);
 		canvas.repaint();
-		LOGGER.info(" DO Released");
-
+		LOGGER.info(" DR Released");
 	}
 
 	@Override
 	public void drawPreview(Graphics2D g2) {
+		// TODO Auto-generated method stub
 		super.drawPreview(g2);
 		if (preview) {
-			g2.drawOval(x, y, w, h);
+			g2.drawRect(x, y, w, h);
 		}
-
 	}
 
 }

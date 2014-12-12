@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import com.bric.swing.ColorPalette;
 import com.bric.swing.ColorPicker;
 
+import friedman.paint.drawing.PaintLineListener;
+
 public class Paint extends JFrame {
 	private Canvas canvas;
 

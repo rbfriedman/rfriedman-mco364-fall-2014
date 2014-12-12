@@ -1,7 +1,10 @@
-package friedman.paint;
+package friedman.paint.drawing;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+
+import friedman.paint.Canvas;
+import friedman.paint.PaintListener;
 
 public class PaintLineListener extends PaintListener implements
 		MouseMotionListener {
