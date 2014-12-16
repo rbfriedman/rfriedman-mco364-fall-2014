@@ -1,6 +1,6 @@
 package friedman.paint;
 
 public enum Shape {
-	FilledRectangle, Rectangle, FilledOval, Oval, Line;
+	FILLED_RECTANGLE, RECTANGLE, FILLED_OVAL,OVAL, LINE;
 
 }
