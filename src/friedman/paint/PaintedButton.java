@@ -3,7 +3,6 @@ package friedman.paint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
-import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -50,23 +49,23 @@ public class PaintedButton extends JButton implements ActionListener {
 	private void setDrawListener() {
 
 		switch (shapeType) {
-		case FilledOval:
+		case FILLED_OVAL:
 			setIcon(createImageIcon("icons/OvalS.png", "Filled Oval"));
 			dl = new FillOvalListener(pl.getCanvas());
 			break;
-		case FilledRectangle:
+		case FILLED_RECTANGLE:
 			setIcon(createImageIcon("icons/RectangleS.png", "Filled Rectangle"));
 			dl = new FillRectangleListener(pl.getCanvas());
 			break;
-		case Oval:
+		case OVAL:
 			setIcon(createImageIcon("icons/OvalS.png", "Oval"));
 			dl = new DrawOvalListener(pl.getCanvas());
 			break;
-		case Rectangle:
+		case RECTANGLE:
 			setIcon(createImageIcon("icons/RectangleS.png", "Rectangle"));
 			dl = new DrawRectangleListener(pl.getCanvas());
 			break;
-		case Line:
+		case LINE:
 			setIcon(createImageIcon("icons/PaintLineS.png", "Line"));
 			dl = new PaintLineListener(pl.getCanvas());
 		default:

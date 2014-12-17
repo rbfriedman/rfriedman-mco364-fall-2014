@@ -1,17 +1,18 @@
 package friedman.paint.drawing;
 
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Shape;
 import java.awt.event.MouseEvent;
 
 import friedman.paint.Canvas;
+import friedman.paint.Shape;
+import friedman.paint.messages.ShapeMessage;
 
 public class DrawRectangleListener extends DrawShapeListener {
-
+	
 	public DrawRectangleListener(Canvas canvas) {
 		super(canvas);
+		int color = getCanvas().getColor().getRGB();
+		shapeMessage = new ShapeMessage(Shape.RECTANGLE,x,y,w,h,color,STROKE_WIDTH,false);
 
 	}
 

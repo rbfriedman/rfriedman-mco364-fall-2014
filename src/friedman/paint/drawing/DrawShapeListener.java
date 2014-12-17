@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 
 import friedman.paint.Canvas;
 import friedman.paint.PaintListener;
+import friedman.paint.messages.ShapeMessage;
 
 public class DrawShapeListener extends PaintListener implements DrawListener {
 
@@ -16,10 +17,11 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 	protected int w;
 	protected int h;
 	protected boolean preview;
+	protected ShapeMessage shapeMessage;
 
 	public DrawShapeListener(Canvas canvas) {
 		super(canvas);
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
@@ -30,11 +32,18 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 		y = (int) Math.min(originPoint.getY(), currentPoint.getY());
 		w = (int) Math.abs(originPoint.getX() - currentPoint.getX());
 		h = (int) Math.abs(originPoint.getY() - currentPoint.getY());
+		shapeMessage.setX(x);
+		shapeMessage.setY(y);
+		shapeMessage.setWidth(w);
+		shapeMessage.setHeight(h);
+		shapeMessage.setColor(getCanvas().getColor().getRGB());
+		shapeMessage.setStroke(STROKE_WIDTH);
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent me) {
-		resetBounds();//erases last vestiges of oldimage
+		resetBounds();// erases last vestiges of old image
 		originPoint = me.getPoint();
 		preview = true;
 
@@ -73,8 +82,6 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 	@Override
 	public void drawPreview(Graphics2D g2) {
 
-		//g2.setColor(canvas.getColor());
-
 	}
 
 	private void resetBounds() {
@@ -83,6 +90,7 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 		y = 0;
 		h = 0;
 		w = 0;
+		
 	}
 
 }

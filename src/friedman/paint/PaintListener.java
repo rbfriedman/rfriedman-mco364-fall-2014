@@ -4,19 +4,21 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import java.awt.event.MouseEvent;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import friedman.paint.drawing.DrawListener;
+import friedman.paint.messages.PaintMessage;
+import friedman.paint.messages.PaintMessageFactory;
 
 public class PaintListener implements DrawListener {
 	protected static int STROKE_WIDTH = 4;
 	protected static final Logger LOGGER = LogManager
 			.getLogger(PaintListener.class);
 	protected Canvas canvas;
+	protected PaintMessageFactory pmf;
 	protected Graphics2D g;
 	protected BasicStroke stroke;
 
@@ -27,6 +29,7 @@ public class PaintListener implements DrawListener {
 		stroke = new BasicStroke(STROKE_WIDTH);
 		g.setStroke(stroke);
 		canvas.setCursor (Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+		pmf = new PaintMessageFactory();
 	}
 
 	public void setColor(Color c) {
@@ -72,7 +75,7 @@ public class PaintListener implements DrawListener {
 	public void setDrawListener(DrawListener mml) {
 		canvas.setDrawListener(mml);
 	}
-
+	
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		// TODO Auto-generated method stub
