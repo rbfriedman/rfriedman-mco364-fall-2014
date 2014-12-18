@@ -56,7 +56,7 @@ public class FillRectangleListener extends DrawShapeListener {
 	public void mouseReleased(MouseEvent me) {
 		super.mouseReleased(me);
 		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
-		g2.setColor(canvas.getColor());
+		g2.setColor(canvas.getPaintColor());
 		g2.fillRect(x, y, w, h);
 		canvas.repaint();
 

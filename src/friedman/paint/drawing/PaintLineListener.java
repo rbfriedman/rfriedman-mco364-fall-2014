@@ -29,7 +29,7 @@ public class PaintLineListener extends PaintListener implements
 			setPointNext(e.getX(), e.getY());
 		}
 		drawLine();
-		g.setColor(canvas.getColor());
+		g.setColor(canvas.getPaintColor());
 		canvas.repaint();
 	
 

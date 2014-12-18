@@ -52,7 +52,7 @@ public class PaintBanner extends JPanel {
 
 		jlbBrushStrokeColor = new JLabel("Stroke Color");
 		jlbBrushStrokeColor.setOpaque(true);
-		setStrokeColor(Color.black);
+		setPaintColor(Color.black);
 		icon = createImageIcon(jlbStrokeSizeIcon, "Stroke width");
 		jlbStrokeSize = new JLabel("10", icon, 10);
 		shapeGrid = createGridOfShapes();
@@ -93,8 +93,8 @@ public class PaintBanner extends JPanel {
 
 	}
 
-	public void setStrokeColor(Color c) {
-		paintListener.setColor(c);
+	public void setPaintColor(Color c) {
+		paintListener.setPaintColor(c);
 		jlbBrushStrokeColor.setBackground(c);
 		jlbBrushStrokeColor.repaint();
 

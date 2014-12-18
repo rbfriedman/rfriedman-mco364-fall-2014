@@ -29,9 +29,9 @@ public class PaintListener implements DrawListener {
 		canvas.setCursor (Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 	}
 
-	public void setColor(Color c) {
+	public void setPaintColor(Color c) {
 		g.setColor(c);
-		canvas.setColor(c);
+		canvas.setPaintColor(c);
 		canvas.repaint();
 		LOGGER.info("Color set to " + c);
 	}
