@@ -1,8 +1,6 @@
 package friedman.paint.messages;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 
 public class BucketFillMessage implements PaintMessage
 {
@@ -21,8 +19,7 @@ public class BucketFillMessage implements PaintMessage
 	public void apply(Graphics2D g)
 	{
 		// TODO Auto-generated method stub
-		g.setColor(new Color(color));
-		g.setClip(new Rectangle(0,0,x,y));
+
 	}
 
 	public int getX()
