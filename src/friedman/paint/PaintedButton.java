@@ -33,19 +33,6 @@ public class PaintedButton extends JButton implements ActionListener {
 
 	}
 
-	@Override
-	protected void paintComponent(Graphics g) {
-		// TODO Auto-generated method stub
-		Graphics2D g2 = (Graphics2D) g;
-		setFocusPainted(false);
-		setMargin(new Insets(0, 0, 0, 0));
-		setContentAreaFilled(false);
-		setBorderPainted(false);
-		setOpaque(false);
-		super.paintComponent(g2);
-
-	}
-
 	private void setDrawListener() {
 
 		switch (shapeType) {

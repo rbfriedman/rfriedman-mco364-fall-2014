@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.Stack;
 
+import com.sun.org.apache.xpath.internal.operations.Gte;
+
 public class BucketFillMessage implements PaintMessage
 {
 	private int x;
@@ -26,13 +28,13 @@ public class BucketFillMessage implements PaintMessage
 	@Override
 	public void apply(Graphics2D g)
 	{
-		// TODO Auto-generated method stub
-		Point point = new Point(x,y);
-		Stack<Point> stackOfPoints = new Stack<Point>();
+		
+		
 		
 	}
 	
-	private void traverseBranch(Point p){
+	private void traverseBranch(Point point){
+		
 		
 	}
 

@@ -59,10 +59,16 @@ public class DrawRectangleListener extends DrawShapeListener {
 	public void mouseReleased(MouseEvent me) {
 		super.mouseReleased(me);
 		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
-		g2.setColor(canvas.getColor());
-		g2.drawRect(x, y, w, h);
+		draw(g2);
 		canvas.repaint();
 		LOGGER.info(" DR Released");
+	}
+	
+	@Override
+	public void draw(Graphics2D g2) {
+		// TODO Auto-generated method stub
+		super.draw(g2);
+		g2.drawRect(x, y, w, h);
 	}
 
 	@Override
@@ -70,7 +76,7 @@ public class DrawRectangleListener extends DrawShapeListener {
 		// TODO Auto-generated method stub
 		super.drawPreview(g2);
 		if (preview) {
-			g2.drawRect(x, y, w, h);
+			draw(g2);
 		}
 	}
 
