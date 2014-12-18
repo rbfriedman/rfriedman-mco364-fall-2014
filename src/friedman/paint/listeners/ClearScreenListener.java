@@ -1,7 +1,9 @@
-package friedman.paint;
+package friedman.paint.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import friedman.paint.PaintListener;
 
 public class ClearScreenListener implements ActionListener {
 

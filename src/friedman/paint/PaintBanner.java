@@ -13,6 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
+import friedman.paint.listeners.BucketFillListener;
+import friedman.paint.listeners.ClearScreenListener;
+import friedman.paint.listeners.ColorDialogListener;
+
 public class PaintBanner extends JPanel {
 	private JButton jbtEditColors;
 	private JButton jbtClearScreen;

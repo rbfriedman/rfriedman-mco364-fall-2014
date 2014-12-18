@@ -1,10 +1,13 @@
-package friedman.paint;
+package friedman.paint.listeners;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 import javax.swing.JLabel;
+
+import friedman.paint.LogInterface;
+import friedman.paint.PaintBanner;
 
 public class BrushStrokeListener implements MouseWheelListener, LogInterface {
 	private PaintBanner pb;

@@ -41,8 +41,9 @@ public class BucketFillDrawListener extends DrawShapeListener {
 		//Points added to the stack are colore
 		while (!stackOfPoints.isEmpty()) {
 			visitedPoint = stackOfPoints.pop();
-			image.setRGB(visitedPoint.x, visitedPoint.y, bucketFillColor.getRGB());
 			// color point
+			image.setRGB(visitedPoint.x, visitedPoint.y, bucketFillColor.getRGB());
+			
 			//Right
 			if (withinCanvas(visitedPoint.x+1,visitedPoint.y) && clickedColor.equals(new Color(image.getRGB(visitedPoint.x+1,visitedPoint.y)))){
 				stackOfPoints.push(new Point(visitedPoint.x +1,visitedPoint.y));
