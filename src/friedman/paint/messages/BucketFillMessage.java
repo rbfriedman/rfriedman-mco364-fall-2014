@@ -1,5 +1,7 @@
 package friedman.paint.messages;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.Stack;
@@ -28,12 +30,6 @@ public class BucketFillMessage implements PaintMessage
 	@Override
 	public void apply(Graphics2D g)
 	{
-		
-		
-		
-	}
-	
-	private void traverseBranch(Point point){
 		
 		
 	}

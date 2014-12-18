@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.PrintWriter;
 
 import javax.swing.JComponent;
 
@@ -22,6 +23,8 @@ public class Canvas extends JComponent {
 	private DrawListener listener;
 
 	private Color color;
+	
+	private PrintWriter printWriter;
 
 	public Canvas(int width, int height) {
 		super();
@@ -65,8 +68,19 @@ public class Canvas extends JComponent {
 
 	}
 
-	public Color getColor() {
+	public Color getPaintColor() {
 		return color;
 	}
+
+	public PrintWriter getPrintWriter() {
+		return printWriter;
+	}
+
+	public void setPrintWriter(PrintWriter printWriter) {
+		this.printWriter = printWriter;
+	}
+	
+	
+	
 
 }

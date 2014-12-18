@@ -33,7 +33,7 @@ public class ColorDialogListener implements ActionListener, ChangeListener {
 	@Override
 	public void stateChanged(ChangeEvent arg0) {
 		if((colorChooser.getColor())!=null){
-			pb.setStrokeColor(colorChooser.getColor());
+			pb.setPaintColor(colorChooser.getColor());
 			System.out.println("Color :" + colorChooser.getColor().getRGB());
 		}
 		

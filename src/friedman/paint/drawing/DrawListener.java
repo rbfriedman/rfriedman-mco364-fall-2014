@@ -9,4 +9,8 @@ import javax.swing.event.MouseInputListener;
 
 public interface DrawListener extends MouseMotionListener, MouseInputListener,  MouseListener {
 	public void drawPreview(Graphics2D g2);
+	
+	public void draw(Graphics2D g2);
+	
+	public void sendMessageToServer();
 }

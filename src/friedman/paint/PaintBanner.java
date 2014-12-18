@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
-import friedman.paint.listeners.BucketFillListener;
 import friedman.paint.listeners.ClearScreenListener;
 import friedman.paint.listeners.ColorDialogListener;
 
@@ -45,11 +44,11 @@ public class PaintBanner extends JPanel {
 
 		jlbBrushStrokeColor = new JLabel("Stroke Color");
 		jlbBrushStrokeColor.setOpaque(true);
-		setStrokeColor(Color.black);
+		setPaintColor(Color.black);
 		icon = createImageIcon(jlbStrokeSizeIcon, "Stroke width");
 		jlbStrokeSize = new JLabel("10", icon, 10);
 		jbtBucketFill = new JButton("Bucket Fill");
-		jbtBucketFill.addActionListener(new BucketFillListener(this.paintListener));
+		jbtBucketFill.addActionListener(new BucketFillListener(paintListener));
 		shapeGrid = createGridOfShapes();
 
 		JPanel innerPanel = new JPanel();
@@ -88,7 +87,7 @@ public class PaintBanner extends JPanel {
 
 	}
 
-	public void setStrokeColor(Color c) {
+	public void setPaintColor(Color c) {
 		paintListener.setColor(c);
 		jlbBrushStrokeColor.setBackground(c);
 		jlbBrushStrokeColor.repaint();

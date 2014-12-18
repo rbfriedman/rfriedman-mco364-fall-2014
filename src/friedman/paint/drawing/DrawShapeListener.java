@@ -48,6 +48,7 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 		resetBounds();// erases last vestiges of old image
 		originPoint = me.getPoint();
 		preview = true;
+		canvas.repaint();
 
 	}
 
@@ -55,6 +56,8 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 	public void mouseMoved(MouseEvent me) {
 		// TODO Auto-generated method stub
 		originPoint = me.getPoint();
+		LOGGER.info(this.getClass().toString() +" moved");
+		canvas.repaint();
 	}
 
 	@Override
@@ -89,8 +92,8 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 	}
 
 	public void draw(Graphics2D g2) {
-		g2.setColor(canvas.getColor());
-		LOGGER.info("Drawing graphics object");
+		g2.setColor(canvas.getPaintColor());
+		LOGGER.info(this.getClass().toString() + " drawing graphics object");
 	}
 
 	private void resetBounds() {
