@@ -81,11 +81,11 @@ public class DrawOvalListener extends DrawShapeListener {
 		}
 
 	}
-	
+
 	@Override
-	public void sendMessageToServer()
-	{
-		String message = new ShapeMessage(Shape.OVAL, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, false).toString();
+	public void sendMessageToServer() {
+		String message = new ShapeMessage(Shape.OVAL, x, y, w, h, canvas
+				.getPaintColor().getRGB(), STROKE_WIDTH, false).toString();
 		PrintWriter writer = canvas.getPrintWriter();
 		writer.println(message);
 		writer.flush();

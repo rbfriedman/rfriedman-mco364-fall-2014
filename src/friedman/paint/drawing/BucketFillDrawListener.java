@@ -5,13 +5,9 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.PrintWriter;
 import java.util.Stack;
 
 import friedman.paint.Canvas;
-import friedman.paint.Shape;
-import friedman.paint.messages.BucketFillMessage;
-import friedman.paint.messages.ShapeMessage;
 
 public class BucketFillDrawListener extends DrawShapeListener {
 	private Color clickedColor;
@@ -39,39 +35,58 @@ public class BucketFillDrawListener extends DrawShapeListener {
 		Stack<Point> stackOfPoints = new Stack<Point>();
 		stackOfPoints.push(point);
 		BufferedImage image = canvas.getImage();
-		
+
 		Point visitedPoint;
 		Color bucketFillColor = canvas.getPaintColor();
-		//Points added to the stack are colore
+		// Points added to the stack are colore
 		while (!stackOfPoints.isEmpty()) {
 			visitedPoint = stackOfPoints.pop();
+			image.setRGB(visitedPoint.x, visitedPoint.y,
+					bucketFillColor.getRGB());
 			// color point
-			image.setRGB(visitedPoint.x, visitedPoint.y, bucketFillColor.getRGB());
-			
-			//Right
-			if (withinCanvas(visitedPoint.x+1,visitedPoint.y) && clickedColor.equals(new Color(image.getRGB(visitedPoint.x+1,visitedPoint.y)))){
-				stackOfPoints.push(new Point(visitedPoint.x +1,visitedPoint.y));
+			// Right
+			if (withinCanvas(visitedPoint.x + 1, visitedPoint.y)
+					&& clickedColor.equals(new Color(image.getRGB(
+							visitedPoint.x + 1, visitedPoint.y)))) {
+				stackOfPoints
+						.push(new Point(visitedPoint.x + 1, visitedPoint.y));
 			}
-			//Left
-			if (withinCanvas(visitedPoint.x-1,visitedPoint.y) && clickedColor.equals(new Color(image.getRGB(visitedPoint.x-1,visitedPoint.y)))){
-				stackOfPoints.push(new Point(visitedPoint.x-1,visitedPoint.y));
+			// Left
+			if (withinCanvas(visitedPoint.x - 1, visitedPoint.y)
+					&& clickedColor.equals(new Color(image.getRGB(
+							visitedPoint.x - 1, visitedPoint.y)))) {
+				stackOfPoints
+						.push(new Point(visitedPoint.x - 1, visitedPoint.y));
 			}
-			//Down
-			if (withinCanvas(visitedPoint.x,visitedPoint.y+1) && clickedColor.equals(new Color(image.getRGB(visitedPoint.x,visitedPoint.y+1)))){
-				stackOfPoints.push(new Point(visitedPoint.x,visitedPoint.y+1));
+			// Down
+			if (withinCanvas(visitedPoint.x, visitedPoint.y + 1)
+					&& clickedColor.equals(new Color(image.getRGB(
+							visitedPoint.x, visitedPoint.y + 1)))) {
+				stackOfPoints
+						.push(new Point(visitedPoint.x, visitedPoint.y + 1));
 			}
-			//Up
-			if (withinCanvas(visitedPoint.x,visitedPoint.y-1) && clickedColor.equals(new Color(image.getRGB(visitedPoint.x,visitedPoint.y-1)))){
-				stackOfPoints.push(new Point(visitedPoint.x,visitedPoint.y-1));
+			// Up
+			if (withinCanvas(visitedPoint.x, visitedPoint.y - 1)
+					&& clickedColor.equals(new Color(image.getRGB(
+							visitedPoint.x, visitedPoint.y - 1)))) {
+				stackOfPoints
+						.push(new Point(visitedPoint.x, visitedPoint.y - 1));
 			}
-			
+
 			canvas.repaint();
 		}
 	}
 
 	private boolean withinCanvas(int x, int y) {
 		// TODO Auto-generated method stub
-		return x >= 0 &&  x <canvas.getWidth() && y >= 0 && y < canvas.getHeight();
+		return x >= 0 && x < canvas.getWidth() && y >= 0
+				&& y < canvas.getHeight();
+	}
+
+	@Override
+	public void mousePressed(MouseEvent me) {
+
+		clickedColor = new Color(canvas.getImage().getRGB(x, y));
 	}
 
 	@Override
@@ -79,7 +94,6 @@ public class BucketFillDrawListener extends DrawShapeListener {
 		super.mouseReleased(me);
 		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
 		g2.setColor(canvas.getPaintColor());
-		clickedColor = new Color(canvas.getImage().getRGB(x, y));
 		draw(g2);
 		canvas.repaint();
 

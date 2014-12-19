@@ -1,7 +1,6 @@
 package friedman.paint.drawing;
 
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 

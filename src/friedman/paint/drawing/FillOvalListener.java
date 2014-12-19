@@ -82,7 +82,7 @@ public class FillOvalListener extends DrawShapeListener {
 	@Override
 	public void sendMessageToServer()
 	{
-		String message = new ShapeMessage(Shape.OVAL, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, true).toString();
+		String message = new ShapeMessage(Shape.RECTANGLE, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, false).toString();
 		PrintWriter writer = canvas.getPrintWriter();
 		writer.println(message);
 		writer.flush();
