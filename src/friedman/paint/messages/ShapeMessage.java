@@ -5,11 +5,11 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import friedman.paint.Shape;
+import friedman.paint.PaintType;
 
 public class ShapeMessage implements PaintMessage
 {
-	private Shape type;
+	private PaintType type;
 	private int x;
 	private int y;
 	private int width;
@@ -18,7 +18,7 @@ public class ShapeMessage implements PaintMessage
 	private int stroke;
 	private boolean fill;
 
-	public ShapeMessage(Shape type, int x, int y, int width, int height, int color, int stroke, boolean fill)
+	public ShapeMessage(PaintType type, int x, int y, int width, int height, int color, int stroke, boolean fill)
 	{
 		this.type = type;
 		this.x = x;
@@ -59,12 +59,12 @@ public class ShapeMessage implements PaintMessage
 		}
 	}
 
-	public Shape getType()
+	public PaintType getType()
 	{
 		return type;
 	}
 
-	public void setType(Shape type)
+	public void setType(PaintType type)
 	{
 		this.type = type;
 	}

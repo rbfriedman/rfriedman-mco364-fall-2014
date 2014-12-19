@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
-import friedman.paint.listeners.BucketFillListener;
 import friedman.paint.listeners.ClearScreenListener;
 import friedman.paint.listeners.ColorDialogListener;
 import friedman.paint.listeners.PaintListener;
@@ -49,8 +48,6 @@ public class PaintBanner extends JPanel {
 		setPaintColor(Color.black);
 		icon = createImageIcon(jlbStrokeSizeIcon, "Stroke width");
 		jlbStrokeSize = new JLabel("10", icon, 10);
-		jbtBucketFill = new JButton("Bucket Fill");
-		jbtBucketFill.addActionListener(new BucketFillListener(paintListener));
 		shapeGrid = createGridOfShapes();
 
 		JPanel innerPanel = new JPanel();
@@ -59,7 +56,6 @@ public class PaintBanner extends JPanel {
 		innerPanel.add(jlbBrushStrokeColor);
 		innerPanel.add(jbtEditColors);
 		innerPanel.add(jbtClearScreen);
-		innerPanel.add(jbtBucketFill);
 
 		Border raisedetched = BorderFactory
 				.createEtchedBorder(EtchedBorder.RAISED);
@@ -102,10 +98,10 @@ public class PaintBanner extends JPanel {
 		shapeGrid.setLayout(new GridLayout(3, 3));
 		shapeGrid.setBorder(BorderFactory.createLineBorder(Color.black));
 		shapeGrid.setPreferredSize(new Dimension(200,100));
-		PaintedButton jlb;
+		PaintTypeButton jlb;
 
-		for (Shape s : Shape.values()) {
-			jlb = new PaintedButton(s, paintListener);
+		for (PaintType s : PaintType.values()) {
+			jlb = new PaintTypeButton(s, paintListener);
 			shapeGrid.add(jlb);
 		}
 
