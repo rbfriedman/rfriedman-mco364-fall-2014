@@ -90,7 +90,7 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 			draw(g2);
 		}
 	}
-	@Override
+
 	public void draw(Graphics2D g2) {
 		g2.setColor(canvas.getPaintColor());
 		LOGGER.info(this.getClass().toString() + " drawing graphics object");

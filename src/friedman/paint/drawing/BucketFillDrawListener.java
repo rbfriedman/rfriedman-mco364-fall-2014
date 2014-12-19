@@ -9,7 +9,9 @@ import java.io.PrintWriter;
 import java.util.Stack;
 
 import friedman.paint.Canvas;
+import friedman.paint.Shape;
 import friedman.paint.messages.BucketFillMessage;
+import friedman.paint.messages.ShapeMessage;
 
 public class BucketFillDrawListener extends DrawShapeListener {
 	private Color clickedColor;
@@ -25,13 +27,6 @@ public class BucketFillDrawListener extends DrawShapeListener {
 		super.draw(g2);
 		paintSurroundingPoints(g2);
 
-	}
-
-	@Override
-	public void mousePressed(MouseEvent me) {
-		// TODO Auto-generated method stub
-		super.mousePressed(me);
-		clickedColor = new Color(canvas.getImage().getRGB(x, y));
 	}
 
 	private void paintSurroundingPoints(Graphics2D g2) {
@@ -84,6 +79,7 @@ public class BucketFillDrawListener extends DrawShapeListener {
 		super.mouseReleased(me);
 		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
 		g2.setColor(canvas.getPaintColor());
+		clickedColor = new Color(canvas.getImage().getRGB(x, y));
 		draw(g2);
 		canvas.repaint();
 
