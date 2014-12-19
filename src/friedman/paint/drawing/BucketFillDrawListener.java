@@ -81,4 +81,20 @@ public class BucketFillDrawListener extends DrawShapeListener {
 
 	}
 	
+	@Override
+	public void mousePressed(MouseEvent me) {
+
+		System.out.println(x +" " +y);
+		super.mousePressed(me);
+		currentPoint = originPoint = me.getPoint();
+		x = (int) currentPoint.getX();
+		y = (int) currentPoint.getY();
+		clickedColor = new Color(canvas.getImage().getRGB(x, y));
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent me) {
+		// Irrelevant method in this scenario
+	}
+	
 }
