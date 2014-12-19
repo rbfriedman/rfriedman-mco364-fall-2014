@@ -5,9 +5,11 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.PrintWriter;
 import java.util.Stack;
 
 import friedman.paint.Canvas;
+import friedman.paint.messages.BucketFillMessage;
 
 public class BucketFillDrawListener extends DrawShapeListener {
 	private Color clickedColor;
@@ -20,6 +22,7 @@ public class BucketFillDrawListener extends DrawShapeListener {
 	@Override
 	public void draw(Graphics2D g2) {
 		// TODO Auto-generated method stub
+		System.out.println(x +" " +y);
 		super.draw(g2);
 		paintSurroundingPoints(g2);
 
@@ -85,18 +88,33 @@ public class BucketFillDrawListener extends DrawShapeListener {
 
 	@Override
 	public void mousePressed(MouseEvent me) {
-
+		System.out.println(x +" " +y);
+		super.mousePressed(me);
+		currentPoint = originPoint = me.getPoint();
+		x = (int) currentPoint.getX();
+		y = (int) currentPoint.getY();
 		clickedColor = new Color(canvas.getImage().getRGB(x, y));
 	}
 
 	@Override
+	public void mouseDragged(MouseEvent me) {
+		// Irrelevant method in this scenario
+	}
+
+	@Override
 	public void mouseReleased(MouseEvent me) {
+		System.out.println(x +" " +y);
 		super.mouseReleased(me);
+		System.out.println(x +" " +y);
 		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
 		g2.setColor(canvas.getPaintColor());
 		draw(g2);
 		canvas.repaint();
 
+	}
+	@Override
+	public void mouseMoved(MouseEvent me) {
+		// TODO Auto-generated method stub
 	}
 	
 	@Override
