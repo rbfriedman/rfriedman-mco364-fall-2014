@@ -56,10 +56,15 @@ public class FillOvalListener extends DrawShapeListener {
 		// TODO Auto-generated method stub
 		super.mouseReleased(me);
 		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
-		g2.setColor(canvas.getPaintColor());
-		g2.fillOval(x, y, w, h);
+		draw(g2);
 		canvas.repaint();
 		LOGGER.info("FO Released");
+	}
+	
+	@Override
+	public void draw(Graphics2D g2){
+		super.draw(g2);
+		g2.fillOval(x, y, w, h);
 	}
 
 	@Override
@@ -67,7 +72,7 @@ public class FillOvalListener extends DrawShapeListener {
 		// TODO Auto-generated method stub
 		super.drawPreview(g2);
 		if (preview) {
-			g2.fillOval(x, y, w, h);
+			draw(g2);
 		}
 	}
 

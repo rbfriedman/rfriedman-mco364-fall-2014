@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 import friedman.paint.Canvas;
-import friedman.paint.PaintListener;
+import friedman.paint.listeners.PaintListener;
 
 public class PaintLineListener extends PaintListener implements
 		MouseMotionListener {

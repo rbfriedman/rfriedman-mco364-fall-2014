@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 import friedman.paint.Canvas;
-import friedman.paint.PaintListener;
+import friedman.paint.listeners.PaintListener;
 
 public class DrawShapeListener extends PaintListener implements DrawListener {
 
@@ -37,6 +37,8 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 		resetBounds();//erases last vestiges of oldimage
 		originPoint = me.getPoint();
 		preview = true;
+		LOGGER.info(this.getClass().toString() +" pressed");
+		canvas.repaint();
 
 	}
 
@@ -44,6 +46,8 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 	public void mouseMoved(MouseEvent me) {
 		// TODO Auto-generated method stub
 		originPoint = me.getPoint();
+		LOGGER.info(this.getClass().toString() +" moved");
+		canvas.repaint();
 	}
 
 	@Override
@@ -72,9 +76,9 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 
 	@Override
 	public void drawPreview(Graphics2D g2) {
-
-		//g2.setColor(canvas.getColor());
-
+		if (preview) {
+			draw(g2);
+		}
 	}
 
 	private void resetBounds() {
@@ -83,6 +87,11 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 		y = 0;
 		h = 0;
 		w = 0;
+	}
+	
+	public void draw(Graphics2D g2) {
+		g2.setColor(canvas.getPaintColor());
+		LOGGER.info(this.getClass().toString() + " drawing graphics object");
 	}
 
 }

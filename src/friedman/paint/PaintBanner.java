@@ -6,13 +6,13 @@ import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
-import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,6 +25,11 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import friedman.paint.listeners.BucketFillListener;
+import friedman.paint.listeners.ClearScreenListener;
+import friedman.paint.listeners.ColorDialogListener;
+import friedman.paint.listeners.PaintListener;
+
 public class PaintBanner extends JPanel {
 	private JButton jbtEditColors;
 	private JButton jbtClearScreen;
@@ -36,6 +41,7 @@ public class PaintBanner extends JPanel {
 	private JPanel shapeGrid;
 
 	private PaintListener paintListener;
+	private AbstractButton jbtBucketFill;
 
 	public PaintBanner(PaintListener paintListener) {
 
@@ -55,14 +61,17 @@ public class PaintBanner extends JPanel {
 		setPaintColor(Color.black);
 		icon = createImageIcon(jlbStrokeSizeIcon, "Stroke width");
 		jlbStrokeSize = new JLabel("10", icon, 10);
+		jbtBucketFill = new JButton("Bucket Fill");
+		jbtBucketFill.addActionListener(new BucketFillListener(paintListener));
 		shapeGrid = createGridOfShapes();
 
 		JPanel innerPanel = new JPanel();
-		innerPanel.setLayout(new GridLayout(1, 5, 4, 4));
+		innerPanel.setLayout(new GridLayout(1, 6, 4, 4));
 		innerPanel.add(jlbStrokeSize);
 		innerPanel.add(jlbBrushStrokeColor);
 		innerPanel.add(jbtEditColors);
 		innerPanel.add(jbtClearScreen);
+		innerPanel.add(jbtBucketFill);
 
 		Border raisedetched = BorderFactory
 				.createEtchedBorder(EtchedBorder.RAISED);

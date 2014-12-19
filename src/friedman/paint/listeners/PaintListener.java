@@ -1,4 +1,4 @@
-package friedman.paint;
+package friedman.paint.listeners;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import friedman.paint.Canvas;
 import friedman.paint.drawing.DrawListener;
 
 public class PaintListener implements DrawListener {
@@ -89,7 +90,7 @@ public class PaintListener implements DrawListener {
 		System.out.println(eventDescription);
 	}
 
-	protected Canvas getCanvas() {
+	public Canvas getCanvas() {
 		return canvas;
 	}
 
@@ -127,6 +128,12 @@ public class PaintListener implements DrawListener {
 	public void drawPreview(Graphics2D g2) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void draw(Graphics2D g2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

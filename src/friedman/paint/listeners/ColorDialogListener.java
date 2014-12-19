@@ -1,4 +1,4 @@
-package friedman.paint;
+package friedman.paint.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +7,8 @@ import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import friedman.paint.PaintBanner;
 
 public class ColorDialogListener implements ActionListener, ChangeListener {
 	private JDialog jd;

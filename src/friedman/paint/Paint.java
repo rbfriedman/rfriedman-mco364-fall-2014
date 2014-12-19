@@ -11,6 +11,8 @@ import com.bric.swing.ColorPalette;
 import com.bric.swing.ColorPicker;
 
 import friedman.paint.drawing.PaintLineListener;
+import friedman.paint.listeners.BrushStrokeListener;
+import friedman.paint.listeners.PaintListener;
 
 public class Paint extends JFrame {
 	private Canvas canvas;

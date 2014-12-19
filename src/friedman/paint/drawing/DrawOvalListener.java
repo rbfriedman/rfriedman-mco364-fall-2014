@@ -8,6 +8,7 @@ import friedman.paint.Canvas;
 
 public class DrawOvalListener extends DrawShapeListener {
 
+
 	public DrawOvalListener(Canvas canvas) {
 		super(canvas);
 		// TODO Auto-generated constructor stub
@@ -58,18 +59,24 @@ public class DrawOvalListener extends DrawShapeListener {
 	public void mouseReleased(MouseEvent me) {
 		super.mouseReleased(me);
 		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
-		g2.setColor(canvas.getPaintColor());
-		g2.drawOval(x, y, w, h);
+		draw(g2);
 		canvas.repaint();
 		LOGGER.info(" DO Released");
 
 	}
 
 	@Override
+	public void draw(Graphics2D g2) {
+		// TODO Auto-generated method stub
+		super.draw(g2);
+		g2.drawOval(x, y, w, h);
+	}
+
+	@Override
 	public void drawPreview(Graphics2D g2) {
 		super.drawPreview(g2);
 		if (preview) {
-			g2.drawOval(x, y, w, h);
+			draw(g2);
 		}
 
 	}
