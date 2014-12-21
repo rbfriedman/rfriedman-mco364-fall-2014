@@ -2,13 +2,11 @@ package friedman.paint;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame;
-
-import com.bric.swing.ColorPalette;
-import com.bric.swing.ColorPicker;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.border.BevelBorder;
 
 import friedman.paint.drawing.PaintLineListener;
 import friedman.paint.listeners.BrushStrokeListener;
@@ -37,6 +35,7 @@ public class Paint extends JFrame {
 
 		add(canvas, BorderLayout.CENTER);
 		add(paintBanner, BorderLayout.SOUTH);
+		
 		setSize(800, 600);
 		setTitle("Paint");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

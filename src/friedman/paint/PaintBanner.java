@@ -1,20 +1,30 @@
 package friedman.paint;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
+import javax.swing.text.JTextComponent;
 
 import friedman.paint.listeners.ClearScreenListener;
 import friedman.paint.listeners.ColorDialogListener;
+import friedman.paint.listeners.LayerChooserListener;
 import friedman.paint.listeners.PaintListener;
 
 public class PaintBanner extends JPanel {
@@ -28,12 +38,11 @@ public class PaintBanner extends JPanel {
 	private JPanel shapeGrid;
 
 	private PaintListener paintListener;
-	private AbstractButton jbtBucketFill;
+
 
 	public PaintBanner(PaintListener paintListener) {
 
 		this.paintListener = paintListener;
-		setLayout(new FlowLayout(FlowLayout.RIGHT));
 
 		ImageIcon icon = createImageIcon(editColorIcon, "Color Palette");
 		jbtEditColors = new JButton("Edit Colors", icon);
@@ -48,8 +57,9 @@ public class PaintBanner extends JPanel {
 		setPaintColor(Color.black);
 		icon = createImageIcon(jlbStrokeSizeIcon, "Stroke width");
 		jlbStrokeSize = new JLabel("10", icon, 10);
+		
 		shapeGrid = createGridOfShapes();
-
+		createLayerComboBox();
 		JPanel innerPanel = new JPanel();
 		innerPanel.setLayout(new GridLayout(1, 6, 4, 4));
 		innerPanel.add(jlbStrokeSize);
@@ -62,7 +72,8 @@ public class PaintBanner extends JPanel {
 		this.setBorder(raisedetched);
 
 		innerPanel.add(shapeGrid);
-		add(innerPanel);
+		add(innerPanel, BorderLayout.CENTER);
+
 
 	}
 
@@ -104,8 +115,17 @@ public class PaintBanner extends JPanel {
 			jlb = new PaintTypeButton(s, paintListener);
 			shapeGrid.add(jlb);
 		}
-
+		
 		return shapeGrid;
+	}
+	
+	private void createLayerComboBox(){
+		
+		Integer[] layerChoices = {1,2,3,4};
+		JComboBox<Integer> layerChooser = new JComboBox<Integer>(layerChoices);
+		layerChooser.addActionListener(new LayerChooserListener(paintListener));
+		shapeGrid.add(layerChooser);
+		
 	}
 
 	public void decreaseStrokeWidth() {
@@ -123,5 +143,4 @@ public class PaintBanner extends JPanel {
 	public void setPaintListener(PaintListener mml) {
 		paintListener.setDrawListener(mml);
 	}
-
 }

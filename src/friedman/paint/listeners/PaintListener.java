@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import friedman.paint.Canvas;
+import friedman.paint.Layer;
 import friedman.paint.drawing.DrawListener;
 
 public class PaintListener implements DrawListener {
@@ -61,11 +62,7 @@ public class PaintListener implements DrawListener {
 	}
 
 	public void clearScreen() {
-		//Graphics2D graphics = canvas.getImage().createGraphics();
-		g.setPaint(Color.WHITE);
-		g.fillRect(0, 0, canvas.getImage().getWidth(), canvas.getImage()
-				.getHeight());
-		
+		canvas.clear();
 		canvas.repaint();
 
 	}
@@ -133,7 +130,11 @@ public class PaintListener implements DrawListener {
 	@Override
 	public void draw(Graphics2D g2) {
 		// TODO Auto-generated method stub
-		
+		g2.setColor(canvas.getPaintColor());
+	}
+
+	public void setSelectedLayer(int numLayer){
+		canvas.setSelectedLayer(numLayer);
 	}
 
 }

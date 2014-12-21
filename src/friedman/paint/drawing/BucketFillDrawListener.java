@@ -44,6 +44,7 @@ public class BucketFillDrawListener extends DrawShapeListener {
 			// color point
 			image.setRGB(visitedPoint.x, visitedPoint.y, bucketFillColor.getRGB());
 			
+			
 			//Right
 			if (withinCanvas(visitedPoint.x+1,visitedPoint.y) && clickedColor.equals(new Color(image.getRGB(visitedPoint.x+1,visitedPoint.y)))){
 				stackOfPoints.push(new Point(visitedPoint.x +1,visitedPoint.y));
@@ -62,12 +63,13 @@ public class BucketFillDrawListener extends DrawShapeListener {
 			}
 			
 			canvas.repaint();
+			
 		}
 	}
 
 	private boolean withinCanvas(int x, int y) {
 		// TODO Auto-generated method stub
-		return x >= 0 &&  x <canvas.getWidth() && y >= 0 && y < canvas.getHeight();
+		return x > 0 &&  x <(canvas.getWidth()-2) && y > 0 && y < (canvas.getHeight()-2);
 	}
 
 	@Override
