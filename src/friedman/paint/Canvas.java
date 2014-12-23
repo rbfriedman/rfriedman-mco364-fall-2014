@@ -18,7 +18,6 @@ import friedman.paint.listeners.PaintListener;
 public class Canvas extends JComponent {
 	private static final long serialVersionUID = 1L;
 
-
 	private int canvasHeight;
 	private int canvasWidth;
 
@@ -27,10 +26,9 @@ public class Canvas extends JComponent {
 	private Color color;
 	private Layer selectedLayer;
 	private Layer[] layers;
-	private int numLayers;
-	
-	protected static final Logger LOGGER = LogManager
-			.getLogger(Canvas.class);
+	public static int NUM_LAYERS;
+
+	protected static final Logger LOGGER = LogManager.getLogger(Canvas.class);
 
 	public Canvas(int width, int height) {
 		// TODO add Window Listener so canvas will be resizable
@@ -39,8 +37,8 @@ public class Canvas extends JComponent {
 		this.canvasWidth = width;
 
 		this.color = Color.BLACK;
-		this.numLayers = 4;
-		layers = new Layer[numLayers];
+		this.NUM_LAYERS = 4;
+		layers = new Layer[NUM_LAYERS];
 		createLayers();
 		Graphics g = selectedLayer.getGraphics();
 		setPaintColor(Color.WHITE);
@@ -53,10 +51,10 @@ public class Canvas extends JComponent {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(color);
-		for(int i =0; i <numLayers;i++){
+		for (int i = 0; i < NUM_LAYERS; i++) {
 			g.drawImage(layers[i].getImage(), 0, 0, null);
 		}
-		
+
 		listener.drawPreview((Graphics2D) g);
 
 	}
@@ -66,7 +64,7 @@ public class Canvas extends JComponent {
 	}
 
 	private void createLayers() {
-		for (int i = 0; i < numLayers; i++) {
+		for (int i = 0; i < NUM_LAYERS; i++) {
 			layers[i] = new Layer(canvasWidth, canvasHeight);
 		}
 		selectedLayer = layers[0];
@@ -90,8 +88,8 @@ public class Canvas extends JComponent {
 	public Color getPaintColor() {
 		return color;
 	}
-	
-	public void setSelectedLayer(int layerNum){
+
+	public void setSelectedLayer(int layerNum) {
 		this.selectedLayer = layers[layerNum];
 		LOGGER.info("selected Layer is currently " + layerNum);
 	}
@@ -101,23 +99,32 @@ public class Canvas extends JComponent {
 		if (selectedLayer.equals(layers[0])) // background layer should be white
 		{
 			g.setPaint(Color.WHITE);
-			g.fillRect(0, 0, getImage().getWidth(), getImage()
-					.getHeight());
-		}
-		else
+			g.fillRect(0, 0, getImage().getWidth(), getImage().getHeight());
+		} else
 		// all others transparent
 		{
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.CLEAR));
-			g.fillRect(0, 0, getImage().getWidth(), getImage()
-					.getHeight());
+			g.fillRect(0, 0, getImage().getWidth(), getImage().getHeight());
 			// reset composite
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
 
 		}
-	
+
 		repaint();
 	}
-	
 
+	public int getCanvasWidth() {
+		// TODO Auto-generated method stub
+		return canvasWidth;
+	}
+
+	public int getCanvasHeight() {
+		// TODO Auto-generated method stub
+		return canvasHeight;
+	}
+
+	public Layer[] getLayers() {
+		return layers;
+	}
 
 }

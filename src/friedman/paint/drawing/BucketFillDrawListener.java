@@ -69,7 +69,8 @@ public class BucketFillDrawListener extends DrawShapeListener {
 
 	private boolean withinCanvas(int x, int y) {
 		// TODO Auto-generated method stub
-		return x > 0 &&  x <(canvas.getWidth()-2) && y > 0 && y < (canvas.getHeight()-2);
+		return x > 0 &&  x <(canvas.getCanvasWidth()-2) && y > 0 && y < (canvas.getCanvasHeight()-2);
+	
 	}
 
 	@Override
