@@ -1,13 +1,13 @@
 package friedman.paint.drawing;
 
 import java.awt.Graphics2D;
-import java.awt.Shape;
 import java.awt.event.MouseEvent;
+import java.io.PrintWriter;
 
 import friedman.paint.Canvas;
+import friedman.paint.messages.ShapeMessage;
 
 public class DrawOvalListener extends DrawShapeListener {
-
 
 	public DrawOvalListener(Canvas canvas) {
 		super(canvas);
@@ -80,5 +80,7 @@ public class DrawOvalListener extends DrawShapeListener {
 		}
 
 	}
+
+
 
 }

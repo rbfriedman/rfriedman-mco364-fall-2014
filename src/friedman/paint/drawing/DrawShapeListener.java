@@ -91,6 +91,7 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 	}
 	
 	public void draw(Graphics2D g2) {
+		super.draw(g2);
 		LOGGER.info(this.getClass().toString() + " drawing graphics object");
 	}
 
