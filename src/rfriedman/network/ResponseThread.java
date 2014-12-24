@@ -1,4 +1,4 @@
-package friedman.network;
+package rfriedman.network;
 
 import java.io.IOException;
 import java.io.OutputStream;

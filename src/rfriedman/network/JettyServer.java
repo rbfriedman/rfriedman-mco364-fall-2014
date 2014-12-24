@@ -1,4 +1,4 @@
-package rfriedman.network.jetty;
+package rfriedman.network;
 
 import org.eclipse.jetty.server.Server;
 

@@ -1,7 +1,7 @@
-package schwimmer.network.jetty;
+package rfriedman.network;
+
 
 import java.net.URI;
-import java.util.concurrent.TimeUnit;
 
 import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;

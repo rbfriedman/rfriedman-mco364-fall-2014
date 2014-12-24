@@ -1,4 +1,4 @@
-package schwimmer.network.jetty;
+package rfriedman.network;
 
 import java.io.IOException;
 
