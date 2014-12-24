@@ -13,11 +13,15 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
+import friedman.paint.listeners.ClearScreenListener;
+import friedman.paint.listeners.ColorDialogListener;
+
 public class PaintBanner extends JPanel {
 	private JButton jbtEditColors;
 	private JButton jbtClearScreen;
 	private JLabel jlbBrushStrokeColor;
 	private JLabel jlbStrokeSize;
+	private JButton jbtBucketFill;
 
 	private String editColorIcon = "icons/rainbow.jpg";
 	private String jlbStrokeSizeIcon = "icons/Bucket.png";
@@ -40,18 +44,20 @@ public class PaintBanner extends JPanel {
 
 		jlbBrushStrokeColor = new JLabel("Stroke Color");
 		jlbBrushStrokeColor.setOpaque(true);
-		setStrokeColor(Color.black);
+		setPaintColor(Color.black);
 		icon = createImageIcon(jlbStrokeSizeIcon, "Stroke width");
 		jlbStrokeSize = new JLabel("10", icon, 10);
+		jbtBucketFill = new JButton("Bucket Fill");
+		jbtBucketFill.addActionListener(new BucketFillListener(paintListener));
 		shapeGrid = createGridOfShapes();
 
 		JPanel innerPanel = new JPanel();
-		innerPanel.setLayout(new GridLayout(1, 5, 4, 4));
+		innerPanel.setLayout(new GridLayout(1, 6, 4, 4));
 		innerPanel.add(jlbStrokeSize);
 		innerPanel.add(jlbBrushStrokeColor);
 		innerPanel.add(jbtEditColors);
 		innerPanel.add(jbtClearScreen);
-
+		innerPanel.add(jbtBucketFill);
 		Border raisedetched = BorderFactory
 				.createEtchedBorder(EtchedBorder.RAISED);
 		this.setBorder(raisedetched);
@@ -81,7 +87,7 @@ public class PaintBanner extends JPanel {
 
 	}
 
-	public void setStrokeColor(Color c) {
+	public void setPaintColor(Color c) {
 		paintListener.setColor(c);
 		jlbBrushStrokeColor.setBackground(c);
 		jlbBrushStrokeColor.repaint();

@@ -132,4 +132,16 @@ public class PaintListener implements DrawListener {
 
 	}
 
+	@Override
+	public void draw(Graphics2D g2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sendMessageToServer() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

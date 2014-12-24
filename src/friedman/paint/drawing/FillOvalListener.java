@@ -2,8 +2,11 @@ package friedman.paint.drawing;
 
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
+import java.io.PrintWriter;
 
 import friedman.paint.Canvas;
+import friedman.paint.Shape;
+import friedman.paint.messages.ShapeMessage;
 
 public class FillOvalListener extends DrawShapeListener {
 
@@ -56,10 +59,15 @@ public class FillOvalListener extends DrawShapeListener {
 		// TODO Auto-generated method stub
 		super.mouseReleased(me);
 		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
-		g2.setColor(canvas.getColor());
-		g2.fillOval(x, y, w, h);
+		draw(g2);
 		canvas.repaint();
 		LOGGER.info("FO Released");
+	}
+	
+	@Override
+	public void draw(Graphics2D g2){
+		super.draw(g2);
+		g2.fillOval(x, y, w, h);
 	}
 
 	@Override
@@ -67,8 +75,17 @@ public class FillOvalListener extends DrawShapeListener {
 		// TODO Auto-generated method stub
 		super.drawPreview(g2);
 		if (preview) {
-			g2.fillOval(x, y, w, h);
+			draw(g2);
 		}
+	}
+	
+	@Override
+	public void sendMessageToServer()
+	{
+		String message = new ShapeMessage(Shape.RECTANGLE, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, false).toString();
+		PrintWriter writer = canvas.getPrintWriter();
+		writer.println(message);
+		writer.flush();
 	}
 
 }

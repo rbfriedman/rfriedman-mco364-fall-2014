@@ -12,7 +12,7 @@ public class PaintMessageFactory {
 	//port 3773  192.168.117.107
 
 
-	public void receiveMessage(String s, Graphics2D g2) {
+	public PaintMessage receiveMessage(String s) {
 		String[] messageTokens = s.split(" ");
 		PaintMessage pm = null;
 		PaintMessageType pmt = PaintMessageType.valueOf(messageTokens[0]);
@@ -36,6 +36,6 @@ public class PaintMessageFactory {
 					Integer.valueOf(messageTokens[7]), Boolean.valueOf(messageTokens[8]));
 			break;
 		}
-		pm.apply(g2);
+		return pm;
 	}
 }

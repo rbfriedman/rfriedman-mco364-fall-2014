@@ -32,12 +32,14 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 		y = (int) Math.min(originPoint.getY(), currentPoint.getY());
 		w = (int) Math.abs(originPoint.getX() - currentPoint.getX());
 		h = (int) Math.abs(originPoint.getY() - currentPoint.getY());
+		/*
 		shapeMessage.setX(x);
 		shapeMessage.setY(y);
 		shapeMessage.setWidth(w);
 		shapeMessage.setHeight(h);
 		shapeMessage.setColor(getCanvas().getColor().getRGB());
 		shapeMessage.setStroke(STROKE_WIDTH);
+		*/
 
 	}
 
@@ -81,7 +83,14 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 
 	@Override
 	public void drawPreview(Graphics2D g2) {
+		if (preview) {
+			draw(g2);
+		}
+	}
 
+	public void draw(Graphics2D g2) {
+		g2.setColor(canvas.getPaintColor());
+		LOGGER.info("Drawing graphics object");
 	}
 
 	private void resetBounds() {
@@ -90,7 +99,7 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 		y = 0;
 		h = 0;
 		w = 0;
-		
+
 	}
 
 }
