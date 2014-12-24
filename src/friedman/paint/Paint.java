@@ -2,13 +2,10 @@ package friedman.paint;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+import java.io.IOException;
+import java.net.UnknownHostException;
 
 import javax.swing.JFrame;
-
-import com.bric.swing.ColorPalette;
-import com.bric.swing.ColorPicker;
 
 import friedman.paint.drawing.PaintLineListener;
 import friedman.paint.listeners.BrushStrokeListener;
@@ -16,18 +13,20 @@ import friedman.paint.listeners.BrushStrokeListener;
 public class Paint extends JFrame {
 	private Canvas canvas;
 
-	public static void main(String[] args) {
-		Paint paint = new Paint();
+	public static void main(String[] args) throws UnknownHostException, IOException {
+
+Client client = new Client();
+		Paint paint = new Paint(client);
 		paint.setVisible(true);
 
 	}
 
-	public Paint() {
+	public Paint(Client client) throws UnknownHostException, IOException {
 
 		BorderLayout layout = new BorderLayout();
 		Container container = getContentPane();
 		container.setLayout(layout);
-		canvas = new Canvas(800, 600);
+		canvas = new Canvas(800, 600,client);
 
 		PaintListener paintListener = new PaintLineListener(canvas);
 		PaintBanner paintBanner = new PaintBanner(paintListener);
@@ -40,7 +39,8 @@ public class Paint extends JFrame {
 		setTitle("Paint");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-
+	
+		
 	}
 
 }

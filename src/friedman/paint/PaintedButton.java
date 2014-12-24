@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import friedman.paint.drawing.BucketFillDrawListener;
 import friedman.paint.drawing.DrawListener;
 import friedman.paint.drawing.DrawOvalListener;
 import friedman.paint.drawing.DrawRectangleListener;
@@ -20,12 +21,12 @@ public class PaintedButton extends JButton implements ActionListener {
 
 	private PaintListener pl;
 
-	private Shape shapeType;
+	private PaintType paintType;
 	private DrawListener dl;
 	private static final long serialVersionUID = -4261049661640525300L;
 
-	public PaintedButton(Shape shapeType, PaintListener paintListener) {
-		this.shapeType = shapeType;
+	public PaintedButton(PaintType paintType, PaintListener paintListener) {
+		this.paintType = paintType;
 		this.pl = paintListener;
 		setDrawListener();
 		setToolTipText(getText());
@@ -35,7 +36,7 @@ public class PaintedButton extends JButton implements ActionListener {
 
 	private void setDrawListener() {
 
-		switch (shapeType) {
+		switch (paintType) {
 		case FILLED_OVAL:
 			setIcon(createImageIcon("icons/OvalS.png", "Filled Oval"));
 			dl = new FillOvalListener(pl.getCanvas());
@@ -55,6 +56,11 @@ public class PaintedButton extends JButton implements ActionListener {
 		case LINE:
 			setIcon(createImageIcon("icons/PaintLineS.png", "Line"));
 			dl = new PaintLineListener(pl.getCanvas());
+		case BUCKET_FILL:
+			//TODO Find Bucket Fill shape, along with filled shapes
+			setIcon(createImageIcon("icons/PaintLineS.png", "Bucket Fill"));
+			dl = new BucketFillDrawListener(pl.getCanvas());
+			break; 
 		default:
 			break;
 		}
@@ -65,7 +71,7 @@ public class PaintedButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		pl.setDrawListener(dl);
-		System.out.println(shapeType);
+		System.out.println(paintType);
 	}
 
 	protected ImageIcon createImageIcon(String path, String description) {

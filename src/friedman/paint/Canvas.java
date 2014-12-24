@@ -26,7 +26,7 @@ public class Canvas extends JComponent {
 	
 	private PrintWriter printWriter;
 
-	public Canvas(int width, int height) {
+	public Canvas(int width, int height, Client client) {
 		super();
 		this.canvasHeight = height;
 		this.canvasWidth = width;
@@ -37,6 +37,7 @@ public class Canvas extends JComponent {
 		g.fillRect(0, 0, canvasWidth, canvasHeight);
 		setColor(color);
 		setDrawListener(new PaintListener(this));
+		setPrintWriter(new PrintWriter(client.getOutputStream()));
 
 	}
 

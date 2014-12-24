@@ -34,6 +34,7 @@ public class PaintLineListener extends DrawShapeListener implements
 		}
 		drawLine();
 		g.setColor(canvas.getPaintColor());
+		sendMessageToServer();
 		canvas.repaint();
 	
 

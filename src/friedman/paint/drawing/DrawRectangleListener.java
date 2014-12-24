@@ -2,6 +2,7 @@ package friedman.paint.drawing;
 
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
+import java.io.PrintWriter;
 
 import friedman.paint.Canvas;
 import friedman.paint.Shape;
@@ -12,7 +13,7 @@ public class DrawRectangleListener extends DrawShapeListener {
 	public DrawRectangleListener(Canvas canvas) {
 		super(canvas);
 		int color = getCanvas().getPaintColor().getRGB();
-		shapeMessage = new ShapeMessage(Shape.RECTANGLE,x,y,w,h,color,STROKE_WIDTH,false);
+		shapeMessage = new ShapeMessage(Shape.RECT,x,y,w,h,color,STROKE_WIDTH,false);
 
 	}
 
@@ -69,6 +70,7 @@ public class DrawRectangleListener extends DrawShapeListener {
 		// TODO Auto-generated method stub
 		super.draw(g2);
 		g2.drawRect(x, y, w, h);
+		sendMessageToServer();
 	}
 
 	@Override
@@ -78,6 +80,15 @@ public class DrawRectangleListener extends DrawShapeListener {
 		if (preview) {
 			draw(g2);
 		}
+	}
+	
+	@Override
+	public void sendMessageToServer()
+	{
+		String message = new ShapeMessage(Shape.RECT, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, false).toString();
+		PrintWriter writer = canvas.getPrintWriter();
+		writer.println(message);
+		writer.flush();
 	}
 
 }

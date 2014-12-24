@@ -35,6 +35,7 @@ public class PaintMessageFactory {
 					Integer.valueOf(messageTokens[5]), Integer.valueOf(messageTokens[6]),
 					Integer.valueOf(messageTokens[7]), Boolean.valueOf(messageTokens[8]));
 			break;
+			
 		}
 		return pm;
 	}
