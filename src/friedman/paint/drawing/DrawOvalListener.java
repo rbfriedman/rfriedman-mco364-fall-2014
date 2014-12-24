@@ -5,13 +5,11 @@ import java.awt.Shape;
 import java.awt.event.MouseEvent;
 
 import friedman.paint.Canvas;
-import friedman.paint.messages.ShapeMessage;
 
 public class DrawOvalListener extends DrawShapeListener {
-	private ShapeMessage shapeMessage;
+
 	public DrawOvalListener(Canvas canvas) {
 		super(canvas);
-		setPaintMessage(new DrawOvalListener);
 		// TODO Auto-generated constructor stub
 	}
 
