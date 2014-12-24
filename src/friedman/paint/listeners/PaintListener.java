@@ -130,6 +130,9 @@ public class PaintListener implements DrawListener {
 	@Override
 	public void draw(Graphics2D g2) {
 		// TODO Auto-generated method stub
+		g2.setStroke(new BasicStroke(STROKE_WIDTH,
+				BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+		g2.setColor(canvas.getPaintColor());
 		g2.setColor(canvas.getPaintColor());
 	}
 

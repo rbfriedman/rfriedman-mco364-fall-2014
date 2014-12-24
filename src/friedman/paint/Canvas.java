@@ -54,7 +54,6 @@ public class Canvas extends JComponent {
 		for (int i = 0; i < NUM_LAYERS; i++) {
 			g.drawImage(layers[i].getImage(), 0, 0, null);
 		}
-
 		listener.drawPreview((Graphics2D) g);
 
 	}

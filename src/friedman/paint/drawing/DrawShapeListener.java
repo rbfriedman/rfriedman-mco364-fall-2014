@@ -1,5 +1,6 @@
 package friedman.paint.drawing;
 
+import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -90,7 +91,6 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 	}
 	
 	public void draw(Graphics2D g2) {
-		g2.setColor(canvas.getPaintColor());
 		LOGGER.info(this.getClass().toString() + " drawing graphics object");
 	}
 

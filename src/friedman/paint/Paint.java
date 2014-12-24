@@ -26,7 +26,7 @@ public class Paint extends JFrame {
 		BorderLayout layout = new BorderLayout();
 		Container container = getContentPane();
 		container.setLayout(layout);
-		canvas = new Canvas(800, 600);
+		canvas = new Canvas(1100, 800);
 
 		PaintListener paintListener = new PaintLineListener(canvas);
 		PaintBanner paintBanner = new PaintBanner(paintListener);
@@ -36,7 +36,7 @@ public class Paint extends JFrame {
 		add(canvas, BorderLayout.CENTER);
 		add(paintBanner, BorderLayout.SOUTH);
 		
-		setSize(800, 600);
+		setSize(1100, 900);
 		setTitle("Paint");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
