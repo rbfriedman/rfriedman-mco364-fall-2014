@@ -61,6 +61,7 @@ public class DrawRectangleListener extends DrawShapeListener {
 		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
 		g2.setColor(canvas.getColor());
 		g2.drawRect(x, y, w, h);
+		
 		canvas.repaint();
 		LOGGER.info(" DR Released");
 	}
