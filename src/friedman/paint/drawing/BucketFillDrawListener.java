@@ -10,6 +10,7 @@ import java.util.Stack;
 
 import friedman.paint.Canvas;
 import friedman.paint.messages.BucketFillMessage;
+import friedman.paint.messages.PaintMessage;
 
 public class BucketFillDrawListener extends DrawShapeListener {
 	private Color clickedColor;
@@ -25,6 +26,7 @@ public class BucketFillDrawListener extends DrawShapeListener {
 		System.out.println(x +" " +y);
 		super.draw(g2);
 		paintSurroundingPoints(g2);
+		sendMessage(new BucketFillMessage( x, y,canvas.getPaintColor().getRGB()));
 
 	}
 
@@ -118,11 +120,13 @@ public class BucketFillDrawListener extends DrawShapeListener {
 	}
 	
 	@Override
-	public void sendMessageToServer()
+	public void sendMessage(PaintMessage pm)
+	
 	{
-		String message = new BucketFillMessage( x, y,canvas.getPaintColor().getRGB()).toString();
+		super.sendMessage(pm);
+		String message = pm.toString();
 		PrintWriter writer = canvas.getPrintWriter();
-		writer.println(message);
+		writer.print(message);
 		writer.flush();
 	}
 

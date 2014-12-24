@@ -13,11 +13,18 @@ import friedman.paint.listeners.BrushStrokeListener;
 public class Paint extends JFrame {
 	private Canvas canvas;
 
-	public static void main(String[] args) throws UnknownHostException, IOException {
+	public static void main(String[] args) {
 
-Client client = new Client();
-		Paint paint = new Paint(client);
-		paint.setVisible(true);
+		Client client = new Client();
+		Paint paint;
+		try {
+			paint = new Paint(client);
+			paint.setVisible(true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 	}
 
@@ -26,7 +33,7 @@ Client client = new Client();
 		BorderLayout layout = new BorderLayout();
 		Container container = getContentPane();
 		container.setLayout(layout);
-		canvas = new Canvas(800, 600,client);
+		canvas = new Canvas(800, 600, client);
 
 		PaintListener paintListener = new PaintLineListener(canvas);
 		PaintBanner paintBanner = new PaintBanner(paintListener);
@@ -39,8 +46,7 @@ Client client = new Client();
 		setTitle("Paint");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-	
-		
+
 	}
 
 }

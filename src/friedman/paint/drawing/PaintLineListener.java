@@ -5,10 +5,8 @@ import java.awt.event.MouseMotionListener;
 import java.io.PrintWriter;
 
 import friedman.paint.Canvas;
-import friedman.paint.PaintListener;
-import friedman.paint.Shape;
 import friedman.paint.messages.LineMessage;
-import friedman.paint.messages.ShapeMessage;
+import friedman.paint.messages.PaintMessage;
 
 public class PaintLineListener extends DrawShapeListener implements
 		MouseMotionListener {
@@ -34,7 +32,7 @@ public class PaintLineListener extends DrawShapeListener implements
 		}
 		drawLine();
 		g.setColor(canvas.getPaintColor());
-		sendMessageToServer();
+		sendMessage(new LineMessage(x1,y1,x2,y2,canvas.getPaintColor().getRGB(),STROKE_WIDTH));
 		canvas.repaint();
 	
 
@@ -76,11 +74,12 @@ public class PaintLineListener extends DrawShapeListener implements
 	}
 	
 	@Override
-	public void sendMessageToServer()
+	public void sendMessage(PaintMessage pm)
 	{
-		String message = new LineMessage(x1,y1,x2,y2,canvas.getPaintColor().getRGB(),STROKE_WIDTH).toString();
+		super.sendMessage(pm);
+		String message = pm.toString();
 		PrintWriter writer = canvas.getPrintWriter();
-		writer.println(message);
+		writer.print(message);
 		writer.flush();
 	}
 

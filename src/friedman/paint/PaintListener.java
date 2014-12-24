@@ -13,7 +13,7 @@ import friedman.paint.drawing.DrawListener;
 import friedman.paint.messages.PaintMessage;
 import friedman.paint.messages.PaintMessageFactory;
 
-public class PaintListener implements DrawListener {
+public class PaintListener implements DrawListener,NetworkModule {
 	protected static int STROKE_WIDTH = 4;
 	protected static final Logger LOGGER = LogManager
 			.getLogger(PaintListener.class);
@@ -139,9 +139,11 @@ public class PaintListener implements DrawListener {
 	}
 
 	@Override
-	public void sendMessageToServer() {
+	public void sendMessage(PaintMessage pm) {
 		// TODO Auto-generated method stub
-		
+		LOGGER.info(pm.toString());
+		canvas.getPrintWriter().flush();
 	}
+
 
 }

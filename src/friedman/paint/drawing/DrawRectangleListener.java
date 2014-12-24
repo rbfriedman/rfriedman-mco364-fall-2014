@@ -6,14 +6,15 @@ import java.io.PrintWriter;
 
 import friedman.paint.Canvas;
 import friedman.paint.Shape;
+import friedman.paint.messages.PaintMessage;
 import friedman.paint.messages.ShapeMessage;
 
 public class DrawRectangleListener extends DrawShapeListener {
-	
+
 	public DrawRectangleListener(Canvas canvas) {
 		super(canvas);
 		int color = getCanvas().getPaintColor().getRGB();
-		shapeMessage = new ShapeMessage(Shape.RECT,x,y,w,h,color,STROKE_WIDTH,false);
+		shapeMessage = new ShapeMessage(Shape.RECT, x, y, w, h, color, STROKE_WIDTH, false);
 
 	}
 
@@ -21,8 +22,7 @@ public class DrawRectangleListener extends DrawShapeListener {
 	public void mouseDragged(MouseEvent me) {
 		super.mouseDragged(me);
 		canvas.repaint();
-		super.saySomething("Dragged : [x:" + x + " y:" + y + " w:" + w + " h: "
-				+ h + "]");
+		super.saySomething("Dragged : [x:" + x + " y:" + y + " w:" + w + " h: " + h + "]");
 		LOGGER.info(" DR Dragged");
 	}
 
@@ -64,13 +64,13 @@ public class DrawRectangleListener extends DrawShapeListener {
 		canvas.repaint();
 		LOGGER.info(" DR Released");
 	}
-	
+
 	@Override
 	public void draw(Graphics2D g2) {
 		// TODO Auto-generated method stub
 		super.draw(g2);
 		g2.drawRect(x, y, w, h);
-		sendMessageToServer();
+		sendMessage(new ShapeMessage(Shape.RECT, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, false));
 	}
 
 	@Override
@@ -81,13 +81,13 @@ public class DrawRectangleListener extends DrawShapeListener {
 			draw(g2);
 		}
 	}
-	
+
 	@Override
-	public void sendMessageToServer()
-	{
-		String message = new ShapeMessage(Shape.RECT, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, false).toString();
+	public void sendMessage(PaintMessage pm) {
+		super.sendMessage(pm);
+		String message = pm.toString();
 		PrintWriter writer = canvas.getPrintWriter();
-		writer.println(message);
+		writer.print(message);
 		writer.flush();
 	}
 

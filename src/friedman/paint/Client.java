@@ -6,21 +6,27 @@ import java.io.Writer;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class Client {
+public class Client{
 
 	private Socket socket;
 	private OutputStream output;
 
-	public Client() throws UnknownHostException, IOException {
-		socket = new Socket("192.168.117.46", 3773);
-		output = socket.getOutputStream();
+	public Client()  {
+		try {
+			socket = new Socket("192.168.117.107", 3773);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			output = socket.getOutputStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	public void sendMessage(String message) throws IOException {
-		
-		output.write(message.toString().getBytes());
-		output.flush();
-	}
+	
 
 	public OutputStream getOutputStream() {
 		// TODO Auto-generated method stub

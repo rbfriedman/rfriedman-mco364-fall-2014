@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 
 import friedman.paint.Canvas;
 import friedman.paint.Shape;
+import friedman.paint.messages.PaintMessage;
 import friedman.paint.messages.ShapeMessage;
 
 public class FillRectangleListener extends DrawShapeListener {
@@ -68,7 +69,7 @@ public class FillRectangleListener extends DrawShapeListener {
 	public void draw(Graphics2D g2) {
 		super.draw(g2);
 		g2.fillRect(x, y, w, h);
-		sendMessageToServer();
+		sendMessage(new ShapeMessage(Shape.RECT, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, true));
 	}
 
 	@Override
@@ -80,11 +81,11 @@ public class FillRectangleListener extends DrawShapeListener {
 	}
 	
 	@Override
-	public void sendMessageToServer()
+	public void sendMessage(PaintMessage pm)
 	{
-		String message = new ShapeMessage(Shape.RECT, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, true).toString();
+		String message = pm.toString();
 		PrintWriter writer = canvas.getPrintWriter();
-		writer.println(message);
+		writer.print(message);
 		writer.flush();
 	}
 

@@ -5,10 +5,11 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 import friedman.paint.Canvas;
+import friedman.paint.NetworkModule;
 import friedman.paint.PaintListener;
 import friedman.paint.messages.ShapeMessage;
 
-public class DrawShapeListener extends PaintListener implements DrawListener {
+public class DrawShapeListener extends PaintListener implements DrawListener,NetworkModule {
 
 	protected Point originPoint;
 	protected Point currentPoint;

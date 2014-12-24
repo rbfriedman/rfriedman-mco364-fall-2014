@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 
 import friedman.paint.Canvas;
 import friedman.paint.Shape;
+import friedman.paint.messages.PaintMessage;
 import friedman.paint.messages.ShapeMessage;
 
 public class DrawOvalListener extends DrawShapeListener {
@@ -71,6 +72,8 @@ public class DrawOvalListener extends DrawShapeListener {
 		// TODO Auto-generated method stub
 		super.draw(g2);
 		g2.drawOval(x, y, w, h);
+		sendMessage(new ShapeMessage(Shape.OVAL, x, y, w, h, canvas
+				.getPaintColor().getRGB(), STROKE_WIDTH, false));
 	}
 
 	@Override
@@ -83,11 +86,11 @@ public class DrawOvalListener extends DrawShapeListener {
 	}
 
 	@Override
-	public void sendMessageToServer() {
-		String message = new ShapeMessage(Shape.OVAL, x, y, w, h, canvas
-				.getPaintColor().getRGB(), STROKE_WIDTH, false).toString();
+	public void sendMessage(PaintMessage pm) {
+		super.sendMessage(pm);
+		String message = pm.toString();
 		PrintWriter writer = canvas.getPrintWriter();
-		writer.println(message);
+		writer.print(message);
 		writer.flush();
 	}
 
