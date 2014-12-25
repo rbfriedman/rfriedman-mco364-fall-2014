@@ -1,6 +1,5 @@
 package rfriedman.network;
 
-
 import java.net.URI;
 
 import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;

@@ -1,5 +1,4 @@
 package rfriedman.network;
-
 import java.io.IOException;
 
 import org.eclipse.jetty.websocket.api.Session;
