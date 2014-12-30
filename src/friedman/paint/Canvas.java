@@ -80,6 +80,16 @@ public class Canvas extends JComponent {
 	public void setPrintWriter(PrintWriter printWriter) {
 		this.printWriter = printWriter;
 	}
+
+	public int getCanvasWidth() {
+		// TODO Auto-generated method stub
+		return canvasWidth;
+	}
+
+	public int getCanvasHeight() {
+		// TODO Auto-generated method stub
+		return canvasHeight;
+	}
 	
 	
 	
