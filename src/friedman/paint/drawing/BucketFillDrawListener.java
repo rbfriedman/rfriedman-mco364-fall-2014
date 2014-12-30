@@ -26,7 +26,7 @@ public class BucketFillDrawListener extends DrawShapeListener {
 		System.out.println(x +" " +y);
 		super.draw(g2);
 		paintSurroundingPoints(g2);
-		sendMessage(new BucketFillMessage( x, y,canvas.getPaintColor().getRGB()));
+		getNetworkModule().sendMessage(new BucketFillMessage( x, y,canvas.getPaintColor().getRGB()));
 
 	}
 
@@ -119,15 +119,6 @@ public class BucketFillDrawListener extends DrawShapeListener {
 		// TODO Auto-generated method stub
 	}
 	
-	@Override
-	public void sendMessage(PaintMessage pm)
-	
-	{
-		super.sendMessage(pm);
-		String message = pm.toString();
-		PrintWriter writer = canvas.getPrintWriter();
-		writer.print(message);
-		writer.flush();
-	}
+
 
 }

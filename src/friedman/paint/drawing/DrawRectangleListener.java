@@ -70,7 +70,7 @@ public class DrawRectangleListener extends DrawShapeListener {
 		// TODO Auto-generated method stub
 		super.draw(g2);
 		g2.drawRect(x, y, w, h);
-		sendMessage(new ShapeMessage(Shape.RECT, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, false));
+		getNetworkModule().sendMessage(new ShapeMessage(Shape.RECT, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, false));
 	}
 
 	@Override
@@ -82,13 +82,6 @@ public class DrawRectangleListener extends DrawShapeListener {
 		}
 	}
 
-	@Override
-	public void sendMessage(PaintMessage pm) {
-		super.sendMessage(pm);
-		String message = pm.toString();
-		PrintWriter writer = canvas.getPrintWriter();
-		writer.print(message);
-		writer.flush();
-	}
+
 
 }

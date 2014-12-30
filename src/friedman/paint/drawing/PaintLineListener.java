@@ -1,13 +1,12 @@
 package friedman.paint.drawing;
 
+import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.io.PrintWriter;
 
 import friedman.paint.Canvas;
 import friedman.paint.messages.LineMessage;
-import friedman.paint.messages.PaintMessage;
 
 public class PaintLineListener extends DrawShapeListener implements
 		MouseMotionListener {
@@ -76,17 +75,10 @@ public class PaintLineListener extends DrawShapeListener implements
 	@Override
 	public void draw(Graphics2D g2){
 		super.draw(g2);
+		getNetworkModule().sendMessage(new LineMessage(x1, y1, x2, y2, canvas.getPaintColor().getRGB(), 10));
 		drawLine(g2);
 	}
 	
-	@Override
-	public void sendMessage(PaintMessage pm)
-	{
-		super.sendMessage(pm);
-		String message = pm.toString();
-		PrintWriter writer = canvas.getPrintWriter();
-		writer.print(message);
-		writer.flush();
-	}
+
 
 }

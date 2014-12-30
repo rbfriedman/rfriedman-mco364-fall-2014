@@ -69,7 +69,7 @@ public class FillRectangleListener extends DrawShapeListener {
 	public void draw(Graphics2D g2) {
 		super.draw(g2);
 		g2.fillRect(x, y, w, h);
-		sendMessage(new ShapeMessage(Shape.RECT, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, true));
+		getNetworkModule().sendMessage(new ShapeMessage(Shape.RECT, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, true));
 	}
 
 	@Override
@@ -80,13 +80,5 @@ public class FillRectangleListener extends DrawShapeListener {
 		}
 	}
 	
-	@Override
-	public void sendMessage(PaintMessage pm)
-	{
-		String message = pm.toString();
-		PrintWriter writer = canvas.getPrintWriter();
-		writer.print(message);
-		writer.flush();
-	}
 
 }

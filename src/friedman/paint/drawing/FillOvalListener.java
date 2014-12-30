@@ -69,7 +69,7 @@ public class FillOvalListener extends DrawShapeListener {
 	public void draw(Graphics2D g2){
 		super.draw(g2);
 		g2.fillOval(x, y, w, h);
-		sendMessage(new ShapeMessage(Shape.OVAL, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, false));
+		getNetworkModule().sendMessage(new ShapeMessage(Shape.OVAL, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, false));
 	}
 
 	@Override
@@ -81,14 +81,6 @@ public class FillOvalListener extends DrawShapeListener {
 		}
 	}
 	
-	@Override
-	public void sendMessage(PaintMessage pm)
-	{
-		super.sendMessage(pm);
-		String message = pm.toString();
-		PrintWriter writer = canvas.getPrintWriter();
-		writer.print(message);
-		writer.flush();
-	}
+	
 
 }

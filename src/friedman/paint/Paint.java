@@ -34,7 +34,7 @@ public class Paint extends JFrame {
 		Container container = getContentPane();
 		container.setLayout(layout);
 		canvas = new Canvas(800, 600, client);
-
+		client.setCanvas(canvas);
 		PaintListener paintListener = new PaintLineListener(canvas);
 		PaintBanner paintBanner = new PaintBanner(paintListener);
 		canvas.setDrawListener(paintListener);

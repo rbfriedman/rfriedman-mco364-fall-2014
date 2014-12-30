@@ -72,7 +72,7 @@ public class DrawOvalListener extends DrawShapeListener {
 		// TODO Auto-generated method stub
 		super.draw(g2);
 		g2.drawOval(x, y, w, h);
-		sendMessage(new ShapeMessage(Shape.OVAL, x, y, w, h, canvas
+		getNetworkModule().sendMessage(new ShapeMessage(Shape.OVAL, x, y, w, h, canvas
 				.getPaintColor().getRGB(), STROKE_WIDTH, false));
 	}
 
@@ -85,13 +85,5 @@ public class DrawOvalListener extends DrawShapeListener {
 
 	}
 
-	@Override
-	public void sendMessage(PaintMessage pm) {
-		super.sendMessage(pm);
-		String message = pm.toString();
-		PrintWriter writer = canvas.getPrintWriter();
-		writer.print(message);
-		writer.flush();
-	}
 
 }

@@ -9,7 +9,7 @@ import friedman.paint.NetworkModule;
 import friedman.paint.PaintListener;
 import friedman.paint.messages.ShapeMessage;
 
-public class DrawShapeListener extends PaintListener implements DrawListener,NetworkModule {
+public class DrawShapeListener extends PaintListener implements DrawListener {
 
 	protected Point originPoint;
 	protected Point currentPoint;
