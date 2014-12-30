@@ -13,7 +13,7 @@ public class Client{
 
 	public Client()  {
 		try {
-			socket = new Socket("192.168.117.107", 3773);
+			socket = new Socket("localhost", 7337);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

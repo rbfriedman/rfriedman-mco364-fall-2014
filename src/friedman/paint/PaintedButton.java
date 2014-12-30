@@ -61,6 +61,7 @@ public class PaintedButton extends JButton implements ActionListener {
 			dl = new BucketFillDrawListener(pl.getCanvas());
 			break; 
 		default:
+			setText("Clear");
 			dl = new PaintLineListener(pl.getCanvas());
 			break;
 		}
