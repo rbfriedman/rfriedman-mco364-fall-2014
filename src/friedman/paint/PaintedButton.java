@@ -56,6 +56,7 @@ public class PaintedButton extends JButton implements ActionListener {
 		case LINE:
 			setIcon(createImageIcon("icons/PaintLineS.png", "Line"));
 			dl = new PaintLineListener(pl.getCanvas());
+			break;
 		case BUCKET_FILL:
 			setIcon(createImageIcon("icons/PaintLineS.png", "Bucket Fill"));
 			dl = new BucketFillDrawListener(pl.getCanvas());

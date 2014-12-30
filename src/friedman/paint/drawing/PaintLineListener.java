@@ -1,5 +1,6 @@
 package friedman.paint.drawing;
 
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.io.PrintWriter;
@@ -30,9 +31,8 @@ public class PaintLineListener extends DrawShapeListener implements
 			setPointOrigin(getNextPoint()[0], getNextPoint()[1]);
 			setPointNext(e.getX(), e.getY());
 		}
-		drawLine();
-		g.setColor(canvas.getPaintColor());
-		sendMessage(new LineMessage(x1,y1,x2,y2,canvas.getPaintColor().getRGB(),STROKE_WIDTH));
+		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
+		draw(g2);
 		canvas.repaint();
 	
 
@@ -63,14 +63,20 @@ public class PaintLineListener extends DrawShapeListener implements
 		return canvasClicked;
 	}
 
-	public void drawLine() {
-		g.drawLine(x1, y1, x2, y2);
+	public void drawLine(Graphics2D g2) {
+		g2.drawLine(x1, y1, x2, y2);
 		LOGGER.info("Line Drawn");
 
 	}
 
 	public int[] getNextPoint() {
 		return new int[] { x2, y2 };
+	}
+	
+	@Override
+	public void draw(Graphics2D g2){
+		super.draw(g2);
+		drawLine(g2);
 	}
 	
 	@Override
