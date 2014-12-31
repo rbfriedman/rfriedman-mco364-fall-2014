@@ -13,11 +13,13 @@ public class DummyServer {
 		public void run() {
 			try {
 				Socket socket = server.accept();
+				System.out.println("Server running");
 			}
 			catch(IOException e) {
 				e.printStackTrace();
 			}
 		}
+		
 	}.start();
 	}
 	
