@@ -12,7 +12,7 @@ public class PaintMessageFactory {
 	//port 3773  192.168.117.107
 
 
-	public PaintMessage receiveMessage(String s) {
+	public PaintMessage getMessage(String s) {
 		String[] messageTokens = s.split(" ");
 		PaintMessage pm = null;
 		PaintMessageType pmt = PaintMessageType.valueOf(messageTokens[0]);
