@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 
 import rfriedman.paint.drawing.PaintLineListener;
 import rfriedman.paint.listeners.BrushStrokeListener;
+import rfriedman.paint.listeners.KeyBrushStrokeListener;
 import rfriedman.paint.listeners.PaintListener;
 
 public class Paint extends JFrame {
@@ -27,8 +28,12 @@ public class Paint extends JFrame {
 
 		PaintListener paintListener = new PaintLineListener(canvas);
 		PaintBanner paintBanner = new PaintBanner(paintListener);
+		BrushStrokeListener brushStrokeListener = new BrushStrokeListener(paintBanner);
+		canvas.addMouseWheelListener(brushStrokeListener);
+		canvas.addKeyListener(brushStrokeListener);
 		canvas.setDrawListener(paintListener);
-		canvas.addMouseWheelListener(new BrushStrokeListener(paintBanner));
+		
+		
 
 		add(canvas, BorderLayout.CENTER);
 		add(paintBanner, BorderLayout.SOUTH);

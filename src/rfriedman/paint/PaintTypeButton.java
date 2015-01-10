@@ -13,6 +13,7 @@ import rfriedman.paint.drawing.BucketFillDrawListener;
 import rfriedman.paint.drawing.DrawListener;
 import rfriedman.paint.drawing.DrawOvalListener;
 import rfriedman.paint.drawing.DrawRectangleListener;
+import rfriedman.paint.drawing.DrawTriangleListener;
 import rfriedman.paint.drawing.FillOvalListener;
 import rfriedman.paint.drawing.FillRectangleListener;
 import rfriedman.paint.drawing.PaintLineListener;
@@ -72,11 +73,15 @@ public class PaintTypeButton extends JButton implements ActionListener {
 			dl = new PaintLineListener(pl.getCanvas());
 			break;
 		case BUCKET_FILL:
-			//TODO Find Bucket Fill shape, along with filled shapes
+			// TODO Find Bucket Fill shape, along with filled shapes
 			setIcon(createImageIcon("icons/PaintLineS.png", "Bucket Fill"));
 			dl = new BucketFillDrawListener(pl.getCanvas());
-			break;	
-		default:	
+			break;
+		case TRIANGLE:
+			setIcon(createImageIcon("icons/triangleOutline.jpg", "Triangle"));
+			dl = new DrawTriangleListener(pl.getCanvas());
+			break;
+		default:
 			break;
 		}
 	}

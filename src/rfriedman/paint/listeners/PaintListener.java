@@ -29,6 +29,7 @@ public class PaintListener implements DrawListener {
 		stroke = new BasicStroke(STROKE_WIDTH);
 		g.setStroke(stroke);
 		canvas.setCursor (Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+		
 	}
 
 	public void setPaintColor(Color c) {

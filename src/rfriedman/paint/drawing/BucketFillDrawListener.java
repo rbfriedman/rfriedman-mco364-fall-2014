@@ -26,7 +26,7 @@ public class BucketFillDrawListener extends DrawShapeListener {
 
 	}
 
-	private void paintSurroundingPoints(Graphics2D g2) {
+	public void paintSurroundingPoints(Graphics2D g2) {
 		if (clickedColor.equals(canvas.getPaintColor())) {
 			return;
 		}
@@ -99,6 +99,14 @@ public class BucketFillDrawListener extends DrawShapeListener {
 	@Override
 	public void mouseDragged(MouseEvent me) {
 		// Irrelevant method in this scenario
+	}
+
+	public Color getClickedColor() {
+		return clickedColor;
+	}
+
+	public void setClickedColor(Color clickedColor) {
+		this.clickedColor = clickedColor;
 	}
 	
 }

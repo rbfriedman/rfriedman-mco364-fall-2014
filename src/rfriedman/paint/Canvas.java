@@ -45,6 +45,8 @@ public class Canvas extends JComponent {
 		g.fillRect(0, 0, canvasWidth, canvasHeight);
 		setPaintColor(color);
 		setDrawListener(new PaintListener(this));
+		this.setFocusable(true);
+	      this.requestFocus();
 
 	}
 
