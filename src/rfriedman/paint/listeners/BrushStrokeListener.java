@@ -62,6 +62,7 @@ public class BrushStrokeListener implements MouseWheelListener, KeyListener,
 			pb.decreaseStrokeWidth();
 			break;
 		}
+		pb.setStrokeWidth(pb.getStrokeWidth());
 	}
 
 	@Override

@@ -88,18 +88,18 @@ public class PaintListener implements DrawListener {
 		System.out.println(eventDescription);
 	}
 
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+	
+	}
+
 	public Canvas getCanvas() {
 		return canvas;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}

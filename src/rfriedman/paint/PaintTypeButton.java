@@ -77,10 +77,12 @@ public class PaintTypeButton extends JButton implements ActionListener {
 			setIcon(createImageIcon("icons/PaintLineS.png", "Bucket Fill"));
 			dl = new BucketFillDrawListener(pl.getCanvas());
 			break;
-		case TRIANGLE:
-			setIcon(createImageIcon("icons/triangleOutline.jpg", "Triangle"));
-			dl = new DrawTriangleListener(pl.getCanvas());
-			break;
+		/*
+		 * To be implemented in a further edition
+		 * 
+		 * case TRIANGLE: setIcon(createImageIcon("icons/triangleOutline.jpg",
+		 * "Triangle")); dl = new DrawTriangleListener(pl.getCanvas()); break;
+		 */
 		default:
 			break;
 		}

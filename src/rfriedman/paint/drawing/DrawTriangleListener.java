@@ -7,7 +7,9 @@ import java.awt.event.MouseEvent;
 import rfriedman.paint.Canvas;
 
 public class DrawTriangleListener extends DrawShapeListener {
-
+/*
+ * To be implemented in a further edition
+ */
 	public DrawTriangleListener(Canvas canvas) {
 		super(canvas);
 		// TODO Auto-generated constructor stub
@@ -67,18 +69,25 @@ public class DrawTriangleListener extends DrawShapeListener {
 	@Override
 	public void draw(Graphics2D g2) {
 		// TODO Auto-generated method stub
-		boolean flipped = false;
+		boolean horizontalFlip = false;
+		boolean verticalFlip = false;
 		if (h == y) {
-			flipped = true;
+			horizontalFlip = true;
+		}
+		if( w == x){
+			verticalFlip = true;
 		}
 		super.draw(g2);
-		Point point2, point3;
-		if (flipped) {
-			point2 = new Point(x + w, y);
-			point3 = new Point(x + (w / 2), y - h);
-		} else {
-			point2 = new Point(x - w, y);
-			point3 = new Point(x - (w / 2), y + h);
+		Point point2 = new Point(x - w, y);
+		Point point3 = new Point(x - (w / 2), y + h);
+		if (horizontalFlip) {
+			point2.x = x + w;
+			point3.setLocation(new Point(x + (w / 2), y - h));
+		} 
+		if(verticalFlip){
+			point2.y = - point2.y;
+			point3.y = -point3.y;
+			
 		}
 		g2.drawLine(point2.x, point2.y,x,y);
 		g2.drawLine(point3.x, point3.y,x, y);
