@@ -18,7 +18,6 @@ public class PaintListener implements DrawListener {
 	protected static final Logger LOGGER = LogManager
 			.getLogger(PaintListener.class);
 	protected Canvas canvas;
-	protected PaintMessageFactory pmf;
 	protected Graphics2D g;
 	protected BasicStroke stroke;
 	protected NetworkModule networkModule;
@@ -30,7 +29,6 @@ public class PaintListener implements DrawListener {
 		stroke = new BasicStroke(STROKE_WIDTH);
 		g.setStroke(stroke);
 		canvas.setCursor (Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
-		pmf = new PaintMessageFactory();
 	}
 
 	public void setColor(Color c) {

@@ -9,7 +9,7 @@ import friedman.paint.NetworkModule;
 import friedman.paint.PaintListener;
 import friedman.paint.messages.ShapeMessage;
 
-public class DrawShapeListener extends PaintListener implements DrawListener {
+public class DrawShapeListener extends PaintListener{
 
 	protected Point originPoint;
 	protected Point currentPoint;
@@ -48,7 +48,6 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 	public void mousePressed(MouseEvent me) {
 		resetBounds();// erases last vestiges of old image
 		originPoint = me.getPoint();
-		preview = true;
 
 	}
 
@@ -84,9 +83,9 @@ public class DrawShapeListener extends PaintListener implements DrawListener {
 
 	@Override
 	public void drawPreview(Graphics2D g2) {
-		if (preview) {
-			draw(g2);
-		}
+		/*There is no preview available in networking so 
+		 * the networking abilities can be displayed
+		 */
 	}
 
 	public void draw(Graphics2D g2) {

@@ -1,8 +1,5 @@
 package friedman.paint;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,9 +7,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import friedman.paint.drawing.BucketFillDrawListener;
-import friedman.paint.drawing.DrawListener;
 import friedman.paint.drawing.DrawOvalListener;
 import friedman.paint.drawing.DrawRectangleListener;
+import friedman.paint.drawing.DrawShapeListener;
 import friedman.paint.drawing.FillOvalListener;
 import friedman.paint.drawing.FillRectangleListener;
 import friedman.paint.drawing.PaintLineListener;
@@ -22,16 +19,22 @@ public class PaintedButton extends JButton implements ActionListener {
 	private PaintListener pl;
 
 	private PaintType paintType;
-	private DrawListener dl;
+	private DrawShapeListener dl;
 	private static final long serialVersionUID = -4261049661640525300L;
 
 	public PaintedButton(PaintType paintType, PaintListener paintListener) {
 		this.paintType = paintType;
 		this.pl = paintListener;
 		setDrawListener();
+		setNetworkModule();
 		setToolTipText(getText());
 		addActionListener(this);
 
+	}
+
+	private void setNetworkModule() {
+		dl.setNetworkModule(pl.getNetworkModule());
+		
 	}
 
 	private void setDrawListener() {
