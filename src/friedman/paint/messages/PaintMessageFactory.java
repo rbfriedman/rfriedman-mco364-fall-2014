@@ -1,28 +1,25 @@
 package friedman.paint.messages;
 
-import friedman.paint.Canvas;
+import java.awt.Graphics2D;
+
 import friedman.paint.Shape;
 
 public class PaintMessageFactory {
-	private Canvas canvas;
-	public PaintMessageFactory(Canvas canvas){
-		this.canvas = canvas;
-	}
 
 	public String sendMessage(PaintMessage pm) {
 		return pm.toString();
 	}
+	//port 3773  192.168.117.107
 
 
 	public PaintMessage getMessage(String s) {
-		s = s.substring(0,s.length()-1);//removing new line char
 		String[] messageTokens = s.split(" ");
 		PaintMessage pm = null;
 		PaintMessageType pmt = PaintMessageType.valueOf(messageTokens[0]);
 		switch (pmt) {
 		case BUCKET_FILL:
 			pm = new BucketFillMessage(Integer.valueOf(messageTokens[1]), Integer.valueOf(messageTokens[2]),
-					Integer.valueOf(messageTokens[3]),canvas);
+					Integer.valueOf(messageTokens[3]));
 			break;
 		case CLEAR:
 			pm = new ClearMessage();

@@ -1,12 +1,15 @@
 package friedman.paint.drawing;
 
+import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 import friedman.paint.Canvas;
 import friedman.paint.messages.LineMessage;
 
-public class PaintLineListener extends DrawShapeListener {
+public class PaintLineListener extends DrawShapeListener implements
+		MouseMotionListener {
 
 	private int x1;
 	private int y1;
@@ -17,7 +20,6 @@ public class PaintLineListener extends DrawShapeListener {
 	public PaintLineListener(Canvas canvas) {
 		super(canvas);
 	}
-
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		if (!isClicked()) {
@@ -31,6 +33,7 @@ public class PaintLineListener extends DrawShapeListener {
 		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
 		draw(g2);
 		canvas.repaint();
+	
 
 	}
 
@@ -68,14 +71,18 @@ public class PaintLineListener extends DrawShapeListener {
 	public int[] getNextPoint() {
 		return new int[] { x2, y2 };
 	}
-
+	
 	@Override
-	public void draw(Graphics2D g2) {
+	public void draw(Graphics2D g2){
 		super.draw(g2);
-		getNetworkModule().sendMessage(
-				new LineMessage(x1, y1, x2, y2,
-						canvas.getPaintColor().getRGB(), 10));
-
+		try{
+		getNetworkModule().sendMessage(new LineMessage(x1, y1, x2, y2, canvas.getPaintColor().getRGB(), 10));
+		//drawLine(g2);
+		}catch(NullPointerException npe){
+			System.out.println(new LineMessage(x1, y1, x2, y2, canvas.getPaintColor().getRGB(), 10).toString());
+		}
 	}
+	
+
 
 }

@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.io.Writer;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -22,26 +21,38 @@ public class Client extends Thread {
 	private NetworkModule nm;
 	private Canvas canvas;
 
+	public Client() {
+		try {
+			socket = new Socket("192.168.117.107", 3773);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			output = socket.getOutputStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public Client(String ipAddress, int port, Canvas canvas) throws IOException {
-		/*
-		 * When the dummyserver is up and running
-		 */
 		this.canvas = canvas;
 		try {
 			socket = new Socket(ipAddress, port);
 			setNetworkModule(new OnlineNetworkModule(canvas));
-			output = socket.getOutputStream();
-			canvas.setPrintWriter(new PrintWriter(getOutputStream()));
 			start();
 
-		} catch ( IOException e) {
-			System.out.println("IO Exception thrown - loopback model");
+		} catch (UnknownHostException e) {
+			socket = new Socket(ipAddress, port);
 			setNetworkModule(new LoopbackNetworkModule(canvas));
 
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		} finally {
-			
-			paintFactory = new PaintMessageFactory(canvas);
+			output = socket.getOutputStream();
+			paintFactory = new PaintMessageFactory();
 		}
 
 	}
@@ -59,7 +70,6 @@ public class Client extends Thread {
 					if (message != null) {
 						try {
 							message.apply((Graphics2D) canvas.getImage().getGraphics());
-							System.out.println(message.toString());
 							canvas.repaint();
 						} catch (Exception e) {
 							System.out.println(e.getMessage());
