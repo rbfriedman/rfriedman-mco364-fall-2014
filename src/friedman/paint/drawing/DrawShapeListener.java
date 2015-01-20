@@ -84,9 +84,7 @@ public class DrawShapeListener extends PaintListener {
 
 	@Override
 	public void drawPreview(Graphics2D g2) {
-		if (preview) {
-			draw(g2);
-		}
+		//No preview in this mode
 	}
 
 	public void draw(Graphics2D g2) {

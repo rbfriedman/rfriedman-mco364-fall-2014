@@ -72,14 +72,7 @@ public class DrawRectangleListener extends DrawShapeListener {
 		
 	}
 
-	@Override
-	public void drawPreview(Graphics2D g2) {
-		// TODO Auto-generated method stub
-		super.drawPreview(g2);
-		if (preview) {
-			draw(g2);
-		}
-	}
+	
 
 
 

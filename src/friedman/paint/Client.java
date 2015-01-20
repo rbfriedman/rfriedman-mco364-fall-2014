@@ -37,7 +37,7 @@ public class Client extends Thread {
 			
 			start();
 
-		} catch (Exception e) {
+		} catch ( IOException e) {
 			setNetworkModule(new LoopbackNetworkModule(canvas));
 			networkConnected = false;
 
@@ -57,11 +57,8 @@ public class Client extends Thread {
 
 			String messageString;
 			while (networkConnected) {
-				try{
-				System.out.println("Network Connected? " +  reader.readLine());
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+				
+				
 				while ((messageString = reader.readLine()) != null) {
 					System.out.println(messageString);
 					if (!messageString.equals("\n")) {
@@ -79,11 +76,10 @@ public class Client extends Thread {
 				}
 			}
 			System.out.println("Network Connected? " + networkConnected);
-			if(!networkConnected){
-				new Client(ipAddress, port, canvas).start();
-			}
+			
 		} catch (Exception e) {
-			new Client(ipAddress, port, canvas).start();
+			networkConnected = false;
+			new Client(ipAddress, port, canvas);
 			e.printStackTrace();
 		}
 	}

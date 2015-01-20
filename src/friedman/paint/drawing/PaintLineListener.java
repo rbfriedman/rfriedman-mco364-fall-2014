@@ -1,6 +1,5 @@
 package friedman.paint.drawing;
 
-import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -8,8 +7,7 @@ import java.awt.event.MouseMotionListener;
 import friedman.paint.Canvas;
 import friedman.paint.messages.LineMessage;
 
-public class PaintLineListener extends DrawShapeListener implements
-		MouseMotionListener {
+public class PaintLineListener extends DrawShapeListener{
 
 	private int x1;
 	private int y1;
