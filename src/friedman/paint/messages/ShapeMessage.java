@@ -47,6 +47,7 @@ public class ShapeMessage implements PaintMessage
 			{
 				g.drawOval(x, y, width, height);
 			}
+			break;
 		case RECT:
 			if (fill)
 			{

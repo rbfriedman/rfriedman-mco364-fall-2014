@@ -38,17 +38,12 @@ public class PaintBanner extends JPanel {
 		jbtEditColors = new JButton("Edit Colors", icon);
 		jbtEditColors.addActionListener(new ColorDialogListener(this));
 
-		jbtClearScreen = new JButton("Clear Screen");
-		jbtClearScreen.addActionListener(new ClearScreenListener(
-				this.paintListener));
 
 		jlbBrushStrokeColor = new JLabel("Stroke Color");
 		jlbBrushStrokeColor.setOpaque(true);
 		setPaintColor(Color.black);
 		icon = createImageIcon(jlbStrokeSizeIcon, "Stroke width");
 		jlbStrokeSize = new JLabel("10", icon, 10);
-		jbtBucketFill = new JButton("Bucket Fill");
-		jbtBucketFill.addActionListener(new BucketFillListener(paintListener));
 		shapeGrid = createGridOfShapes();
 
 		JPanel innerPanel = new JPanel();
@@ -56,8 +51,6 @@ public class PaintBanner extends JPanel {
 		innerPanel.add(jlbStrokeSize);
 		innerPanel.add(jlbBrushStrokeColor);
 		innerPanel.add(jbtEditColors);
-		innerPanel.add(jbtClearScreen);
-		innerPanel.add(jbtBucketFill);
 		Border raisedetched = BorderFactory
 				.createEtchedBorder(EtchedBorder.RAISED);
 		this.setBorder(raisedetched);

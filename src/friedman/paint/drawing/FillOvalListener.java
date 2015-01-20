@@ -59,8 +59,7 @@ public class FillOvalListener extends DrawShapeListener {
 	public void mouseReleased(MouseEvent me) {
 		// TODO Auto-generated method stub
 		super.mouseReleased(me);
-		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
-		draw(g2);
+		getNetworkModule().sendMessage(new ShapeMessage(Shape.OVAL, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, true));
 		canvas.repaint();
 		LOGGER.info("FO Released");
 	}
@@ -69,7 +68,7 @@ public class FillOvalListener extends DrawShapeListener {
 	public void draw(Graphics2D g2){
 		super.draw(g2);
 		g2.fillOval(x, y, w, h);
-		getNetworkModule().sendMessage(new ShapeMessage(Shape.OVAL, x, y, w, h, canvas.getPaintColor().getRGB(), STROKE_WIDTH, false));
+		
 	}
 
 	@Override

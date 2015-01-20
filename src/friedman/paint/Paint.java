@@ -24,7 +24,6 @@ public class Paint extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
 	}
 
@@ -33,10 +32,17 @@ public class Paint extends JFrame {
 		BorderLayout layout = new BorderLayout();
 		Container container = getContentPane();
 		container.setLayout(layout);
-		
+
 		canvas = new Canvas(800, 600);
-		Client client = new Client("192.168.117.107", 3773, canvas);
-		canvas.setPrintWriter(new PrintWriter(client.getOutputStream()));
+		// My client will switch to loopbacknetworkmodule if an IOException is
+		// thrown.
+		// I thought that it was a good usage of a try catch loop
+		// This can be simulated by
+		// a) not running a dummy server
+		// b) by changing the port number from 3773 (the Dummy Server's port
+		// number)
+		Client client = new Client("localhost", 3773, canvas);
+
 		PaintListener paintListener = new PaintLineListener(canvas);
 		paintListener.setNetworkModule(client.getNetworkModule());
 		PaintBanner paintBanner = new PaintBanner(paintListener);

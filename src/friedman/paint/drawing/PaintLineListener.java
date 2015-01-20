@@ -75,12 +75,10 @@ public class PaintLineListener extends DrawShapeListener implements
 	@Override
 	public void draw(Graphics2D g2){
 		super.draw(g2);
-		try{
+		
 		getNetworkModule().sendMessage(new LineMessage(x1, y1, x2, y2, canvas.getPaintColor().getRGB(), 10));
-		//drawLine(g2);
-		}catch(NullPointerException npe){
-			System.out.println(new LineMessage(x1, y1, x2, y2, canvas.getPaintColor().getRGB(), 10).toString());
-		}
+		
+		
 	}
 	
 

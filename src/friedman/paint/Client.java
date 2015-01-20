@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.Writer;
+import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.SocketException;
 
 import friedman.paint.messages.PaintMessage;
 import friedman.paint.messages.PaintMessageFactory;
@@ -20,65 +20,70 @@ public class Client extends Thread {
 	private PaintMessageFactory paintFactory;
 	private NetworkModule nm;
 	private Canvas canvas;
+	private String ipAddress;
+	private int port;
+	private boolean networkConnected;
 
-	public Client() {
-		try {
-			socket = new Socket("192.168.117.107", 3773);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			output = socket.getOutputStream();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	public Client(String ipAddress, int port, Canvas canvas) throws IOException {
+	public Client(String ipAddress, int port, Canvas canvas) {
 		this.canvas = canvas;
 		try {
+			this.ipAddress = ipAddress;
+			this.port = port;
 			socket = new Socket(ipAddress, port);
+			networkConnected = true;
+			output = socket.getOutputStream();
+			canvas.setPrintWriter(new PrintWriter(getOutputStream()));
 			setNetworkModule(new OnlineNetworkModule(canvas));
+			
 			start();
 
-		} catch (UnknownHostException e) {
-			socket = new Socket(ipAddress, port);
+		} catch (Exception e) {
 			setNetworkModule(new LoopbackNetworkModule(canvas));
+			networkConnected = false;
 
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		} finally {
-			output = socket.getOutputStream();
-			paintFactory = new PaintMessageFactory();
+			paintFactory = new PaintMessageFactory(canvas);
 		}
 
 	}
 
 	public void run() {
+		super.run();
 		try {
 			InputStream in = socket.getInputStream();
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+			BufferedReader reader = new BufferedReader(
+					new InputStreamReader(in));
 
 			String messageString;
-			while ((messageString = reader.readLine()) != null) {
-				if (!messageString.equals("\n")) {
-					PaintMessage message = paintFactory.getMessage(messageString);
-					if (message != null) {
-						try {
-							message.apply((Graphics2D) canvas.getImage().getGraphics());
+			while (networkConnected) {
+				try{
+				System.out.println("Network Connected? " +  reader.readLine());
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				while ((messageString = reader.readLine()) != null) {
+					System.out.println(messageString);
+					if (!messageString.equals("\n")) {
+						PaintMessage message = paintFactory
+								.getMessage(messageString);
+						if (message != null) {
+
+							message.apply((Graphics2D) canvas.getImage()
+									.getGraphics());
+							System.out.println("Message Received");
 							canvas.repaint();
-						} catch (Exception e) {
-							System.out.println(e.getMessage());
+
 						}
 					}
 				}
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("Network Connected? " + networkConnected);
+			if(!networkConnected){
+				new Client(ipAddress, port, canvas).start();
+			}
+		} catch (Exception e) {
+			new Client(ipAddress, port, canvas).start();
 			e.printStackTrace();
 		}
 	}

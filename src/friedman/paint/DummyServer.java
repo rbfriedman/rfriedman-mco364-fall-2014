@@ -7,13 +7,15 @@ import java.net.Socket;
 public class DummyServer {
 	private ServerSocket server;
 	public DummyServer() throws IOException{
-	server = new ServerSocket(7337);
+	server = new ServerSocket(3773);
 
 	new Thread() {
 		public void run() {
 			try {
+				while(true){
 				Socket socket = server.accept();
-				System.out.println("Server running");
+				System.out.println("Server accepted message");
+				}
 			}
 			catch(IOException e) {
 				e.printStackTrace();

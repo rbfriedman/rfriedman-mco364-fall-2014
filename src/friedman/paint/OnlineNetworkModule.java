@@ -7,17 +7,17 @@ import friedman.paint.messages.PaintMessage;
 public class OnlineNetworkModule implements NetworkModule {
 
 	private Canvas canvas;
-	
-	public OnlineNetworkModule(Canvas canvas){
+	private PrintWriter writer;
+
+	public OnlineNetworkModule(Canvas canvas) {
 		this.canvas = canvas;
+		writer = canvas.getPrintWriter();
 	}
+
 	@Override
 	public void sendMessage(PaintMessage pm) {
-		// TODO Auto-generated method stub
 		LOGGER.info(pm.toString());
-		String message = pm.toString();
-		PrintWriter writer = canvas.getPrintWriter();
-		writer.print(message);
+		writer.print(pm.toString());
 		writer.flush();
 	}
 

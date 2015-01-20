@@ -1,8 +1,5 @@
 package friedman.paint;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,25 +7,27 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import friedman.paint.drawing.BucketFillDrawListener;
-import friedman.paint.drawing.DrawListener;
 import friedman.paint.drawing.DrawOvalListener;
 import friedman.paint.drawing.DrawRectangleListener;
+import friedman.paint.drawing.DrawShapeListener;
 import friedman.paint.drawing.FillOvalListener;
 import friedman.paint.drawing.FillRectangleListener;
 import friedman.paint.drawing.PaintLineListener;
+import friedman.paint.listeners.ClearScreenListener;
 
 public class PaintedButton extends JButton implements ActionListener {
 
 	private PaintListener pl;
 
 	private PaintType paintType;
-	private DrawListener dl;
+	private DrawShapeListener dl;
 	private static final long serialVersionUID = -4261049661640525300L;
 
 	public PaintedButton(PaintType paintType, PaintListener paintListener) {
 		this.paintType = paintType;
 		this.pl = paintListener;
 		setDrawListener();
+		setNetworkModule();
 		setToolTipText(getText());
 		addActionListener(this);
 
@@ -61,8 +60,12 @@ public class PaintedButton extends JButton implements ActionListener {
 			setIcon(createImageIcon("icons/PaintLineS.png", "Bucket Fill"));
 			dl = new BucketFillDrawListener(pl.getCanvas());
 			break; 
-		default:
+		case CLEAR:
 			setText("Clear");
+			addActionListener(new ClearScreenListener(pl,pl.getCanvas()));
+		default:
+			
+			
 			dl = new PaintLineListener(pl.getCanvas());
 			break;
 		}
@@ -74,6 +77,10 @@ public class PaintedButton extends JButton implements ActionListener {
 		// TODO Auto-generated method stub
 		pl.setDrawListener(dl);
 		System.out.println(paintType);
+	}
+	private void setNetworkModule() {
+		dl.setNetworkModule(pl.getNetworkModule());
+		
 	}
 
 	protected ImageIcon createImageIcon(String path, String description) {

@@ -23,14 +23,11 @@ public class BucketFillDrawListener extends DrawShapeListener {
 	@Override
 	public void draw(Graphics2D g2) {
 		// TODO Auto-generated method stub
-		System.out.println(x + " " + y);
 		super.draw(g2);
 		paintSurroundingPoints(g2);
-		try {
-			getNetworkModule().sendMessage(new BucketFillMessage(x, y, canvas.getPaintColor().getRGB()));
-		} catch (Exception e) {
-			System.out.println(new BucketFillMessage(x, y, canvas.getPaintColor().getRGB()));
-		}
+	
+			
+		
 	}
 
 	private void paintSurroundingPoints(Graphics2D g2) {
@@ -99,12 +96,9 @@ public class BucketFillDrawListener extends DrawShapeListener {
 
 	@Override
 	public void mouseReleased(MouseEvent me) {
-		System.out.println(x + " " + y);
 		super.mouseReleased(me);
-		System.out.println(x + " " + y);
-		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
-		g2.setColor(canvas.getPaintColor());
-		draw(g2);
+		
+		getNetworkModule().sendMessage(new BucketFillMessage(x, y, canvas.getPaintColor().getRGB(),canvas));
 		canvas.repaint();
 
 	}
