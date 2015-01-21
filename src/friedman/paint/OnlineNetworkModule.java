@@ -6,11 +6,10 @@ import friedman.paint.messages.PaintMessage;
 
 public class OnlineNetworkModule implements NetworkModule {
 
-	private Canvas canvas;
 	private PrintWriter writer;
 
 	public OnlineNetworkModule(Canvas canvas) {
-		this.canvas = canvas;
+
 		writer = canvas.getPrintWriter();
 	}
 

@@ -34,10 +34,8 @@ public class Client extends Thread {
 			output = socket.getOutputStream();
 			canvas.setPrintWriter(new PrintWriter(getOutputStream()));
 			setNetworkModule(new OnlineNetworkModule(canvas));
-			
-			start();
 
-		} catch ( IOException e) {
+		} catch (IOException e) {
 			setNetworkModule(new LoopbackNetworkModule(canvas));
 			networkConnected = false;
 
@@ -50,15 +48,22 @@ public class Client extends Thread {
 	public void run() {
 		super.run();
 		try {
-			InputStream in = socket.getInputStream();
+			InputStream in = null;
+			try {
+				in = socket.getInputStream();
+			} catch (IOException e) {
+				setNetworkModule(new LoopbackNetworkModule(canvas));
+				networkConnected = false;
+
+			}
 
 			BufferedReader reader = new BufferedReader(
 					new InputStreamReader(in));
 
 			String messageString;
-			while (networkConnected) {
-				
-				
+
+			while (networkConnected && reader.ready()) {
+
 				while ((messageString = reader.readLine()) != null) {
 					System.out.println(messageString);
 					if (!messageString.equals("\n")) {
@@ -76,11 +81,12 @@ public class Client extends Thread {
 				}
 			}
 			System.out.println("Network Connected? " + networkConnected);
-			
+
 		} catch (Exception e) {
 			networkConnected = false;
 			new Client(ipAddress, port, canvas);
 			e.printStackTrace();
+
 		}
 	}
 

@@ -17,7 +17,7 @@ public class BucketFillDrawListener extends DrawShapeListener {
 
 	public BucketFillDrawListener(Canvas canvas) {
 		super(canvas);
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
