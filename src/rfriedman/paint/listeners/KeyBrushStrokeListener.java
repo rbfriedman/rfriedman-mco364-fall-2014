@@ -27,7 +27,7 @@ public class KeyBrushStrokeListener implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if(e.equals(KeyEvent.VK_UP)){
-			.decreaseStrokeWidth();
+			pb.decreaseStrokeWidth();
 		} else if (e.equals(KeyEvent.VK_DOWN)) {
 			pb.decreaseStrokeWidth();
 		}

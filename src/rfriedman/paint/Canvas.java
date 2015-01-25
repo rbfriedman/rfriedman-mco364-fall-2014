@@ -64,6 +64,7 @@ public class Canvas extends JComponent {
 	public BufferedImage getImage() {
 		return selectedLayer.getImage();
 	}
+	
 
 	private void createLayers() {
 		for (int i = 0; i < NUM_LAYERS; i++) {
