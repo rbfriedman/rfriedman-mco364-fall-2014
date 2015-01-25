@@ -24,11 +24,13 @@ public class Client extends Thread {
 	private int port;
 	private boolean networkConnected;
 	private LoopbackNetworkModule lpnm;
+	private PaintListener pl;
 
-	public Client(String ipAddress, int port, Canvas canvas) {
+	public Client(String ipAddress, int port, Canvas canvas, PaintListener pl) {
 		this.canvas = canvas;
 		this.ipAddress = ipAddress;
 		this.port = port;
+		this.pl= pl;
 
 		paintFactory = new PaintMessageFactory(canvas);
 		lpnm = new LoopbackNetworkModule(canvas);
@@ -38,43 +40,41 @@ public class Client extends Thread {
 
 	public void run() {
 		try {
-			InputStream in = null;
-
+			if (!networkConnected) {
+				return;
+			}
 			socket = new Socket(ipAddress, port);
-			networkConnected = true;
 			output = socket.getOutputStream();
 			canvas.setPrintWriter(new PrintWriter(getOutputStream()));
 			setNetworkModule(new OnlineNetworkModule(canvas));
-			in = socket.getInputStream();
+			InputStream in = socket.getInputStream();
 
 			BufferedReader reader = new BufferedReader(
 					new InputStreamReader(in));
-
 			String messageString;
+		
+			while ((messageString = reader.readLine()) != null
+					&& networkConnected) {
+				System.out.println(messageString);
+				if (!messageString.equals("\n")) {
+					PaintMessage message = paintFactory
+							.getMessage(messageString);
+					if (message != null) {
 
-			while (networkConnected ) {
+						message.apply((Graphics2D) canvas.getImage()
+								.getGraphics());
+						System.out.println("Message Received");
+						canvas.repaint();
 
-				while ((messageString = reader.readLine()) != null) {
-					System.out.println(messageString);
-					if (!messageString.equals("\n")) {
-						PaintMessage message = paintFactory
-								.getMessage(messageString);
-						if (message != null) {
-
-							message.apply((Graphics2D) canvas.getImage()
-									.getGraphics());
-							System.out.println("Message Received");
-							canvas.repaint();
-
-						}
 					}
 				}
 			}
+
 			System.out.println("Network Connected? " + networkConnected);
 
 		} catch (Exception e) {
 
-			new Client(ipAddress, port, canvas).start();
+			new Client(ipAddress, port, canvas,pl).start();
 
 		}
 	}
@@ -91,6 +91,7 @@ public class Client extends Thread {
 
 	private void setNetworkModule(NetworkModule nm) {
 		this.nm = nm;
+		pl.setNetworkModule(getNetworkModule());
 	}
 
 	public void setCanvas(Canvas canvas) {
@@ -101,5 +102,10 @@ public class Client extends Thread {
 	public NetworkModule getNetworkModule() {
 		// TODO Auto-generated method stub
 		return nm;
+	}
+
+	public void connectToNetwork() {
+		// TODO Auto-generated method stub
+		networkConnected = true;
 	}
 }

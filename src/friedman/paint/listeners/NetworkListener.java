@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import friedman.paint.Client;
+import friedman.paint.PaintListener;
 
 public class NetworkListener implements ActionListener {
 	private boolean connected;
@@ -24,12 +25,14 @@ public class NetworkListener implements ActionListener {
 		} else {
 			connect(b);
 		}
-
 	}
 
 	private void connect(JButton b) {
 		connected = true;
 		b.setText("Loopback");
+		
+		client.connectToNetwork();
+		
 		client.start();
 	}
 

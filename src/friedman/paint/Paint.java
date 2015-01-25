@@ -41,10 +41,10 @@ public class Paint extends JFrame {
 		// a) not running a dummy server
 		// b) by changing the port number from 3773 (the Dummy Server's port
 		// number)
-		Client client = new Client("localhost", 3773, canvas);
+		
 
 		PaintListener paintListener = new PaintLineListener(canvas);
-		paintListener.setNetworkModule(client.getNetworkModule());
+		Client client = new Client("localhost", 3773, canvas, paintListener);
 		PaintBanner paintBanner = new PaintBanner(paintListener, client);
 		canvas.setDrawListener(paintListener);
 		canvas.addMouseWheelListener(new BrushStrokeListener(paintBanner));

@@ -74,7 +74,7 @@ public class PaintLineListener extends DrawShapeListener{
 	public void draw(Graphics2D g2){
 		super.draw(g2);
 		
-		getNetworkModule().sendMessage(new LineMessage(x1, y1, x2, y2, canvas.getPaintColor().getRGB(), 10));
+		getNetworkModule().sendMessage(new LineMessage(x1, y1, x2, y2, canvas.getPaintColor().getRGB(), STROKE_WIDTH));
 		
 		
 	}
