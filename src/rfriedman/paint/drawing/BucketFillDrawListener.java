@@ -49,29 +49,25 @@ public class BucketFillDrawListener extends DrawShapeListener {
 
 			// Right
 			if (withinCanvas(visitedPoint.x + 1, visitedPoint.y)
-					&& isSameColor(images,
-							visitedPoint.x + 1, visitedPoint.y)) {
+					&& isSameColor(images, visitedPoint.x + 1, visitedPoint.y)) {
 				stackOfPoints
 						.push(new Point(visitedPoint.x + 1, visitedPoint.y));
 			}
 			// Left
 			if (withinCanvas(visitedPoint.x - 1, visitedPoint.y)
-					&& isSameColor(images,
-							visitedPoint.x - 1, visitedPoint.y)) {
+					&& isSameColor(images, visitedPoint.x - 1, visitedPoint.y)) {
 				stackOfPoints
 						.push(new Point(visitedPoint.x - 1, visitedPoint.y));
 			}
 			// Down
 			if (withinCanvas(visitedPoint.x, visitedPoint.y + 1)
-					&& isSameColor(images,
-							visitedPoint.x, visitedPoint.y + 1)) {
+					&& isSameColor(images, visitedPoint.x, visitedPoint.y + 1)) {
 				stackOfPoints
 						.push(new Point(visitedPoint.x, visitedPoint.y + 1));
 			}
 			// Up
 			if (withinCanvas(visitedPoint.x, visitedPoint.y - 1)
-					&& isSameColor(images,
-							visitedPoint.x, visitedPoint.y - 1)) {
+					&& isSameColor(images, visitedPoint.x, visitedPoint.y - 1)) {
 				stackOfPoints
 						.push(new Point(visitedPoint.x, visitedPoint.y - 1));
 			}
@@ -92,8 +88,6 @@ public class BucketFillDrawListener extends DrawShapeListener {
 	public void mouseReleased(MouseEvent me) {
 		super.mouseReleased(me);
 		Graphics2D g2 = (Graphics2D) canvas.getImage().getGraphics();
-		g2.setColor(canvas.getPaintColor());
-		clickedColor = new Color(canvas.getImage().getRGB(x, y));
 		draw(g2);
 		canvas.repaint();
 
@@ -102,7 +96,6 @@ public class BucketFillDrawListener extends DrawShapeListener {
 	@Override
 	public void mousePressed(MouseEvent me) {
 
-		System.out.println(x + " " + y);
 		super.mousePressed(me);
 		currentPoint = originPoint = me.getPoint();
 		x = (int) currentPoint.getX();
@@ -133,12 +126,15 @@ public class BucketFillDrawListener extends DrawShapeListener {
 	}
 
 	public boolean isSameColor(BufferedImage[] images, int x, int y) {
+
 		for (BufferedImage image : images) {
-			if (!clickedColor.equals(new Color(image.getRGB(x, y)))) {
-				return true;
+			// color is not same as neighboring point AND
+			Color imageColor = new Color(image.getRGB(x, y));
+			if (!clickedColor.equals(new Color(image.getRGB(x, y))) && !imageColor.equals(new Color(0,0,0))) {
+				return false;
 			}
 		}
-		return false;
+		return true;
 
 	}
 

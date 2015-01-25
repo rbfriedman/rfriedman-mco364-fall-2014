@@ -13,7 +13,7 @@ public class Layer {
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		BLANK_IMAGE  = new BufferedImage ( width, height, BufferedImage.TYPE_INT_ARGB );
 		Graphics2D g = BLANK_IMAGE.createGraphics();
-		g.setColor( new Color ( 0, 0, 0, 0 ));
+		g.setColor( new Color ( 255,255,255, 0 ));
 		g.fillRect(0, 0, width, height);
 	}
 
