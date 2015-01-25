@@ -1,6 +1,5 @@
 package friedman.paint;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -15,7 +14,6 @@ public class Canvas extends JComponent {
 	private static final long serialVersionUID = 1L;
 
 	private BufferedImage image;
-	private BasicStroke stroke = new BasicStroke();
 
 	private int canvasHeight;
 	private int canvasWidth;

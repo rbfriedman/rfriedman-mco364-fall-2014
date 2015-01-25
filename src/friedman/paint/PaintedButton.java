@@ -76,6 +76,7 @@ public class PaintedButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		pl.setDrawListener(dl);
+		setNetworkModule();//network connection may have changed
 		System.out.println(paintType);
 	}
 	private void setNetworkModule() {

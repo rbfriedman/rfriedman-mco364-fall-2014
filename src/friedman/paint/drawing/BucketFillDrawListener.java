@@ -5,12 +5,10 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.PrintWriter;
 import java.util.Stack;
 
 import friedman.paint.Canvas;
 import friedman.paint.messages.BucketFillMessage;
-import friedman.paint.messages.PaintMessage;
 
 public class BucketFillDrawListener extends DrawShapeListener {
 	private Color clickedColor;

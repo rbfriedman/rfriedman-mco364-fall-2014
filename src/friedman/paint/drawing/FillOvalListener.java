@@ -2,11 +2,9 @@ package friedman.paint.drawing;
 
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
-import java.io.PrintWriter;
 
 import friedman.paint.Canvas;
 import friedman.paint.Shape;
-import friedman.paint.messages.PaintMessage;
 import friedman.paint.messages.ShapeMessage;
 
 public class FillOvalListener extends DrawShapeListener {

@@ -16,7 +16,9 @@ public class LoopbackNetworkModule implements NetworkModule{
 	@Override
 	public void sendMessage(PaintMessage pm) {
 		// TODO Auto-generated method stub
-		PaintMessage msg = pmf.getMessage(pm.toString()); 
+		String message = pm.toString();
+		message = message.substring(0,message.length()-1);//removing new line char
+		PaintMessage msg = pmf.getMessage(message); 
 		msg.apply((Graphics2D) canvas.getImage().getGraphics());
 		canvas.repaint();
 	}

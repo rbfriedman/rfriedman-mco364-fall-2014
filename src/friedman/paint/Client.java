@@ -55,7 +55,6 @@ public class Client extends Thread {
 		
 			while ((messageString = reader.readLine()) != null
 					&& networkConnected) {
-				System.out.println(messageString);
 				if (!messageString.equals("\n")) {
 					PaintMessage message = paintFactory
 							.getMessage(messageString);

@@ -19,7 +19,7 @@ public class PaintMessageFactory {
 
 
 	public PaintMessage getMessage(String s) {
-		s = s.substring(0,s.length()-1);//removing new line char
+		
 		String[] messageTokens = s.split(" ");
 		PaintMessage pm = null;
 		PaintMessageType pmt = PaintMessageType.valueOf(messageTokens[0]);

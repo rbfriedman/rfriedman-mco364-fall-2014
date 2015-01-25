@@ -94,47 +94,7 @@ public class PaintListener implements DrawListener {
 		return canvas;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void drawPreview(Graphics2D g2) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void draw(Graphics2D g2) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public NetworkModule getNetworkModule(){
 		return networkModule;
@@ -142,6 +102,48 @@ public class PaintListener implements DrawListener {
 
 	public void setNetworkModule(NetworkModule networkModule) {
 		this.networkModule = networkModule;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void drawPreview(Graphics2D g2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draw(Graphics2D g2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
