@@ -45,7 +45,7 @@ public class Paint extends JFrame {
 
 		PaintListener paintListener = new PaintLineListener(canvas);
 		paintListener.setNetworkModule(client.getNetworkModule());
-		PaintBanner paintBanner = new PaintBanner(paintListener);
+		PaintBanner paintBanner = new PaintBanner(paintListener, client);
 		canvas.setDrawListener(paintListener);
 		canvas.addMouseWheelListener(new BrushStrokeListener(paintBanner));
 
@@ -55,7 +55,6 @@ public class Paint extends JFrame {
 		setTitle("Paint");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		client.start();
 
 	}
 

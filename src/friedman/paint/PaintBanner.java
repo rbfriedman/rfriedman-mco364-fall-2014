@@ -15,13 +15,14 @@ import javax.swing.border.EtchedBorder;
 
 import friedman.paint.listeners.ClearScreenListener;
 import friedman.paint.listeners.ColorDialogListener;
+import friedman.paint.listeners.NetworkListener;
 
 public class PaintBanner extends JPanel {
 	private JButton jbtEditColors;
-	private JButton jbtClearScreen;
 	private JLabel jlbBrushStrokeColor;
 	private JLabel jlbStrokeSize;
-	private JButton jbtBucketFill;
+	private JButton jbtNetwork;
+	private Client client;
 
 	private String editColorIcon = "icons/rainbow.jpg";
 	private String jlbStrokeSizeIcon = "icons/Bucket.png";
@@ -29,15 +30,19 @@ public class PaintBanner extends JPanel {
 
 	private PaintListener paintListener;
 
-	public PaintBanner(PaintListener paintListener) {
+	public PaintBanner(PaintListener paintListener, Client client) {
 
 		this.paintListener = paintListener;
+		this.client = client;
 		setLayout(new FlowLayout(FlowLayout.RIGHT));
 
 		ImageIcon icon = createImageIcon(editColorIcon, "Color Palette");
 		jbtEditColors = new JButton("Edit Colors", icon);
 		jbtEditColors.addActionListener(new ColorDialogListener(this));
-
+		
+		jbtNetwork = new JButton("Network");
+		jbtNetwork.addActionListener(new NetworkListener(client));
+		
 
 		jlbBrushStrokeColor = new JLabel("Stroke Color");
 		jlbBrushStrokeColor.setOpaque(true);
@@ -51,6 +56,7 @@ public class PaintBanner extends JPanel {
 		innerPanel.add(jlbStrokeSize);
 		innerPanel.add(jlbBrushStrokeColor);
 		innerPanel.add(jbtEditColors);
+		innerPanel.add(jbtNetwork);
 		Border raisedetched = BorderFactory
 				.createEtchedBorder(EtchedBorder.RAISED);
 		this.setBorder(raisedetched);

@@ -23,46 +23,36 @@ public class Client extends Thread {
 	private String ipAddress;
 	private int port;
 	private boolean networkConnected;
+	private LoopbackNetworkModule lpnm;
 
 	public Client(String ipAddress, int port, Canvas canvas) {
 		this.canvas = canvas;
+		this.ipAddress = ipAddress;
+		this.port = port;
+
+		paintFactory = new PaintMessageFactory(canvas);
+		lpnm = new LoopbackNetworkModule(canvas);
+		setNetworkModule(lpnm);
+
+	}
+
+	public void run() {
 		try {
-			this.ipAddress = ipAddress;
-			this.port = port;
+			InputStream in = null;
+
 			socket = new Socket(ipAddress, port);
 			networkConnected = true;
 			output = socket.getOutputStream();
 			canvas.setPrintWriter(new PrintWriter(getOutputStream()));
 			setNetworkModule(new OnlineNetworkModule(canvas));
-
-		} catch (IOException e) {
-			setNetworkModule(new LoopbackNetworkModule(canvas));
-			networkConnected = false;
-
-		} finally {
-			paintFactory = new PaintMessageFactory(canvas);
-		}
-
-	}
-
-	public void run() {
-		super.run();
-		try {
-			InputStream in = null;
-			try {
-				in = socket.getInputStream();
-			} catch (IOException e) {
-				setNetworkModule(new LoopbackNetworkModule(canvas));
-				networkConnected = false;
-
-			}
+			in = socket.getInputStream();
 
 			BufferedReader reader = new BufferedReader(
 					new InputStreamReader(in));
 
 			String messageString;
 
-			while (networkConnected && reader.ready()) {
+			while (networkConnected ) {
 
 				while ((messageString = reader.readLine()) != null) {
 					System.out.println(messageString);
@@ -83,9 +73,8 @@ public class Client extends Thread {
 			System.out.println("Network Connected? " + networkConnected);
 
 		} catch (Exception e) {
-			networkConnected = false;
-			new Client(ipAddress, port, canvas);
-			e.printStackTrace();
+
+			new Client(ipAddress, port, canvas).start();
 
 		}
 	}
@@ -93,6 +82,11 @@ public class Client extends Thread {
 	public OutputStream getOutputStream() {
 		// TODO Auto-generated method stub
 		return output;
+	}
+
+	public void disconnectFromNetwork() {
+		setNetworkModule(lpnm);
+		networkConnected = false;
 	}
 
 	private void setNetworkModule(NetworkModule nm) {
